@@ -3,7 +3,9 @@
   padding: 0px;
   box-sizing: border-box;
 }
-
+body{
+  font-family: koho;
+}
 
 ul{
   list-style:none;
@@ -11,6 +13,10 @@ ul{
 a {
   text-decoration: none;
 }
+a :hover{
+  color: rgba(0,0,0,1);
+}
+  
 
 /* /////////////////////// header-top ///////////////////////////////// */
 .top-line{
@@ -27,19 +33,21 @@ a {
   color: rgba(0,0,0,.5);
 }
 
-ul.nav li a{
-margin-right: 10px;
-font-size: 15px;
-text-transform: uppercase;
-
+.f-size{
+  font-size: 20px;
 }
-
 .bg-light {
   background-color: white;
 }
 
-
-
+.nav-icons i{
+  font-size: 25px;
+}
+.logo {
+font-size: 35px;
+color: rgba(4,4,4,.8);
+font-weight: bold;
+}
 /* /////////////////// carrusel ///////////////////////// */
 
 .carousel{
@@ -60,10 +68,27 @@ text-transform: uppercase;
   margin-top: 60px;
 }
 
+
+/* ////////////////////////////////// instagram ////////////////////////////////// */
+
+.insta-info p{
+  padding-top: 5px;
+  color:rgba(4,4,4,.8);
+}
+
 /* //////////// footer //////////////////// */
 
 .main-footer {
-  background-color: #ffffff;
   padding: 20px 0;
   margin-top: 80px;
+  
+}
+
+ 
+.footer-icon i{
+  font-size: 20px;
+}
+
+.info-div{
+  border-right: 1px solid rgba(4,4,4,.3);
 }
