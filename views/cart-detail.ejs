@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head') %>
+<body>
+    <%- include('partials/headerNavbar') %>
+    <div class="row justify-content-start ">
+        <div class="mt-4 pl-4">
+            <h2>Mi compra</h2>
+        </div>
+    </div>    
+    <table class="table table-striped mt-1">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Eliminar producto</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>120</td>
+                <td><i class="far fa-trash-alt"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>300</td>
+                <td><i class="far fa-trash-alt"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td>500 </td>
+                <td><i class="far fa-trash-alt"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="row justify-content-end ">
+        <div class="col-md-3 f-size">
+            <p> <strong>Total :</strong> $920</p>
+        </div>
+    </div>      
+    <div class="row justify-content-end ">
+        <div class="col-md-3">
+            <button class="btn btn-secondary">Iniciar compra</button>
+        </div>
+    </div>     
+    
+    <%- include('partials/pay-send-return') %>
+    <%- include('partials/footer') %>
+
+    <!-- scripts -->    
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+</body>
+</html>
