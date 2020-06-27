@@ -1,19 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
+const indexController = require('../controllers/indexController')
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', indexController.store)
 
-router.get('/local', function(req, res, next) {
-  res.render('locals');
-});
- 
+////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
+router.get('/local', indexController.locals)
+////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
 
-router.get('/cart', function(req, res, next) {
-   res.render('cart-detail');
-  
-});
+router.get('/cart', indexController.cart)
+
 
 module.exports = router;
