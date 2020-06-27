@@ -64,7 +64,9 @@ font-weight: bold;
 
 /* /////////////////////////////// photo categoty ////////////////////////// */
 
-
+.height-photo{
+  height: 300px;
+}
 .margin-top-element{
   margin-top: 60px;
 }
