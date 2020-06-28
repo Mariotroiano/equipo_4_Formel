@@ -33,10 +33,10 @@
               Top
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item " href="#">camisas</a>
-              <a class="dropdown-item " href="#">pantalones</a>
-              <a class="dropdown-item " href="#">sweters</a>
-              <a class="dropdown-item " href="#">camperas</a>
+              <% productsCategorys.forEach(function(product){ %>
+              <a class="dropdown-item " href="#"><%= product.category %></a>
+              <% }) %>
+              
               
               <!-- <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
