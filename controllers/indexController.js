@@ -11,7 +11,7 @@ function propertysNoRepeat (array){
             arrayNoRepeat.push(element.category)
         }
     });
-    return arrayNoRepeat
+    return arrayNoRepeat.sort()
 }
 // esta funcion borra las categorias dupicadas //
 
