@@ -92,6 +92,9 @@ font-weight: bold;
 .cursor-hover a :hover{
   cursor: pointer;
 }
+.cursor-pointer img :hover{
+  cursor: pointer;
+}
 
 /* //////////// footer //////////////////// */
 
