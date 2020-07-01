@@ -20,6 +20,7 @@ let indexFunctions = {
     store : (req, res) => {
         let categorys = products.filter(product => product.category)
         let productsCategorys = propertysNoRepeat(categorys)
+        
         res.render('index', {productsCategorys : productsCategorys})  
     },
     
@@ -33,6 +34,7 @@ let indexFunctions = {
         res.render('locals');
     },
     
+  
     
 }
 
