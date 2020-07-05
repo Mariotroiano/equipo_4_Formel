@@ -8,7 +8,25 @@
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
-  
+  <% if(user){ %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Binvenid@ <%= user.name %>!</strong> esperamos que disfrutes nuestra tienda! 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <% }  %>
+
+    <% if( loginError){ %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Lo sentimos :( <%= loginError %>! <a href="#" class="badge badge-secondary" data-target="#register-modal" data-toggle="modal">registrate acá</a></strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% }%>
+      
+      
   <!--  carrusel -->
   <%- include('partials/carrusel') %>
   <!--  carrusel -->
@@ -87,7 +105,7 @@
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
           <section class="product-box">
-            <a href="">
+            <a href="/products/detail">
               <figure class="product-box_image">
                 <img src="images/products/chaleco-azul.jpg" alt="imagen de producto" class="img-fluid">
               </figure>
@@ -106,7 +124,7 @@
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
           <section class="product-box">
-            <a href="">
+            <a href="/products/detail">
               <figure class="product-box_image">
                 <img src="images/products/pantalon-negro.jpg" alt="imagen de producto" class="img-fluid">
               </figure>
@@ -124,7 +142,7 @@
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
           <section class="product-box">
-            <a href="">
+            <a href="/products/detail">
               <figure class="product-box_image">
                 <img src="images/products/pantalon-gris.jpg" alt="imagen de producto" class="img-fluid">
               </figure>
@@ -141,7 +159,7 @@
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
           <section class="product-box">
-            <a href="">
+            <a href="/products/detail">
               <figure class="product-box_image">
                 <img src="images/products/saco-gris.jpg" alt="imagen de producto" class="img-fluid">
               </figure>

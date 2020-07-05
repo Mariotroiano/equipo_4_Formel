@@ -21,7 +21,7 @@ let indexFunctions = {
         let categorys = products.filter(product => product.category)
         let productsCategorys = propertysNoRepeat(categorys)
         
-        res.render('index', {productsCategorys : productsCategorys})  
+        res.render('index', {productsCategorys : productsCategorys, user : req.session.user, loginError : req.session.loginError})  
     },
     
     
@@ -33,8 +33,14 @@ let indexFunctions = {
     locals : (req, res) => {
         res.render('locals');
     },
-    
   
+    products : (req, res)=>{
+        res.render('products')
+    },
+    
+    productsDetail : (req, res)=>{
+      res.render('products-detail')
+    }
     
 }
 

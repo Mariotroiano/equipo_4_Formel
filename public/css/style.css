@@ -245,4 +245,10 @@ font-weight: bold;
     transform: rotate(360deg);
     box-shadow: 0 0 15px black;
   }
-  
+  /* ////////////////// users forms /////////////////// */
+
+  .alert-warning {
+    color: rgba(0, 0, 0, 1);
+    background-color: #D3D3D3;
+    border-color: #D3D3D3;
+}

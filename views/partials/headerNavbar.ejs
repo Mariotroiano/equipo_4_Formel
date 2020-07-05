@@ -1,23 +1,19 @@
 
-
-
 <div class="container-fluid  ">
   <div class="row justy top-line d-none d-md-block">
-    <div class="col-md-12 d-flex flex-row justify-content-center hidden-md-down">
+    <div class="col-md-12 d-flex  justify-content-center hidden-md-down">
       <p>stay home |</p>
       <p>25% off |</p>
       <p>envios gratis desde $10000</p>
     </div>
   </div>
 </div>
-  
-  <div class="container-fluid sticky-top borer-bottom">
+
+<div class="container-fluid sticky-top borer-bottom">
   <div class="row d-flex justify-content-between bg-nav-sticky">
     <div class="col-md-2 justify-content-start d-none d-md-block">
       <a href="/" class="logo pt-2"> FormelARG</a>
     </div>
-    
-    
     
     
     <nav class="navbar navbar-expand-lg navbar-light " id="nav">
@@ -33,15 +29,18 @@
               Top
             </a>
             <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
-             
-              <a class="dropdown-item" href="#">remeras</a>
-              <a class="dropdown-item" href="#">remeras</a>
-              <a class="dropdown-item" href="#">remeras</a>
-              <a class="dropdown-item" href="#">remeras</a>
-              <a class="dropdown-item" href="#">remeras</a>
-
-           
               
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              <a href="/products" class="dropdown-item" >remeras</a>
+              
+
               
               <!-- <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
@@ -53,10 +52,10 @@
                 Bottom
               </a>
               <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                <a class="dropdown-item " href="#">camisas</a>
-                <a class="dropdown-item " href="#">pantalones</a>
-                <a class="dropdown-item "  href="#">sweters</a>
-                <a class="dropdown-item " href="#">camperas</a>
+                <a class="dropdown-item " href="/products">camisas</a>
+                <a class="dropdown-item " href="/products">pantalones</a>
+                <a class="dropdown-item "  href="/products">sweters</a>
+                <a class="dropdown-item " href="/products">camperas</a>
                 
                 <!-- <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Something else here</a>
@@ -75,159 +74,29 @@
           
           <div class="col-md-2 nav-icons mt-2 mr-2">
             <ul class="right-navbar d-flex flex-row pt-3 justify-content-between">
-              <li><a href="#"> <i class="far fa-address-card mr-4 bg-color-item"></i></a></li>
-              <li><a href="#"><i class="fas fa-sign-in-alt mr-4 bg-color-item"></i></a></li>
-              <li><a href="#"><i class="fas fa-cart-plus bg-color-item mr-4" data-target="#exampleModal" data-toggle="modal"></i></a></li>
+              
+              <li><a href="#" > <i class="far fa-address-card mr-4 bg-color-item"   title="registrate" data-target="#register-modal" data-toggle="modal"></i></a></li>
+              <li><a href="#"></a><i class="fas fa-sign-in-alt mr-4 bg-color-item" title="iniciar sesión" data-target="#login-modal" data-toggle="modal"></i></a></li>
+              <li><a href="users/logout"><i class="fas fa-sign-out-alt mr-4 bg-color-item" title="cerrar sesion"></i></a></li>
+              <li><a href="#"><i class="fas fa-cart-plus bg-color-item mr-4" title="carrito" data-target="#cart-modal" data-toggle="modal"></i></a></li>
             </ul>
             <!-- </div> -->
-            
           </div>
-          
         </div>
-        
-        
-        
       </div>
-      
     </div>
-    
   </div>
-    
-    
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mi compra</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <!-- ////////////////////// contenido ventana /////////////////////// -->
-            
-            <div class="container-fluid border-bottom">
-              <div class="row p-2 d-flex justify-content-around">
-                <div class="col-3 ">
-                  <img src="/images/products/campera-cuero.jpg" alt="" class="img-fluid rounded">
-                </div>
-                
-                <div class="col-7">
-                  <div>
-                    <p> Descripcion del producto</p>
-                  </div>
-                  
-                  <div>
-                    <p>color - talle</p>
-                  </div>
-                  
-                  <div>
-                    <strong><p>$2.300</p></strong>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col-1 modal-shop-quantity justify-content-center">
-                      1
-                    </div >
-                    
-                    <div class="col-3">
-                      <i class="far fa-trash-alt">eliminar</i>
-                    </div>
-                  </div>
-                  
-                </div>
-                
-                
-              </div>
-            </div>
-            <!-- ////////////////////// contenido ventana /////////////////////// -->
-            
-            <!-- ////////////////////// contenido ventana /////////////////////// -->
-            
-            <div class="container-fluid border-bottom">
-              <div class="row p-2 d-flex justify-content-around">
-                <div class="col-3">
-                  <img src="/images/products/pantalon-negro.jpg" alt="" class="img-fluid rounded">
-                </div>
-                
-                <div class="col-7">
-                  <div>
-                    <p> Descripcion del producto</p>
-                  </div>
-                  
-                  <div>
-                    <p>color - talle</p>
-                  </div>
-                  
-                  <div>
-                    <strong><p>$2.300</p></strong>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col-1 modal-shop-quantity justify-content-center" >
-                      1
-                    </div >
-                    
-                    <div class="col-3">
-                      <i class="far fa-trash-alt">eliminar</i>
-                    </div>
-                  </div>
-                  
-                </div>
-                
-                
-              </div>
-            </div>
-            <!-- ////////////////////// contenido ventana /////////////////////// -->
-            
-            <!-- ////////////////////// contenido ventana /////////////////////// -->
-            
-            <div class="container-fluid border-bottom">
-              <div class="row p-2 d-flex justify-content-around">
-                <div class="col-3 ">
-                  <img src="/images/products/camisa-azul.jpg" alt="" class="img-fluid rounded">
-                </div>
-                
-                <div class="col-7">
-                  <div>
-                    <p> Descripcion del producto</p>
-                  </div>
-                  
-                  <div>
-                    <p>color - talle</p>
-                  </div>
-                  
-                  <div>
-                    <strong><p>$2.300</p></strong>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col-1 modal-shop-quantity justify-content-center">
-                      1
-                    </div >
-                    
-                    <div class="col-3">
-                      <i class="far fa-trash-alt">eliminar</i>
-                    </div>
-                  </div>
-                  
-                </div>
-                
-                
-              </div>
-            </div>
-            <!-- ////////////////////// contenido ventana /////////////////////// -->
-          </div>
-          <div class="modal-footer">
-            <!-- <form action="/index/cart-detail" method="GET"> -->
-              <a href="cart"> <button type="button" class="btn btn-secondary">Ver mi carrito</button></a>
-              <!-- </form> -->
-            </div>
-          </div>
-        </div>
-      </div>
-   
-      
-      
-      
+  
+  <!-- CART-MODAL -->
+  <%- include('cart-modal') %>
+  <!-- CART-MODAL -->
+  
+  
+  <!-- REGISTER-MODAL -->
+  <%- include('register') %>
+  <!-- REGISTER-MODAL -->
+  
+  
+  <!-- LOGIN-MODAL -->
+  <%- include('login') %>
+  <!-- LOGIN-MODAL -->
