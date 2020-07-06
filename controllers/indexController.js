@@ -40,8 +40,12 @@ let indexFunctions = {
     
     productsDetail : (req, res)=>{
       res.render('products-detail')
-    }
+    },
     
+    create : (req, res)=>{
+        res.render('products-create')
+    }
+
 }
 
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ////////////////////////////  head /////////////////////////// -->
+<%- include('partials/head') %>
+<!-- ////////////////////////////  head /////////////////////////// -->
+
+<body>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    <%- include('partials/headerNavbar') %>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+            <form>
+                <div class="form-group">
+                    <label for="id">Id producto</label>
+                    <input type="text" class="form-control" id="id" name="id">
+                  </div>
+
+                <div class="form-group">
+                  <label for="name">Nombre producto</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="nombre del producto">
+                </div>
+
+                <div class="form-group">
+                  <label for="category">Categoría</label>
+                  <select class="form-control" id="category" name="category">
+                    <option>pantalones</option>
+                    <option>remeras</option>
+                    <option>abrigos</option>
+                    <option>accesorio</option>
+                    <option>camisas</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Precio</label>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="nombre del producto">
+                  </div>
+
+                  
+                  <div class="form-group">
+                    <label for="color">Color</label>
+                    <select class="form-control" id="color" name="color">
+                      <option>rojo</option>
+                      <option>negro</option>
+                      <option>gris</option>
+                      <option>azul</option>
+                      <option>amarillo</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="size">Talle</label>
+                    <select class="form-control" id="size" name="size">
+                      <option>S</option>
+                      <option>XS</option>
+                      <option>M</option>
+                      <option>L</option>
+                      <option>XL</option>
+                    </select>
+                  </div>
+
+                <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Imagen producto</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                  </div>
+                  <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3">Cargar producto</button>
+              </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
+</body>
+
+</html>

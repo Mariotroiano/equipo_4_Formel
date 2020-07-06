@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-
+const bcrypt = require('bcrypt');
 const usersFilePath = path.join(__dirname, '../data/users.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
@@ -8,16 +8,19 @@ let userFunction = {
     
     register : (req, res) => {
         let user = {
-            ...req.body
+            ...req.body,
+            password : bcrypt.hashSync( req.body.password, 10),
+            confirmPassword : bcrypt.hashSync( req.body.confirmPassword, 10)
+            
         }
         users.push(user);
         fs.writeFileSync(usersFilePath, JSON.stringify(users));
-        res.redirect('/#');
+        res.redirect('/');
     },
     
     login : (req, res)=>{
       let user = users.find(element =>{
-          return element.email == req.body.email && element.password == req.body.password;
+          return element.email == req.body.email && bcrypt.compareSync( req.body.password,element.password);
       })
 
       if(user){
@@ -30,8 +33,10 @@ let userFunction = {
     },
 
     logout : (req, res)=>{
-        req.session.destroy()
-        res.redirect('/#')
+        req.session.destroy(()=>{
+            res.redirect('/')
+        });
+
     }
 }
 module.exports = userFunction
