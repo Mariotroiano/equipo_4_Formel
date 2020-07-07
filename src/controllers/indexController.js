@@ -33,13 +33,19 @@ let indexFunctions = {
     locals : (req, res) => {
         res.render('locals');
     },
-  
+
     products : (req, res)=>{
-        res.render('products')
+        
+        res.render('products', {products : products})
+    },
+  
+    productsCategory : (req, res)=>{
+        res.render('products-category')
     },
     
     productsDetail : (req, res)=>{
-      res.render('products-detail')
+        let productId = products.filter(product => product.id == req.params.productId)
+		res.render('products-detail', {productId : productId})
     },
     
     create : (req, res)=>{

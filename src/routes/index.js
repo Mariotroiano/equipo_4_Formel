@@ -8,14 +8,16 @@ const middlewaresFunctions = require('../middlewares/authMiddleware');
 /* GET home page. */
 router.get('/', indexController.store )
 
-
 router.get('/products', indexController.products)
-router.get('/detail', indexController.productsDetail)
 
-router.get('/create', indexController.create)
+router.get('/products/category', indexController.productsCategory)
+
+router.get('/products/detail/:idProduct', indexController.productsDetail)
+
+router.get('/products/create', indexController.create)
 // router.post('/products/create', indexController.store)
 
-// router.get('/products/edit/:productId', indexController.edit)
+//  router.get('/products/edit/:productId', indexController.edit)
 // router.put('/products/edit/:productId', indexController.update)
 
 // router.delete('products/delete/:productId', productsController.destroy); 
