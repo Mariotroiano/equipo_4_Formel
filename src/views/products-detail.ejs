@@ -3,12 +3,19 @@
 <%- include('partials/head') %>
 <body>
     <h1>DETALLE DE PRODUCTO - AGUSTIN GAUTO</h1>
+<% productId.forEach(product =>{ %>
+    <p>Nombre producto : <%= product.name %></p>
+    <p>Precio : <%= product.price %></p>
+    <p>Talle : <%= product.size %></p>
+    <p>Descripcion : <%= product.description %></p>
+    <p>Color : <%= product.color %></p>
 
-<p><%= productId.price %></p>
-<p><%= productId.name %></p>
-<p><%= productId.size %></p>
-<p><%= productId.description %></p>
-<p><%= productId.color %></p>
 </body>
 </html>
 
+<a href="/products/edit/<%= product.id%>" class="btn btn-secondary">Editar producto</a>
+
+<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-secondary">Eliminar producto</button>
+</form>
+<% }) %>

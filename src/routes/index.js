@@ -12,15 +12,17 @@ router.get('/products', indexController.products)
 
 router.get('/products/category', indexController.productsCategory)
 
-router.get('/products/detail/:idProduct', indexController.productsDetail)
+router.get('/products/detail/:productId', indexController.productsDetail)
 
-router.get('/products/create', indexController.create)
-// router.post('/products/create', indexController.store)
+router.get('/products/create', indexController.createGet)
+router.post('/products/create', indexController.create)
 
-//  router.get('/products/edit/:productId', indexController.edit)
-// router.put('/products/edit/:productId', indexController.update)
+router.get('/products/edit/:productId', indexController.edit)
+router.put('/products/edit/:productId', indexController.update)
 
-// router.delete('products/delete/:productId', productsController.destroy); 
+ router.delete('/products/delete/:productId', indexController.deleteProduct); 
+
+
 
 router.get('/cart',middlewaresFunctions.loginMiddleware, indexController.cart)
 

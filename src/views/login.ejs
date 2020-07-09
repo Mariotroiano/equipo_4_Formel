@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ////////////////////////////  head /////////////////////////// -->
+<%- include('partials/head') %>
+<!-- ////////////////////////////  head /////////////////////////// -->
+
+<body>
+  <!-- ////////////////////////// header Nav /////////////////////// -->
+  <%- include('partials/headerNavbar') %>
+  <!-- ////////////////////////// header Nav /////////////////////// -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/users/login" method="POST">
+                <div class="form-group">
+                  <label for="email">Email </label>
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                
+                <div class="form-group">
+                  <label for="password">Contraseña</label>
+                  <input type="password" class="form-control" id="password" name="password">
+                </div>
+                
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="remember-password" name="remember-password">
+                  <label class="form-check-label" for="remember-password">Recordar contraseña</label>
+                </div>
+                
+                <button type="submit" class="btn btn-secondary">Iniciar sesión</button>
+              </form>
+        </div>
+    </div>
+</div>
+    
+  <script src="scripts/jquery-3.5.1.min.js"></script>
+  <script src="scripts/bootstrap.min.js"></script> 
+</body>
+
+</html>
