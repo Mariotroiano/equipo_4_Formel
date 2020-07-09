@@ -1,16 +1,8 @@
 const fs = require('fs')
 let path = require('path');
 
-// const productsFilePath = path.join(__dirname, '../data/products.json');
-// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 let productsFilePath = path.join(__dirname, '../data/products.json');
 let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
-// let products = require('../data/products.json');
-
-function readJson(file){
-    return  fs.readFileSync(file, {encoding : 'utf-8'})
-}
 
 // esta funcion borra las categorias dupicadas //
 function propertysNoRepeat (array){
@@ -24,6 +16,10 @@ function propertysNoRepeat (array){
 }
 // esta funcion borra las categorias dupicadas //
 
+function writeJson(file, arr){
+    fs.writeFileSync(file, JSON.stringify(arr), 'utf8');
+}
+
 let indexFunctions = {
     
     store : (req, res) => {
@@ -33,17 +29,7 @@ let indexFunctions = {
         let offerProducts = products.filter(product => product.price <= 1200)
         res.render('index', { user : req.session.user, loginError : req.session.loginError, offerProducts})  
     },
-    
-    
-    
-    cart : (req, res) => {
-        res.render('cart-detail');
-    },
-    
-    locals : (req, res) => {
-        res.render('locals');
-    },
-    
+        
     products : (req, res)=>{
         
         res.render('products', {products : products})
@@ -67,14 +53,12 @@ let indexFunctions = {
         let product = {
             ...req.body,
             id : position,
-            image : req.files[0].filename
-            
-        }
-        
+            image : req.files[0].filename            
+        }        
         console.log(product)
         products.push(product)
         
-        fs.writeFileSync(productsFilePath, JSON.stringify(products))
+        writeJson(productsFilePath, products)       
         res.redirect('/products/create') 
     },
     
@@ -83,30 +67,35 @@ let indexFunctions = {
         res.render('products-edit', {productToEdit : productToEdit})
     },
     
-    update : (req, res)=> {
-       
+    update : (req, res)=> {        
         let productEdit = products.map(function(product){
             if(product.id == req.params.productId){
                 
                 return {
                     ...product, ...req.body,
-                    
                 }
             }
             return product
         });
-        fs.writeFileSync(productsFilePath, JSON.stringify(productEdit));
+        writeJson(productsFilePath, productEdit)        
         res.redirect('/products')
     },
     
     delete : (req, res) => {
         let productDelete = products.filter(product => product.id != req.params.productId)
         
-        fs.writeFileSync(productsFilePath, JSON.stringify(productDelete), 'utf8');
+        writeJson(productsFilePath, productDelete )        
         res.redirect('/products')
-    }
+    },
+    
+    cart : (req, res) => {
+        res.render('cart-detail');
+    },
+    
+    locals : (req, res) => {
+        res.render('locals');
+    },
+    
 }
-
-
 
 module.exports = indexFunctions;
