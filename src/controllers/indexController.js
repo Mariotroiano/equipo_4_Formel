@@ -27,7 +27,7 @@ let indexFunctions = {
         let productsCategorys = propertysNoRepeat(categorys)
         
         let offerProducts = products.filter(product => product.price <= 1200)
-        res.render('index', { user : req.session.user, loginError : req.session.loginError, offerProducts})  
+        res.render('index', { user : req.session.user, loginError : req.session.loginError,registered : req.session.registered,offerProducts})  
     },
         
     products : (req, res)=>{

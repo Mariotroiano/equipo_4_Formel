@@ -26,6 +26,7 @@ let userFunction = {
             
             users.push(user);
             fs.writeFileSync(usersFilePath, JSON.stringify(users));
+            req.session.registered = "Tu cuenta se creo correctamente!! ahora solo resta iniciar sesión"
             res.redirect('/');
             // res.render('index', {msg : "te registraste con exitoo!!" });
         }else{
