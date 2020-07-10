@@ -8,6 +8,9 @@
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
+ 
+
+  
   <% if(user){ %>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Binvenid@ <%= user.name %>!</strong> esperamos que disfrutes nuestra tienda! 
@@ -19,7 +22,8 @@
     
     <% if( loginError && typeof user == 'undefined'){ %>
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Lo sentimos :( <%= loginError %>! <a href="#" class="badge badge-secondary" data-target="#register-modal" data-toggle="modal">registrate acá</a></strong>
+        <strong>Lo sentimos :( <%= loginError %>! <a href="/users/register" class="badge badge-secondary">registrate acá</a></strong>
+        <strong>o inicie sesión nuevamente <a href="/users/login" class="badge badge-secondary">acá</a></strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
