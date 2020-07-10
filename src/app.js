@@ -8,6 +8,7 @@ var methodOverride = require('method-override')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var arraysMiddlewares = require('./middlewares/arraysMiddlewares');
+let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 // const middlewaresFunctions = require('./middlewares/authMiddleware');
 
 var app = express();
@@ -26,6 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
+// app.use(cookieAuthMiddleware);
 app.use(methodOverride('_method'))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

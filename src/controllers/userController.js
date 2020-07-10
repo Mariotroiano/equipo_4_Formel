@@ -46,6 +46,9 @@ let userFunction = {
         
         if(user){
             req.session.user = user;
+            if(req.body.rememberPassword != 'undefined'){
+                res.cookie('rememberPassword', user.email, {maxAge : 60*60*24*30})
+            }
             res.redirect('/');
         }else{
             req.session.loginError = "usuario no registrado, revise su email o contraseña para tener acceso a todas nuestras secciones"
