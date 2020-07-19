@@ -13,9 +13,9 @@
 </body>
 </html>
 
-<a href="/products/edit/<%= product.id%>" class="btn btn-secondary">Editar producto</a>
+<a href="/products/<%= product.id%>/edit" class="btn btn-secondary">Editar producto</a>
 
-<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+<form action="/products/<%= product.id %>?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-secondary">Eliminar producto</button>
 </form>
 <% }) %>

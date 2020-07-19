@@ -11,33 +11,34 @@
   
   
   
-  <% if(user){ %>
+  <% if(typeof succesMsg != 'undefined'){ %>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <strong>Binvenid@ <%= user.name %>!</strong> esperamos que disfrutes nuestra tienda! 
+      <strong> <%= succesMsg %>!</strong> esperamos que disfrutes nuestra tienda! 
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <% }  %>
     
-    <% if( loginError && typeof user == 'undefined'){ %>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Lo sentimos :( <%= loginError %>! <a href="/users/register" class="badge badge-secondary">registrate acá</a></strong>
-        <strong>o inicie sesión nuevamente <a href="/users/login" class="badge badge-secondary">acá</a></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <% }%>
-      
+   
       <% if(typeof registered != 'undefined'){ %>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong> <%= registered %> <a href="users/login">acá !</a></strong> 
+          <strong> <%= registered %> <a href="/users/login">acá !</a></strong> 
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <% }  %>
+
+        <% if(typeof notPermission != 'undefined' && typeof succesMsg == 'undefined'){ %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong> <%= notPermission %> <a href="/users/login">acá !</a></strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+       <% } %>
+        
         
         <!--  carrusel -->
         <%- include('partials/carrusel') %>
@@ -118,7 +119,7 @@
               <% offerProducts.forEach(product => { %>
                 <div class="col-12 col-sm-6 col-lg-3">
                   <section class="product-box">
-                    <a href="/products/detail/<%= product.id %>">
+                    <a href="/products/<%= product.id %>">
                       <figure class="product-box_image">
                         <img src="images/products/chaleco-azul.jpg" alt="imagen de producto" class="img-fluid">
                       </figure>
@@ -130,16 +131,16 @@
                           <%= product.size %>
                         </p>
                         
-                        <i class="fas fa-cart-plus" ></i>
+                        <a href="/products/cart/<%= product.id %>"><i class="fas fa-cart-plus" ></i></a>
                       </article>
                     </a>
                   </section>
                 </div>
                 <% }) %>
-                
-                
-                
                 <!-- ////////////////  Cards ofertas //////////////////////////// -->
+                
+                
+                
                 
                 <!-- ///////////////// envios ////////////////////// solo falta cargar fotos --> 
                 <%- include('partials/pay-send-return') %>

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const indexController = require('../controllers/indexController');
 
-let authMiddlewares = require('../middlewares/authMiddleware');
+let userPermissionMiddleware = require('../middlewares/userPermissionMiddleware');
 let uploadMiddleware = require('../middlewares/uploadMiddleware')
 
 var upload = uploadMiddleware
@@ -12,20 +12,22 @@ router.get('/', indexController.store )
 
 router.get('/products', indexController.products)
 
-router.get('/products/category', indexController.productsCategory)
-
-router.get('/products/detail/:productId', indexController.productsDetail)
-
+// router.get('/products/category', indexController.getCategorys)
 router.get('/products/create', indexController.createGet)
-router.post('/products/create',upload.any(), indexController.create)
+router.post('/products',upload.any(), indexController.create)
 
-router.get('/products/edit/:productId', indexController.edit)
+router.get('/products/cart',userPermissionMiddleware, indexController.cart)
+// router.get('/products/cart/:productId', indexController.createCart)
 
-router.put('/products/edit/:productId', indexController.update)
+router.get('/products/:productId', indexController.productsDetail)
 
- router.delete('/products/delete/:productId', indexController.delete); 
+router.get('/products/:productId/edit', indexController.edit)
+router.put('/products/:productId', indexController.update)
 
- router.get('/cart',authMiddlewares.loginMiddleware, indexController.cart)
+router.delete('/products/:productId', indexController.delete); 
+
+
+
 
  ////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
  router.get('/local', indexController.locals)

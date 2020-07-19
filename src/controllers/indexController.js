@@ -27,7 +27,7 @@ let indexFunctions = {
         let productsCategorys = propertysNoRepeat(categorys)
         
         let offerProducts = products.filter(product => product.price <= 1200)
-        res.render('index', { user : req.session.user, loginError : req.session.loginError,registered : req.session.registered,offerProducts})  
+        res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
     },
         
     products : (req, res)=>{
@@ -35,9 +35,9 @@ let indexFunctions = {
         res.render('products', {products : products})
     },
     
-    productsCategory : (req, res)=>{
-        res.render('products-category')
-    },
+    // productsCategory : (req, res)=>{
+    //     res.render('products-category')
+    // },
     
     productsDetail : (req, res)=>{
         let productId = products.filter(product => product.id == req.params.productId)
@@ -55,7 +55,7 @@ let indexFunctions = {
             id : position,
             image : req.files[0].filename            
         }        
-        console.log(product)
+        
         products.push(product)
         
         writeJson(productsFilePath, products)       
@@ -89,9 +89,28 @@ let indexFunctions = {
     },
     
     cart : (req, res) => {
-        res.render('cart-detail');
+        res.render('cart');
     },
     
+    // createCart : (req, res) => {
+
+    //     let productsInCart = [];
+    //     let addProduct = products.find(product => product.id == req.params.productId);
+       
+    //     if(addProduct){        
+           
+    //         productsInCart.push(addProduct)
+    //         res.cookie('productsInCart', productsInCart, {maxAge : 365 * 24 * 60 * 60 * 1000})
+    //     }
+    //     console.log(productsInCart)
+
+    //     let totalCart = productsInCart.reduce((acumulator, product)=>{
+    //         return acumulator = acumulator + product.price
+    //     },0)
+    //     console.log(`total a pagar : ${totalCart} `)
+    //     res.render('cart', {productsInCart : productsInCart, totalCart : totalCart})
+    // },
+
     locals : (req, res) => {
         res.render('locals');
     },

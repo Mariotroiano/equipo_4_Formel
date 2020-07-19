@@ -7,8 +7,8 @@ var session = require('express-session')
 var methodOverride = require('method-override')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var arraysMiddlewares = require('./middlewares/arraysMiddlewares');
-let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
+
+// let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 // const middlewaresFunctions = require('./middlewares/authMiddleware');
 
 var app = express();
@@ -27,12 +27,12 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
-// app.use(cookieAuthMiddleware);
 app.use(methodOverride('_method'))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
+// app.use(cookieAuthMiddleware);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
