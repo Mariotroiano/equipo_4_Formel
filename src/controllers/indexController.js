@@ -41,6 +41,7 @@ let indexFunctions = {
     
     productsDetail : (req, res)=>{
         let productId = products.filter(product => product.id == req.params.productId)
+        console.log(productId)
         res.render('products-detail', {productId : productId})
     },
     

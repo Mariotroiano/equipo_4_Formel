@@ -1,17 +1,91 @@
 
 <!DOCTYPE html>
+<html>
 <%- include('partials/head') %>
 <body>
-    <h1>DETALLE DE PRODUCTO - AGUSTIN GAUTO</h1>
-<% productId.forEach(product =>{ %>
-    <p>Nombre producto : <%= product.name %></p>
-    <p>Precio : <%= product.price %></p>
-    <p>Talle : <%= product.size %></p>
-    <p>Descripcion : <%= product.description %></p>
-    <p>Color : <%= product.color %></p>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    <%- include('partials/headerNavbar') %>
 
+
+    <!---DONE BY AG-->
+    <% productId.forEach(product =>{ %>
+    <div class="container-fluid" id="main-container">
+        <div class="col-6" id="back-1">
+            <img src="/images/products/<%=product.image%>">
+        </div>
+        <div class="col-6" id="back-2">
+            <div class="product-detail">
+                    <div>
+                        <p class="main-info"><%=product.name%></p>
+                        <p class="main-info mt-4">Talle: <%=product.size%></p> 
+                        <p class="main-info">$: <%=product.price%></p>
+                    </div>
+                    <div class="secondary-detail">
+                        <p class="secondary-info">Descripción: <%=product.description%></p>
+                        <p class="secondary-info">Color: <%=product.color%></p>
+                    </div>
+                    <div class="size-selector">
+                        <form id="unique">
+                            <input type="radio" name="talle" id="small">
+                            <label for="small" class="circulo">S</label>
+
+                            <input type="radio" name="talle" id="medium">
+                            <label for="medium" class="circulo">M</label>
+
+                            <input type="radio" name="talle" id="large">
+                            <label for="large" class="circulo">L</label>
+
+                            <input type="radio" name="talle" id="extralarge">
+                            <label for="extralarge" class="circulo">XL</label>
+
+                            <button type="submit" form="unique">Agregar al carrito</button>
+                        </form>
+                    </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="container">
+        <div class="detail-text">
+            <p class="main-info">DETALLE DEL PRODUCTO</p>
+            <p class="secondary-info">
+               
+            </p>
+        </div>
+        <div class="recommend-text"> 
+            <h1>OTROS PRODUCTOS</h1>
+            <p id="que-puedan">QUE PUEDAN INTERESARTE</p>
+        </div>
+        <div class="recommend-cart">
+            <div class="card" style="width: 18rem;">
+                <img src="/images/product-detail/product-detail-card1.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="/images/product-detail/product-detail-card2.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="/images/product-detail/product-detail-card3.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- //////// footer ////////////////// -->
+ <%- include('partials/footer') %>
 </body>
 </html>
+
+
+
+
+<!--- EXTRA  
 
 <a href="/products/<%= product.id%>/edit" class="btn btn-secondary">Editar producto</a>
 
@@ -19,3 +93,5 @@
     <button type="submit" class="btn btn-secondary">Eliminar producto</button>
 </form>
 <% }) %>
+
+-->
