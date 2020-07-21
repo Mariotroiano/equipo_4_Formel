@@ -50,9 +50,9 @@ let userFunction = {
         if(user){                     
             req.session.user = user;
             req.session.succesMsg = `Bienvenid@ ${user.first_name} ${user.last_name}`
-            if(req.body.rememberPassword != "undefined"){
-                res.cookie('rememberPassword', user.email, {maxAge :60000})
-            }
+            // if(req.body.rememberPassword != "undefined"){
+            //     res.cookie('rememberPassword', user.email, {maxAge :60000})
+            // }
             res.redirect('/');
         }else{
             req.session.loginError = "usuario no registrado, revise su email o contraseña para tener acceso a todas nuestras secciones"

@@ -17,9 +17,13 @@ function propertysNoRepeat (array){
     return arrayNoRepeat.sort()
 }
 // esta funcion borra las categorias dupicadas //
-module.exports = function getCategorys(req, res, next){
-    next()
+ function getCategorys(req, res, next){
+  
+   
     let categorys = products.filter(product => product.category)
     let productsCategorys = propertysNoRepeat(categorys)
     res.render('partials/headerNavbar', {productsCategorys : productsCategorys})
+    next()
 }
+
+module.exports = getCategorys
