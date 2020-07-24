@@ -50,6 +50,7 @@ let indexFunctions = {
     },
     
     create : (req, res)=>{
+        
         let position = products.length + 2
         let product = {
             ...req.body,
@@ -94,9 +95,30 @@ let indexFunctions = {
     },
     
     // createCart : (req, res) => {
-
-    //     let productsInCart = [];
+    //     let qtyProduct = 0
     //     let addProduct = products.find(product => product.id == req.params.productId);
+
+    //     if(addProduct){
+    //         qtyProduct++
+    //     }
+
+    //     let cart = {
+
+    //         products : {
+    //             product : {
+    //                 ...addProduct
+    //             },
+    //             qtyProduct : 1,
+    //             totalValue : qty * product.price,
+
+
+    //         },
+    //         qtyTotal : 1,
+    //         totalValues : 1
+    //     };
+
+
+        
        
     //     if(addProduct){        
            

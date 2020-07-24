@@ -6,13 +6,14 @@ const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 function rememberPassword (req, res, next){
     
-    if(typeof req.cookies.rememberPassword != "undefined" && typeof req.session.user == "undefined"){
+    if(req.cookies.remember != undefined &&  req.session.user == undefined){
         let user = users.find(element =>{
-            return element.email == req.cookies.rememberPassword
+            return element.email == req.cookies.remember
         })
-        req.session.user = user;
-    }    
-    
+        if(user){
+            req.session.user = user;      
+        }        
+    }        
     next();          
 }
 

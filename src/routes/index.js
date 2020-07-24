@@ -5,7 +5,7 @@ const indexController = require('../controllers/indexController');
 let userPermissionMiddleware = require('../middlewares/userPermissionMiddleware');
 let uploadMiddleware = require('../middlewares/uploadMiddleware')
 
-var upload = uploadMiddleware
+var upload = uploadMiddleware('public/images/products')
 
 /* GET home page. */
 router.get('/', indexController.store )
