@@ -47,6 +47,7 @@
         </div>
         <div class="container-fluid">
             <div class="row flex-row">
+                <a href="/products/add/<%= product.id %>" class="btn btn-secondary">Comprar ahora</a>
                 <a href="/products/<%= product.id%>/edit" class="btn btn-secondary">Editar producto</a>
                 <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-secondary">Eliminar producto</button>

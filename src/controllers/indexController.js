@@ -3,7 +3,7 @@ let path = require('path');
 
 let productsFilePath = path.join(__dirname, '../data/products.json');
 let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
+let Cart = require('../custom-functions/cart')
 // esta funcion borra las categorias dupicadas //
 function propertysNoRepeat (array){
     arrayNoRepeat = []
@@ -22,15 +22,15 @@ function writeJson(file, arr){
 
 let indexFunctions = {
     
-    store : (req, res) => {
+    store : (req, res, next) => {
         let categorys = products.filter(product => product.category)
         let productsCategorys = propertysNoRepeat(categorys)
         
         let offerProducts = products.filter(product => product.price <= 1200)
-        res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
+        res.render('index', {cart : req.session.cart, user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
     },
         
-    products : (req, res)=>{
+    products : (req, res, next)=>{
         
         res.render('products', {products : products})
     },
@@ -39,17 +39,17 @@ let indexFunctions = {
     //     res.render('products-category')
     // },
     
-    productsDetail : (req, res)=>{
+    productsDetail : (req, res, next)=>{
         let productId = products.filter(product => product.id == req.params.productId)
         console.log(productId)
         res.render('products-detail', {productId : productId})
     },
     
-    createGet : (req, res)=>{
+    createGet : (req, res, next)=>{
         res.render('products-create')
     },
     
-    create : (req, res)=>{
+    create : (req, res, next)=>{
         
         let position = products.length + 2
         let product = {
@@ -64,12 +64,12 @@ let indexFunctions = {
         res.redirect('/products/create') 
     },
     
-    edit : (req, res)=> {
+    edit : (req, res, next)=> {
         let productToEdit = products.filter(product => product.id == req.params.productId)
         res.render('products-edit', {productToEdit : productToEdit})
     },
     
-    update : (req, res)=> {        
+    update : (req, res, next)=> {        
         let productEdit = products.map(function(product){
             if(product.id == req.params.productId){
                 
@@ -83,58 +83,55 @@ let indexFunctions = {
         res.redirect('/products')
     },
     
-    delete : (req, res) => {
+    delete : (req, res, next) => {
         let productDelete = products.filter(product => product.id != req.params.productId)
         
         writeJson(productsFilePath, productDelete )        
         res.redirect('/products')
     },
     
-    cart : (req, res) => {
-        res.render('cart');
-    },
     
-    // createCart : (req, res) => {
-    //     let qtyProduct = 0
-    //     let addProduct = products.find(product => product.id == req.params.productId);
+    
+    addProduct : (req, res, next)=>{
+        let productId = req.params.productId;
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
 
-    //     if(addProduct){
-    //         qtyProduct++
-    //     }
+        let product = products.filter(item => item.id == productId)
 
-    //     let cart = {
+        cart.add(product[0], productId);        
 
-    //         products : {
-    //             product : {
-    //                 ...addProduct
-    //             },
-    //             qtyProduct : 1,
-    //             totalValue : qty * product.price,
+        console.log(`todo el carrito = ${cart.totalItems}`)
+        console.log(`valor total = ${cart.totalPrice}`)    
 
+       req.session.cart = cart;      
+       res.redirect('/products');
+    },
 
-    //         },
-    //         qtyTotal : 1,
-    //         totalValues : 1
-    //     };
+    remove : (req, res, next)=>{
+        var productId = req.params.id;
+        var cart = new Cart(req.session.cart ? req.session.cart : {});
+      
+        cart.remove(productId);
+        req.session.cart = cart;
+        res.redirect('/cart');
+    },
 
-
-        
+    detailCart : (req, res, next) => {
        
-    //     if(addProduct){        
-           
-    //         productsInCart.push(addProduct)
-    //         res.cookie('productsInCart', productsInCart, {maxAge : 365 * 24 * 60 * 60 * 1000})
-    //     }
-    //     console.log(productsInCart)
+            if (!req.session.cart) {
+               res.render('cart', {
+                products: null
+              });
+            }
+            var cart = new Cart(req.session.cart);
+            res.render('cart', {              
+              products: cart.getItems(),
+              totalPrice: cart.totalPrice
+            });
+         
+    },
 
-    //     let totalCart = productsInCart.reduce((acumulator, product)=>{
-    //         return acumulator = acumulator + product.price
-    //     },0)
-    //     console.log(`total a pagar : ${totalCart} `)
-    //     res.render('cart', {productsInCart : productsInCart, totalCart : totalCart})
-    // },
-
-    locals : (req, res) => {
+    stores : (req, res, next) => {
         res.render('locals');
     },
     

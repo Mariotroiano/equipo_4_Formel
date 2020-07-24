@@ -16,8 +16,10 @@ router.get('/products', indexController.products)
 router.get('/products/create', indexController.createGet)
 router.post('/products',upload.any(), indexController.create)
 
-router.get('/products/cart',userPermissionMiddleware, indexController.cart)
-// router.get('/products/cart/:productId', indexController.createCart)
+router.get('/products/cart',userPermissionMiddleware, indexController.detailCart)
+router.get('/products/add/:productId', indexController.addProduct)
+router.get('/products/remove/:productId', indexController.remove); 
+
 
 router.get('/products/:productId', indexController.productsDetail)
 
@@ -30,6 +32,6 @@ router.delete('/products/:productId', indexController.delete);
 
 
  ////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
- router.get('/local', indexController.locals)
+ router.get('/local', indexController.stores)
  ////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
  module.exports = router;
