@@ -4,17 +4,6 @@ let path = require('path');
 let productsFilePath = path.join(__dirname, '../data/products.json');
 let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 let Cart = require('../custom-functions/cart')
-// esta funcion borra las categorias dupicadas //
-function propertysNoRepeat (array){
-    arrayNoRepeat = []
-    array.forEach(element =>{
-        if(!arrayNoRepeat.includes(element.category)){
-            arrayNoRepeat.push(element.category)
-        }
-    });
-    return arrayNoRepeat.sort()
-}
-// esta funcion borra las categorias dupicadas //
 
 function writeJson(file, arr){
     fs.writeFileSync(file, JSON.stringify(arr), 'utf8');
@@ -22,26 +11,18 @@ function writeJson(file, arr){
 
 let indexFunctions = {
     
-    store : (req, res, next) => {
-        let categorys = products.filter(product => product.category)
-        let productsCategorys = propertysNoRepeat(categorys)
-        
+    store : (req, res, next) => {     
+              
         let offerProducts = products.filter(product => product.price <= 1200)
-        res.render('index', {cart : req.session.cart, user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
+        res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
     },
-        
-    products : (req, res, next)=>{
-        
+    
+    products : (req, res, next)=>{        
         res.render('products', {products : products})
     },
     
-    // productsCategory : (req, res)=>{
-    //     res.render('products-category')
-    // },
-    
     productsDetail : (req, res, next)=>{
-        let productId = products.filter(product => product.id == req.params.productId)
-        console.log(productId)
+        let productId = products.find(product => product.id == req.params.productId)       
         res.render('products-detail', {productId : productId})
     },
     
@@ -49,8 +30,7 @@ let indexFunctions = {
         res.render('products-create')
     },
     
-    create : (req, res, next)=>{
-        
+    create : (req, res, next)=>{        
         let position = products.length + 2
         let product = {
             ...req.body,
@@ -84,8 +64,7 @@ let indexFunctions = {
     },
     
     delete : (req, res, next) => {
-        let productDelete = products.filter(product => product.id != req.params.productId)
-        
+        let productDelete = products.filter(product => product.id != req.params.productId)        
         writeJson(productsFilePath, productDelete )        
         res.redirect('/products')
     },
@@ -95,42 +74,37 @@ let indexFunctions = {
     addProduct : (req, res, next)=>{
         let productId = req.params.productId;
         var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-        let product = products.filter(item => item.id == productId)
-
-        cart.add(product[0], productId);        
-
-        console.log(`todo el carrito = ${cart.totalItems}`)
-        console.log(`valor total = ${cart.totalPrice}`)    
-
-       req.session.cart = cart;      
-       res.redirect('/products');
+        
+        let product = products.find(item => item.id == productId)
+        
+        cart.add(product, product.id);            
+        req.session.cart = cart;      
+        res.redirect('/products');
     },
-
+    
     remove : (req, res, next)=>{
         var productId = req.params.id;
         var cart = new Cart(req.session.cart ? req.session.cart : {});
-      
+        
         cart.remove(productId);
         req.session.cart = cart;
         res.redirect('/cart');
     },
-
-    detailCart : (req, res, next) => {
-       
-            if (!req.session.cart) {
-               res.render('cart', {
+    
+    detailCart : (req, res, next) => {        
+        if (!req.session.cart) {
+            res.render('cart', {
                 products: null
-              });
-            }
-            var cart = new Cart(req.session.cart);
-            res.render('cart', {              
-              products: cart.getItems(),
-              totalPrice: cart.totalPrice
             });
-         
+        }
+        var cart = new Cart(req.session.cart);
+        res.render('cart', {              
+            products: cart.getItems(),
+            totalPrice: cart.totalPrice
+        });
+        
     },
-
+    
     stores : (req, res, next) => {
         res.render('locals');
     },

@@ -260,11 +260,6 @@ font-weight: bold;
 
   /* /////////////// products detail page //////////////////// */
   
-  #main-container{
-    background-color: lightgray;
-    height: 100vh;
-    display: flex;
-  }
   
   #back-1 {
     display: flex;
@@ -362,6 +357,15 @@ font-weight: bold;
     filter: blur(10px);
     z-index: -1;
   }
+  .main-container{
+    background-color: lightgray;   
+  }
+  .padding-box {
+    padding: 30px;
+  }
+.container-product{
+  background-color: #ffffff;
+}
 
 /* 
   /////////// profile /////////////////////////// */

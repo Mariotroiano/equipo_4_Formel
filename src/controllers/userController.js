@@ -27,7 +27,7 @@ let userFunction = {
                 ...req.body,
                 password : bcrypt.hashSync( req.body.password, 10),
                 confirmPassword : bcrypt.hashSync( req.body.confirmPassword, 10),
-               
+                
                 image : req.files[0].filename
             }
             
@@ -64,9 +64,7 @@ let userFunction = {
             req.session.loginError = "usuario no registrado, revise su email o contraseña para tener acceso a todas nuestras secciones"
             res.redirect('/users/login')
         }
-    },
-    
-    
+    },  
     
     logout : (req, res)=>{        
         req.session.destroy(()=>{    
@@ -80,26 +78,26 @@ let userFunction = {
     },
     
     edit : (req, res)=> {     
-         res.render('users/edit-form', {userToEdit : req.session.user})
+        res.render('users/edit-form', {userToEdit : req.session.user})
     },
     
     update : (req,res)=>{        
-            let userEdit = users.map(function(user){
-                if(user.id === req.params.id){
-                    
-                    return {
-                        ...user, ...req.body,
-                    }
+        let userEdit = users.map(function(user){
+            if(user.id === req.params.id){
+                
+                return {
+                    ...user, ...req.body,
                 }
-                return user
-            });
-         
-            console.log(userEdit)
-          
-            fs.writeFileSync(usersFilePath, JSON.stringify(userEdit), 'utf8');
-            req.session.editMsg = "Tu perfil se edito correctamente!! "
-            res.redirect('/users/profile');
-        },
+            }
+            return user
+        });
+        
+        console.log(userEdit)
+        
+        fs.writeFileSync(usersFilePath, JSON.stringify(userEdit), 'utf8');
+        req.session.editMsg = "Tu perfil se edito correctamente!! "
+        res.redirect('/users/profile');
+    },
     
     
 }
