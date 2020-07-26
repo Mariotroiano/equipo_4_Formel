@@ -22,7 +22,7 @@ function propertysNoRepeat (array){
    
     let categorys = products.filter(product => product.category)
     let productsCategorys = propertysNoRepeat(categorys)
-    res.render('partials/headerNavbar', {productsCategorys : productsCategorys})
+ 
     next()
 }
 

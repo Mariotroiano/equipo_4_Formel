@@ -77,18 +77,20 @@ let indexFunctions = {
         
         let product = products.find(item => item.id == productId)
         
-        cart.add(product, product.id);            
+        cart.add(product, product.id);   
+          
+        
         req.session.cart = cart;      
         res.redirect('/products');
     },
     
     remove : (req, res, next)=>{
-        var productId = req.params.id;
+        var productId = req.params.productId;
         var cart = new Cart(req.session.cart ? req.session.cart : {});
         
         cart.remove(productId);
         req.session.cart = cart;
-        res.redirect('/cart');
+        res.redirect('/products/cart');
     },
     
     detailCart : (req, res, next) => {        

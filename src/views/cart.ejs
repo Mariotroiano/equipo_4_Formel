@@ -37,7 +37,7 @@
                 <td><%= prod.quantity %></td>
                 <td><%= prod.item.size %></td>               
                 <td><%= prod.item.price %></td>
-                <td><a href="/products/remove/:<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
+                <td><a href="/products/remove/<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
 
                
                 
@@ -52,7 +52,7 @@
     <div class="row justify-content-end ">
         <div class="col-md-3 f-size ">
            
-                <p class="border"><strong>Total :</strong> $<%=totalPrice %></p>
+                <p class="border"><strong>Total :</strong> $<%=  Math.round(totalPrice) %></p>
                
 
         </div>
