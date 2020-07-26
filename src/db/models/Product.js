@@ -11,8 +11,8 @@ module.exports = (sequelize, dataTypes)=>{
         },
         
         name : {
-            type : dataTypes.STRING,
-            allowNull : true,
+            type : dataTypes.STRING(45),
+            allowNull : false,
         },
         
         price : {
@@ -20,20 +20,25 @@ module.exports = (sequelize, dataTypes)=>{
             allowNull : false,
         },
         
+        
+        description : {
+            type : dataTypes.STRING(255),
+            allowNull : false
+        },
+
         size : {
-            type : dataTypes.STRING,
+            type : dataTypes.STRING(45),
             allowNull : false
         },
         
         color : {
-            type : dataTypes.STRING,
+            type : dataTypes.STRING(45),
             allowNull : false
         },
-        
-        description : {
-            type : dataTypes.STRING,
-            allowNull : false
-        }
+
+        image : {
+            type : dataTypes.STRING(100)        
+        },
     };
     
     let config = {
@@ -47,6 +52,20 @@ module.exports = (sequelize, dataTypes)=>{
     
     
     const Product = sequelize.define(alias, cols, config)
-    
+
+    Product.associate(function(models){
+        Product.belongsTo(models.Product_category, {
+            as : 'category',
+            foreignKey : 'category_id'
+        })
+
+        Product.belongsToMany(models.Cart, {  
+            as : 'productCart',
+            through : "cart_product",
+            foreignKey : 'product_id',
+            otherKey : "cart_id",
+            timeStamps : false
+        })     
+    })
     return Product
 }

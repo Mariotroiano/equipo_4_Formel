@@ -9,8 +9,7 @@ function writeJson(file, arr){
     fs.writeFileSync(file, JSON.stringify(arr), 'utf8');
 }
 
-let indexFunctions = {
-    
+let indexFunctions = {    
     store : (req, res, next) => {     
               
         let offerProducts = products.filter(product => product.price <= 1200)
@@ -73,12 +72,9 @@ let indexFunctions = {
     
     addProduct : (req, res, next)=>{
         let productId = req.params.productId;
-        var cart = new Cart(req.session.cart ? req.session.cart : {});
-        
-        let product = products.find(item => item.id == productId)
-        
-        cart.add(product, product.id);   
-          
+        var cart = new Cart(req.session.cart ? req.session.cart : {});        
+        let product = products.find(item => item.id == productId)        
+        cart.add(product, product.id);           
         
         req.session.cart = cart;      
         res.redirect('/products');
@@ -86,8 +82,7 @@ let indexFunctions = {
     
     remove : (req, res, next)=>{
         var productId = req.params.productId;
-        var cart = new Cart(req.session.cart ? req.session.cart : {});
-        
+        var cart = new Cart(req.session.cart ? req.session.cart : {});        
         cart.remove(productId);
         req.session.cart = cart;
         res.redirect('/products/cart');

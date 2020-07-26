@@ -1,3 +1,5 @@
+const { unsubscribe } = require("../../app");
+
 module.exports = (sequelize, dataTypes)=>{
     
     let alias = "User";
@@ -5,30 +7,33 @@ module.exports = (sequelize, dataTypes)=>{
     let cols = {
         id : {
             type : dataTypes.INTEGER.UNSIGNED,
+            primaryKey : true,
             allowNull : false,
-            autoIncrement : true,
-            primaryKey : true
+            autoIncrement : false
         },
 
         first_name : {
-            type : dataTypes.STRING,
-            allowNull : true,
+            type : dataTypes.STRING(45),
+            allowNull : false,
         },
         
         last_name : {
-            type : dataTypes.STRING,
-            allowNull : true,
+            type : dataTypes.STRING(45),
+            allowNull : false,
         },
 
         email : {
-            type : dataTypes.STRING,
-            allowNull : true,
+            type : dataTypes.STRING(45),
+            allowNull : false,
         },
 
         password : {
             type : dataTypes.STRING,
-            allowNull : true,
-        }
+            allowNull : false,
+        },
+        image : {
+            type : dataTypes.STRING(100)        
+        },
     };
 
     let config = {
@@ -42,7 +47,20 @@ module.exports = (sequelize, dataTypes)=>{
     }
 
 
-    const USER = sequelize.define(alias, cols, config);
+    const User = sequelize.define(alias, cols, config);
 
-    return USER
+     User.associate(function(models){
+        User.hasMany(models.Address, {
+            as : 'Address',
+            foreignKey : 'user_id'
+        }),
+
+        User.hasMany(models.Cart, {
+            as : 'Cart',
+            foreignKey : 'user_id'
+        })
+     })
+  
+
+    return User
 }
