@@ -17,8 +17,16 @@ let indexFunctions = {
         res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
     },
     
-    products : (req, res, next)=>{        
-        res.render('products', {products : products})
+    products : (req, res, next)=>{  
+        
+        db.Product.findAll()
+        .then(products => {
+            res.render('products', {products : products})
+        })
+        .catch(err =>{
+            console.log(err)
+            res.send('ocurrio un error')
+        })
     },
     
     productsDetail : (req, res, next)=>{
@@ -49,8 +57,8 @@ let indexFunctions = {
             res.redirect('/products/create');
         })
         .catch('ocurrio un error')
-    },
 
+    },
     
     edit : (req, res, next)=> {
         let productToEdit = products.filter(product => product.id == req.params.productId)
