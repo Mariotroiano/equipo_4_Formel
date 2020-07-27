@@ -1,4 +1,4 @@
-module.exports = (seuqlize, dataTypes)=> {
+module.exports = (sequelize, dataTypes)=> {
     let alias = 'Address';
     cols = {
         id : {
@@ -23,7 +23,7 @@ module.exports = (seuqlize, dataTypes)=> {
         },
 
         postal_code : {
-            type : INTEGER(10).UNSIGNED,
+            type : dataTypes.INTEGER(10).UNSIGNED,
             allowNull : false
         }
     };
@@ -39,8 +39,8 @@ module.exports = (seuqlize, dataTypes)=> {
     }
     const Addresses = sequelize.define(alias, cols, config)
     
-    Addresses.associate(function(models){
-        Addresses.belonsgTo(models.User, {
+    Addresses.associate = function(models){
+        Addresses.belongsTo(models.User, {
             as : 'User',
             foreignKey : 'user_id'
         })
@@ -49,7 +49,7 @@ module.exports = (seuqlize, dataTypes)=> {
             as : 'Cart',
             foreignKey : 'shipping_address_id'
         })
-     })
+     }
     return Addresses
     
 }

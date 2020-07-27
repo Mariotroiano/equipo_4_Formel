@@ -49,7 +49,7 @@ module.exports = (sequelize, dataTypes)=>{
 
     const User = sequelize.define(alias, cols, config);
 
-     User.associate(function(models){
+     User.associate = function(models){
         User.hasMany(models.Address, {
             as : 'Address',
             foreignKey : 'user_id'
@@ -59,7 +59,7 @@ module.exports = (sequelize, dataTypes)=>{
             as : 'Cart',
             foreignKey : 'user_id'
         })
-     })
+     }
   
 
     return User

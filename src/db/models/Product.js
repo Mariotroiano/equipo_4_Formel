@@ -11,7 +11,7 @@ module.exports = (sequelize, dataTypes)=>{
         },
         
         name : {
-            type : dataTypes.STRING(45),
+            type : dataTypes.STRING,
             allowNull : false,
         },
         
@@ -39,21 +39,26 @@ module.exports = (sequelize, dataTypes)=>{
         image : {
             type : dataTypes.STRING(100)        
         },
+        category_id : {
+            type : dataTypes.INTEGER.UNSIGNED,
+            allowNull : false
+        }
     };
     
     let config = {
-        tableName : 'Users',
+        tableName : 'products',
         timeStamps : true,
         underscored : true,
         createdAt : "created_at",
-        updatedAt : "updated_at"
+        updatedAt : "updated_at",
+      
 
     };    
     
     
     const Product = sequelize.define(alias, cols, config)
 
-    Product.associate(function(models){
+    Product.associate = function(models){
         Product.belongsTo(models.Product_category, {
             as : 'category',
             foreignKey : 'category_id'
@@ -66,6 +71,6 @@ module.exports = (sequelize, dataTypes)=>{
             otherKey : "cart_id",
             timeStamps : false
         })     
-    })
+    }
     return Product
 }

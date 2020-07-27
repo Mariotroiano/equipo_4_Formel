@@ -1,4 +1,4 @@
-module.exports = (seuqlize, dataTypes)=> {
+module.exports = (sequelize, dataTypes)=> {
     let alias = 'Cart_product';
     cols = {
         id : {
@@ -13,7 +13,7 @@ module.exports = (seuqlize, dataTypes)=> {
             allowNull : false
         },
         price : {
-            type : SMALLINT.UNSIGNED,
+            type : dataTypes.SMALLINT.UNSIGNED,
             allowNull : false
         }
     

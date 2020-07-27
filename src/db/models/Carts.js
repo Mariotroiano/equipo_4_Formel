@@ -1,4 +1,4 @@
-module.exports = (seuqlize, dataTypes)=> {
+module.exports = (sequelize, dataTypes)=> {
     let alias = 'Cart';
     cols = {
         id : {
@@ -9,7 +9,7 @@ module.exports = (seuqlize, dataTypes)=> {
         },
 
         total : {
-            type : SMALLINT.UNSIGNED,
+            type : dataTypes.SMALLINT.UNSIGNED,
             allowNull : false
         }
     
@@ -25,7 +25,7 @@ module.exports = (seuqlize, dataTypes)=> {
     }
     const Cart = sequelize.define(alias, cols, config)
 
-    Cart.associate(function(models){
+    Cart.associate = function(models){
         Cart.belongsTo(models.User, {
             as : 'User',
             foreignKey : 'user_id'
@@ -39,11 +39,11 @@ module.exports = (seuqlize, dataTypes)=> {
             timeStamps : false
         })     
 
-        Cart.belonsgTo(models.Address, {
+        Cart.belongsTo(models.Address, {
             as : 'Adress',
             foreignKey : 'shipping_address_id'
         })
-     })
+     }
 
     return Cart
     

@@ -1,4 +1,4 @@
-module.exports = (seuqlize, dataTypes)=> {
+module.exports = (sequelize, dataTypes)=> {
     let alias = 'Product_category';
     cols = {
         id : {
@@ -9,7 +9,7 @@ module.exports = (seuqlize, dataTypes)=> {
         },
 
         name : {
-            type : STRING(45),
+            type : dataTypes.STRING(45),
             allowNull : false
         }    
     };
@@ -24,12 +24,12 @@ module.exports = (seuqlize, dataTypes)=> {
     }
     const Product_category = sequelize.define(alias, cols, config)
 
-    Product_category.associate(function(models){
+    Product_category.associate = function(models){
         Product_category.hasMany(models.Product, {
             as : 'Product',
             foreignKey : 'category_id'
         })
-    })
+    }
     
     return Product_category
     

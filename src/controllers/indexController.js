@@ -1,5 +1,6 @@
 const fs = require('fs')
 let path = require('path');
+let db = require('../db/models');
 
 let productsFilePath = path.join(__dirname, '../data/products.json');
 let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -11,7 +12,7 @@ function writeJson(file, arr){
 
 let indexFunctions = {    
     store : (req, res, next) => {     
-              
+        
         let offerProducts = products.filter(product => product.price <= 1200)
         res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
     },
@@ -26,22 +27,30 @@ let indexFunctions = {
     },
     
     createGet : (req, res, next)=>{
-        res.render('products-create')
+        db.Product_category.findAll()
+        .then(categorys =>{
+            console.log(categorys)
+            res.render('products-create', {categorys : categorys})
+        })
+        .catch(err =>{
+            console.log(err);
+            res.send('ocurrio un error')
+        })
+        
     },
     
-    create : (req, res, next)=>{        
-        let position = products.length + 2
-        let product = {
+    create : (req, res, next)=>{   
+
+        db.Product.create({
             ...req.body,
-            id : position,
-            image : req.files[0].filename            
-        }        
-        
-        products.push(product)
-        
-        writeJson(productsFilePath, products)       
-        res.redirect('/products/create') 
+            image : req.files[0].filename   
+        })        
+        .then(product => {
+            res.redirect('/products/create');
+        })
+        .catch('ocurrio un error')
     },
+
     
     edit : (req, res, next)=> {
         let productToEdit = products.filter(product => product.id == req.params.productId)
