@@ -1,6 +1,7 @@
 const fs = require('fs')
 let path = require('path');
 let db = require('../db/models');
+const Op = db.Sequelize.Op
 
 let productsFilePath = path.join(__dirname, '../data/products.json');
 let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -12,9 +13,22 @@ function writeJson(file, arr){
 
 let indexFunctions = {    
     store : (req, res, next) => {     
+        db.Product.findAll({
+            where : {
+                price : {
+                    [Op.lt] : 1200
+                } 
+            }
+        })
+        .then(products => {           
+            res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered, offerProducts : products })  
+        })
+        .catch(err =>{
+            console.log(err)
+            res.send('ocurrio un error')
+        })
         
-        let offerProducts = products.filter(product => product.price <= 1200)
-        res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered,offerProducts})  
+        
     },
     
     products : (req, res, next)=>{  
@@ -30,8 +44,14 @@ let indexFunctions = {
     },
     
     productsDetail : (req, res, next)=>{
-        let productId = products.find(product => product.id == req.params.productId)       
-        res.render('products-detail', {productId : productId})
+        db.Product.findByPk(req.params.productId)
+        .then(productId =>{
+            res.render('products-detail', {productId : productId})
+        })
+        .catch(err =>{
+            console.log(err)
+            res.send('ocurrio un error')
+        })      
     },
     
     createGet : (req, res, next)=>{
@@ -48,7 +68,7 @@ let indexFunctions = {
     },
     
     create : (req, res, next)=>{   
-
+        
         db.Product.create({
             ...req.body,
             image : req.files[0].filename   
@@ -57,31 +77,39 @@ let indexFunctions = {
             res.redirect('/products/create');
         })
         .catch('ocurrio un error')
-
+        
     },
     
     edit : (req, res, next)=> {
-        let productToEdit = products.filter(product => product.id == req.params.productId)
-        res.render('products-edit', {productToEdit : productToEdit})
+        
+       let productId = db.Product.findByPk(req.params.productId)
+       let categorys = db.Product_category.findAll()
+        Promise.all([productId, categorys])
+        .then(function([product, cat]){
+            res.render('products-edit', {productToEdit : product, categorys : cat})
+        })
+                     
     },
     
-    update : (req, res, next)=> {        
-        let productEdit = products.map(function(product){
-            if(product.id == req.params.productId){
-                
-                return {
-                    ...product, ...req.body,
-                }
+    update : (req, res, next)=> {    
+        
+        db.Product.update({
+            ...req.body
+        }, {
+            where : {
+                id : req.params.productId
             }
-            return product
         });
-        writeJson(productsFilePath, productEdit)        
-        res.redirect('/products')
+        res.redirect('/products/' + req.params.productId)
+        
     },
     
     delete : (req, res, next) => {
-        let productDelete = products.filter(product => product.id != req.params.productId)        
-        writeJson(productsFilePath, productDelete )        
+        db.Product.destroy({
+            where : {
+                id : req.params.productId
+            }
+        });     
         res.redirect('/products')
     },
     
