@@ -1,5 +1,6 @@
 const fs = require('fs')
 let path = require('path');
+let {check, body, validationResult}  = require('express-validator');
 let db = require('../db/models');
 const Op = db.Sequelize.Op
 
@@ -27,9 +28,21 @@ let indexFunctions = {
             console.log(err)
             res.send('ocurrio un error')
         })
-        
-        
     },
+    
+    category : (req, res, next)=>{
+        db.Product.findAll({
+            where : {
+                category_id : {
+                    [Op.eq] : req.params.categoryId
+                }
+            }
+        })
+        .then(products => {
+          
+            res.render('category', {products : products})
+        })
+    },  
     
     products : (req, res, next)=>{  
         
@@ -54,41 +67,39 @@ let indexFunctions = {
         })      
     },
     
-    createGet : (req, res, next)=>{
-        db.Product_category.findAll()
-        .then(categorys =>{
-            console.log(categorys)
-            res.render('products-create', {categorys : categorys})
-        })
-        .catch(err =>{
-            console.log(err);
-            res.send('ocurrio un error')
-        })
-        
+    createGet : (req, res, next)=>{      
+            res.render('products-create')          
     },
     
     create : (req, res, next)=>{   
         
-        db.Product.create({
-            ...req.body,
-            image : req.files[0].filename   
-        })        
-        .then(product => {
-            res.redirect('/products/create');
-        })
-        .catch('ocurrio un error')
+        let errors = validationResult(req)
+        if(errors.isEmpty()){
+            db.Product.create({
+                ...req.body,
+                image : req.files[0].filename   
+            })        
+            .then(product => {
+                res.redirect('/products/create');
+            })
+            .catch('ocurrio un error')
+            
+        }else{            
+            res.render('products-create',  {errors : errors.errors})
+        }
+        
         
     },
     
     edit : (req, res, next)=> {
         
-       let productId = db.Product.findByPk(req.params.productId)
-       let categorys = db.Product_category.findAll()
+        let productId = db.Product.findByPk(req.params.productId)
+        let categorys = db.Product_category.findAll()
         Promise.all([productId, categorys])
         .then(function([product, cat]){
             res.render('products-edit', {productToEdit : product, categorys : cat})
         })
-                     
+        
     },
     
     update : (req, res, next)=> {    

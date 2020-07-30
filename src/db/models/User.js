@@ -34,6 +34,10 @@ module.exports = (sequelize, dataTypes)=>{
         image : {
             type : dataTypes.STRING(100)        
         },
+
+        permissions : {
+            type : dataTypes.INTEGER.UNSIGNED,
+        }
     };
 
     let config = {
@@ -41,9 +45,7 @@ module.exports = (sequelize, dataTypes)=>{
         timeStamps : true,
         underscored : true,
         createdAt : "created_at",
-        updated_at : "updated_at",
-        firstName : "first_name",
-        lastName : 'last_name'
+        updated_at : "updated_at"    
     }
 
 

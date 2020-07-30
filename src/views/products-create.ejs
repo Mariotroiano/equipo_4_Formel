@@ -10,8 +10,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        
-        <form action="/products" method="POST" enctype="multipart/form-data">
+        <% if(typeof errors != 'undefined'){ %>
+          <% errors.forEach(error =>{ %>
+            <p style="color: red;"><%= error.msg %></p>
+            <% }) %>
+            <% } %>
+        <form action="/products" method="POST" enctype="multipart/form-data" id="form_products">
           
           <div class="form-group">
             <label for="name">Nombre producto</label>
@@ -20,7 +24,7 @@
           
           <label for="category">Categoría</label>
           <select class="form-control" name="category_id">
-            <% categorys.forEach(cat => { %>
+            <% locals.categorys.forEach(cat => { %>
               <option value="<%= cat.id %>"><%= cat.name %></option>
               <% }) %>
           </select>          
@@ -51,12 +55,12 @@
             <input type="file" class="form-control-file" id="image" name="image" accept="image/*"> 
           </div>
           
-          <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3">Cargar producto</button>
+          <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3" id="submit">Cargar producto</button>
         </form>
       </div>
     </div>
   </div>
-  
+  <script src="/scripts/productValidation.js"></script>
   <script src="/scripts/jquery-3.5.1.min.js"></script>
   <script src="/scripts/bootstrap.min.js"></script>
 </body>

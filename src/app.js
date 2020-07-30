@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
-// const categorysMiddleware = require('./middlewares/categorysMiddleware')
+const categorysMiddleware = require('./middlewares/categorysMiddleware')
 
 var app = express();
 
@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(methodOverride('_method'))
+app.use(categorysMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

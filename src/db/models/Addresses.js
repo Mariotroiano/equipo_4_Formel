@@ -25,7 +25,13 @@ module.exports = (sequelize, dataTypes)=> {
         postal_code : {
             type : dataTypes.INTEGER(10).UNSIGNED,
             allowNull : false
+        },
+
+        user_id : {
+            type : dataTypes.INTEGER.UNSIGNED,          
+            allowNull : false,        
         }
+      
     };
     
     config = {
