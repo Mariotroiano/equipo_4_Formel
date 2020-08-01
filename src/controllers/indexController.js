@@ -4,13 +4,7 @@ let {check, body, validationResult}  = require('express-validator');
 let db = require('../db/models');
 const Op = db.Sequelize.Op
 
-let productsFilePath = path.join(__dirname, '../data/products.json');
-let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 let Cart = require('../custom-functions/cart')
-
-function writeJson(file, arr){
-    fs.writeFileSync(file, JSON.stringify(arr), 'utf8');
-}
 
 let indexFunctions = {    
     store : (req, res, next) => {     
@@ -39,7 +33,7 @@ let indexFunctions = {
             }
         })
         .then(products => {
-          
+            
             res.render('category', {products : products})
         })
     },  
@@ -68,7 +62,7 @@ let indexFunctions = {
     },
     
     createGet : (req, res, next)=>{      
-            res.render('products-create')          
+        res.render('products-create')          
     },
     
     create : (req, res, next)=>{   
@@ -86,20 +80,16 @@ let indexFunctions = {
             
         }else{            
             res.render('products-create',  {errors : errors.errors})
-        }
-        
-        
+        }       
     },
     
     edit : (req, res, next)=> {
         
-        let productId = db.Product.findByPk(req.params.productId)
-        let categorys = db.Product_category.findAll()
-        Promise.all([productId, categorys])
-        .then(function([product, cat]){
-            res.render('products-edit', {productToEdit : product, categorys : cat})
-        })
-        
+       db.Product.findByPk(req.params.productId)       
+        .then(product =>{
+            res.render('products-edit', {productToEdit : product})
+        })      
+           
     },
     
     update : (req, res, next)=> {    
@@ -124,22 +114,24 @@ let indexFunctions = {
         res.redirect('/products')
     },
     
-    
-    
-    addProduct : (req, res, next)=>{
-        let productId = req.params.productId;
-        var cart = new Cart(req.session.cart ? req.session.cart : {});        
-        let product = products.find(item => item.id == productId)        
-        cart.add(product, product.id);           
+    addProduct : (req, res, next)=>{       
+        var cart = new Cart(req.session.cart ? req.session.cart : {});    
+        db.Product.findByPk(req.params.productId) 
+        .then(product =>{
+            cart.add(product, product.id);         
+            req.session.cart = cart;      
+            res.redirect('/products');
+        })   
+        .catch(err =>{
+            console.log(err)
+            res.send('ocurrio un error')
+        })
         
-        req.session.cart = cart;      
-        res.redirect('/products');
     },
     
-    remove : (req, res, next)=>{
-        var productId = req.params.productId;
+    remove : (req, res, next)=>{        
         var cart = new Cart(req.session.cart ? req.session.cart : {});        
-        cart.remove(productId);
+        cart.remove(req.params.productId);
         req.session.cart = cart;
         res.redirect('/products/cart');
     },
