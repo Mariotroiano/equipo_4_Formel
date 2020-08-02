@@ -1,18 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-
-const usersFilePath = path.join(__dirname, '../data/users.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+let db = require('../db/models')
+const Op = db.Sequelize.Op
 
 function rememberPassword (req, res, next){
     
-    if(req.cookies.remember != undefined &&  req.session.user == undefined){
-        let user = users.find(element =>{
-            return element.email == req.cookies.remember
+    if(req.cookies.remember != undefined &&  req.session.user == undefined){      
+        db.User.findOne({
+            where : {
+                email : {
+                    [Op.eq] : req.cookies.remember
+                }
+            }
         })
-        if(user){
-            req.session.user = user;      
-        }        
+        .then(user =>{
+            req.session.user = user;
+        })
+        .catch(err => {
+            console.log(err)
+            res.send('no se encontro el usuario')
+        })
     }        
     next();          
 }

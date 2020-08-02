@@ -1,14 +1,7 @@
-const fs = require('fs');
-const path = require('path');
 const bcrypt = require('bcrypt');
 let {check, body, validationResult}  = require('express-validator');
-
-const usersFilePath = path.join(__dirname, '../data/users.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-
-function writeJson(file, arr){
-    fs.writeFileSync(file, JSON.stringify(arr), 'utf8');
-}
+let db = require('../db/models');
+const Op = db.Sequelize.Op
 
 let userFunction = {
     getRegister : (req,res)=>{
@@ -20,50 +13,56 @@ let userFunction = {
         let errors = validationResult(req)
         
         if(errors.isEmpty()){
-            let position = users.length + 2
-            
-            let user = {
-                id : position,
+            db.User.create({
                 ...req.body,
                 password : bcrypt.hashSync( req.body.password, 10),
                 confirmPassword : bcrypt.hashSync( req.body.confirmPassword, 10),
-                
-                image : req.files[0].filename
-            }
-            
-            console.log(user)
-            
-            users.push(user);
-            fs.writeFileSync(usersFilePath, JSON.stringify(users));
-            req.session.registered = "Tu cuenta se creo correctamente!! ahora solo resta iniciar sesión"
-            res.redirect('/');
-            
+                image : req.files[0].filename,
+                permissions : 1
+            })
+            .then(result =>{
+                req.session.registered = "Tu cuenta se creo correctamente!! ahora solo resta iniciar sesión"
+                res.redirect('/');
+            })
+            .catch(err =>{
+                console.log("aaaaaaaaaaaaaaaaaaa" + err)
+                res.send('ocurrio un error')
+            })
         }else{
             res.render('users/register', {errors : errors.errors})
         }
-        
-        
     },
+    
     getLogin : (req, res)=>{
         res.render('users/login', {loginError : req.session.loginError})
     },
     
-    login : (req, res)=>{
-        let user = users.find(element =>{
-            return element.email == req.body.email && bcrypt.compareSync( req.body.password,element.password);
+    login : (req, res)=>{     
+        db.User.findOne({
+            where : {
+                email : {
+                    [Op.eq] : req.body.email
+                    // [Op.and]: [{email : req.body.email}, {password : bcrypt.hashSync( req.body.password, 10)}]
+                }
+            }
+        }) 
+        .then(user => {
+            if(user){                     
+                req.session.user = user;
+                req.session.succesMsg = `Bienvenid@ ${user.first_name} ${user.last_name}`
+                if(req.body.rememberPassword != undefined){
+                    res.cookie('remember', user.email, {maxAge :6000000})
+                }
+                res.redirect('/');
+            }else{
+                req.session.loginError = "usuario no registrado, revise su email o contraseña para tener acceso a todas nuestras secciones"
+                res.redirect('/users/login')
+            }
+        })     
+        .catch(err =>{
+            res.send("no se pudo encontrar al usuario")
         })
         
-        if(user){                     
-            req.session.user = user;
-            req.session.succesMsg = `Bienvenid@ ${user.first_name} ${user.last_name}`
-            if(req.body.rememberPassword != undefined){
-                res.cookie('remember', user.email, {maxAge :6000000})
-            }
-            res.redirect('/');
-        }else{
-            req.session.loginError = "usuario no registrado, revise su email o contraseña para tener acceso a todas nuestras secciones"
-            res.redirect('/users/login')
-        }
     },  
     
     logout : (req, res)=>{        
@@ -74,31 +73,42 @@ let userFunction = {
     },
     
     profile : (req, res)=> {
-        res.render('users/profile', {user : req.session.user, editMsg : req.session.edit})
+               res.render('users/profile', {user : req.session.user})
     },
     
-    edit : (req, res)=> {     
-        res.render('users/edit-form', {userToEdit : req.session.user})
-    },
+    edit : (req, res)=> {          
+        res.render('users/edit-form', {user : req.session.user})        
+    },            
     
-    update : (req,res)=>{        
-        let userEdit = users.map(function(user){
-            if(user.id === req.params.id){
-                
-                return {
-                    ...user, ...req.body,
-                }
+    update : (req, res, next)=>{              
+
+        db.User.update({
+            ...req.body,
+            password : bcrypt.hashSync( req.body.password, 10),
+            confirmPassword : bcrypt.hashSync( req.body.confirmPassword, 10),
+        }, {
+            where : {
+                id :  req.params.userId
             }
-            return user
-        });
+        })
+        .then(response =>{
+          
+           db.User.findByPk(req.params.userId)
+           .then(user => {
+            let editMsg =  "Tu perfil se edito correctamente!! "         
+            req.session.user = user
+            res.render('users/profile', {user : user, editMsg : editMsg});
+           })
+           .catch(err =>{
+               console.log(err)
+               res.send('error al cargar usuario')
+           });
+        })
+        .catch(err =>{
+            console.log(err)
+            res.send('error al editar usuario')
+        }) 
+    },  
         
-        console.log(userEdit)
-        
-        fs.writeFileSync(usersFilePath, JSON.stringify(userEdit), 'utf8');
-        req.session.editMsg = "Tu perfil se edito correctamente!! "
-        res.redirect('/users/profile');
-    },
-    
-    
 }
 module.exports = userFunction

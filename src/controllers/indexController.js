@@ -1,5 +1,3 @@
-const fs = require('fs')
-let path = require('path');
 let {check, body, validationResult}  = require('express-validator');
 let db = require('../db/models');
 const Op = db.Sequelize.Op
@@ -93,7 +91,6 @@ let indexFunctions = {
     },
     
     update : (req, res, next)=> {    
-        
         db.Product.update({
             ...req.body
         }, {
