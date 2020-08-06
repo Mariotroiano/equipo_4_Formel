@@ -22,6 +22,6 @@ router.get('/profile',userPermissionMiddleware, userController.profile)
 
 router.get('/edit/:userId', userController.edit)
 
-router.put('/edit/:userId',registerMiddleware,userController.update)
+router.put('/update/:userId',registerMiddleware,userController.update)
 
 module.exports = router;

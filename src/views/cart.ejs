@@ -3,6 +3,7 @@
 <%- include('partials/head') %>
 <body>
     <%- include('partials/headerNavbar') %>
+    <% if(products && products != 0){ %>
     <div class="row justify-content-start ">
         <div class="mt-4 pl-4">
             <h2>Mi compra</h2>
@@ -25,7 +26,7 @@
             </tr>
         </thead>
         
-        <% if(products){ %>
+       
           <% products.forEach(prod => { %>
         <tbody>
                
@@ -37,13 +38,12 @@
                 <td><%= prod.quantity %></td>
                 <td><%= prod.item.size %></td>               
                 <td><%= prod.item.price %></td>
-                <td><a href="/products/remove/<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
+                <td><a href="/cart/remove/<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
 
                
                 
 
-            </tr>
-           
+            </tr>          
            
         </tbody>
         <% }) %>
@@ -63,8 +63,10 @@
         </div>
     </div>  
 
-<% } %>
     <%- include('partials/footer') %>
+    <% }else{ %>
+        <h3 class="mt-4">Su carrito esta vacio ...</h3>
+    <% } %>
 
     <!-- scripts -->    
     <script src="scripts/jquery-3.5.1.min.js"></script>

@@ -1,5 +1,3 @@
-const fs = require('fs')
-let path = require('path');
 let {check, body, validationResult}  = require('express-validator');
 let db = require('../db/models');
 const Op = db.Sequelize.Op
@@ -93,7 +91,6 @@ let indexFunctions = {
     },
     
     update : (req, res, next)=> {    
-        
         db.Product.update({
             ...req.body
         }, {
@@ -114,41 +111,8 @@ let indexFunctions = {
         res.redirect('/products')
     },
     
-    addProduct : (req, res, next)=>{       
-        var cart = new Cart(req.session.cart ? req.session.cart : {});    
-        db.Product.findByPk(req.params.productId) 
-        .then(product =>{
-            cart.add(product, product.id);         
-            req.session.cart = cart;      
-            res.redirect('/products');
-        })   
-        .catch(err =>{
-            console.log(err)
-            res.send('ocurrio un error')
-        })
-        
-    },
     
-    remove : (req, res, next)=>{        
-        var cart = new Cart(req.session.cart ? req.session.cart : {});        
-        cart.remove(req.params.productId);
-        req.session.cart = cart;
-        res.redirect('/products/cart');
-    },
-    
-    detailCart : (req, res, next) => {        
-        if (!req.session.cart) {
-            res.render('cart', {
-                products: null
-            });
-        }
-        var cart = new Cart(req.session.cart);
-        res.render('cart', {              
-            products: cart.getItems(),
-            totalPrice: cart.totalPrice
-        });
-        
-    },
+   
     
     stores : (req, res, next) => {
         res.render('locals');

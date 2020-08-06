@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const indexController = require('../controllers/indexController');
 
-let userPermissionMiddleware = require('../middlewares/userPermissionMiddleware');
+
 let uploadMiddleware = require('../middlewares/uploadMiddleware')
 let validationProductMiddleware = require('../middlewares/createProductsMiddleware')
 var upload = uploadMiddleware('public/images/products')
@@ -18,9 +18,9 @@ router.get('/products/category/:categoryId', indexController.category)
 router.get('/products/create', indexController.createGet)
 router.post('/products',[upload.any(), validationProductMiddleware], indexController.create)
 
-router.get('/products/cart',userPermissionMiddleware, indexController.detailCart)
-router.get('/products/add/:productId', indexController.addProduct)
-router.get('/products/remove/:productId', indexController.remove); 
+
+
+
 
 
 router.get('/products/:productId', indexController.productsDetail)

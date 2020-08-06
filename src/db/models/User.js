@@ -6,12 +6,12 @@ module.exports = (sequelize, dataTypes)=>{
 
     let cols = {
         id : {
-            type : dataTypes.INTEGER.UNSIGNED,
+            type :  dataTypes.INTEGER.UNSIGNED,
             primaryKey : true,
             allowNull : false,
-            autoIncrement : false
+            autoIncrement : true
         },
-
+        
         first_name : {
             type : dataTypes.STRING(45),
             allowNull : false,

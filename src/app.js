@@ -7,6 +7,8 @@ var session = require('express-session')
 var methodOverride = require('method-override')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var cartRouter = require('./routes/cart');
+
 
 let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 const categorysMiddleware = require('./middlewares/categorysMiddleware')
@@ -33,14 +35,14 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(cookieAuthMiddleware);
 app.use(methodOverride('_method'))
 app.use(categorysMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/cart', cartRouter);
 
 
-
-app.use(cookieAuthMiddleware);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

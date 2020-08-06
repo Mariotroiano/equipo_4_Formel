@@ -369,3 +369,18 @@ font-weight: bold;
 
 /* 
   /////////// profile /////////////////////////// */
+
+  /* ////////// forms ///////////////////// */
+
+  small.error{
+    color : red;
+  }
+  .seccess { 
+    color : green;
+  }
+  .hideSpan {
+    display: none;
+  }
+  .showSpan {
+    display: inline-block;
+  }
