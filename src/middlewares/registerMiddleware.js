@@ -15,22 +15,25 @@ module.exports = [
     return true
   }),
   
-  // body('email').custom((value) => {
-  //  db.User.findOne({
-  //     where : {
-  //       email : {
-  //         [Op.eq] : value
-  //       }
-  //     }
-  //   })
-  //   .then(user =>{
-  //     if(user){
-  //       throw new Error ('el email esta en uso ');
-  //      }
-  //    return true
-  //   })    
-  // }),
+  body('email').custom((value) => {
+   db.User.findOne({
+      where : {
+        email : {
+          [Op.eq] : value
+        }
+      }
+    })
+
+    .then(function(user){
+      if (user) {
+        return Promise.reject('E-mail already in use');
+      }
+      
+
+    })
+    
+
+  }),
   
  
-  
 ]
