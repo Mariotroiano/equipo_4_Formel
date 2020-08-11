@@ -47,6 +47,10 @@ let userFunction = {
             }
         }) 
         .then(user => {
+            // console.log(user.password)
+            // console.log(req.body.password)
+            // var result = bcrypt.compareSync(req.body.password, user.password);
+            // console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  ' + result)
             if(user){                     
                 req.session.user = user;
                 req.session.succesMsg = `Bienvenid@ ${user.first_name} ${user.last_name}`
@@ -108,7 +112,24 @@ let userFunction = {
             console.log(err)
             res.send('error al editar usuario')
         }) 
-    },  
+    }, 
+    
+    delete : (req, res, next)=>{
+        db.User.destroy({
+            where : {
+               id : {
+                [Op.eq] : req.params.userId
+               } 
+            }
+        })
+        .then(()=>{
+            res.redirect('/')
+        })
+        .catch(err =>{
+            console.log(err)
+            res.send('No se encontro la cuenta para borrar')
+        })
+    } 
         
 }
 module.exports = userFunction

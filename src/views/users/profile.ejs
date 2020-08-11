@@ -26,7 +26,11 @@
                 <div class="col"><p>Apellido : <%= user.last_name %></p></div>
                 <div class="col"><p>Email : <%= user.email%></p></div>
                 
-                <a href="/users/edit/<%= user.id %>">Edita tu perfil</a>
+
+                <a class="btn btn-secondary" href="/users/<%= user.id %>">Edita tu perfil</a>
+                <form action="/users/<%= user.id %>?_method=DELETE" method="POST" >
+                 <button class="btn btn-secondary">Borrar mi cuenta</button>                   
+                </form>
               </div>
             
               
@@ -41,11 +45,6 @@
     
     </html>
     
-<<<<<<< HEAD
-=======
-    
-    <!-- <a href="/users/edit/<%= user.id %>">Edita tu perfil</a> -->
->>>>>>> 1b6151fcc54a960d0fbef7283469bec459e0b626
 
 
     

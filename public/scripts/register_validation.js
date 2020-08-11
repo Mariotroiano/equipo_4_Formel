@@ -1,6 +1,13 @@
 
-
 window.onload = function(){
+    let data = {
+        first_name : "",
+        last_name : "",
+        email : "",
+        password : "",
+        confirmPassword : "",
+        image : ""
+    }
     let form = document.getElementById('form_register')
     let firstName = document.getElementById('first_name')
     let lastName = document.getElementById('last_name')
@@ -23,16 +30,19 @@ window.onload = function(){
             selectClass('hideSpan', 'showSpan', 'first_name')     
         }else{
             selectClass('showSpan', 'hideSpan', 'first_name')
+            data.first_name = firstName.value;
         }
 
         if(validator.isEmpty( lastName.value)){
             selectClass('hideSpan', 'showSpan', 'last_name')     
         }else{
             selectClass('showSpan', 'hideSpan', 'last_name')
+            data.last_name = lastName.value;
         }
 
         if(validator.isEmail(email.value)){
             selectClass('showSpan', 'hideSpan', 'email')
+            data.email = email.value
         }else{
             selectClass('hideSpan', 'showSpan', 'email')     
         }
@@ -41,13 +51,25 @@ window.onload = function(){
             selectClass('hideSpan', 'showSpan', 'password')  
         }else{
             selectClass('showSpan', 'hideSpan', 'password')  
+            data.password = password.value
         }
         
         if(confirmPassword.value != password.value){
             selectClass('hideSpan', 'showSpan', 'confirmPassword')  
         }else{
             selectClass('showSpan', 'hideSpan', 'confirmPassword')  
-        }                
+            data.confirmPassword = confirmPassword.value
+        } 
+        
+        if(!image.value){
+           
+            selectClass('hideSpan', 'showSpan', 'image')  
+        }else{
+            selectClass('showSpan', 'hideSpan', 'image')  
+            data.image = image.value
+          
+        } 
+        console.log(data)
     })
     
 }

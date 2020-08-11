@@ -1,7 +1,6 @@
 let {check, body, validationResult}  = require('express-validator');
 let db = require('../db/models');
 const Op = db.Sequelize.Op
-
 let Cart = require('../custom-functions/cart')
 
 let indexFunctions = {    
@@ -110,9 +109,6 @@ let indexFunctions = {
         });     
         res.redirect('/products')
     },
-    
-    
-   
     
     stores : (req, res, next) => {
         res.render('locals');

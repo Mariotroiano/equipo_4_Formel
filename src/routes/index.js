@@ -19,19 +19,12 @@ router.get('/products/create', indexController.createGet)
 router.post('/products',[upload.any(), validationProductMiddleware], indexController.create)
 
 
-
-
-
-
 router.get('/products/:productId', indexController.productsDetail)
 
 router.get('/products/:productId/edit', indexController.edit)
 router.put('/products/:productId', indexController.update)
 
 router.delete('/products/:productId', indexController.delete); 
-
-
-
 
  ////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
  router.get('/local', indexController.stores)
