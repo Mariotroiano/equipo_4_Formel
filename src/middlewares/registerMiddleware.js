@@ -28,10 +28,7 @@ module.exports = [
       if (user) {
         return Promise.reject('El email ya esta en uso');
       }
-    })
-    
-
-    
+    })     
 
   }),
   

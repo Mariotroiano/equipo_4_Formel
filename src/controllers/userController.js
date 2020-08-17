@@ -85,7 +85,10 @@ let userFunction = {
     },            
     
     update : (req, res, next)=>{              
+        console.log(validationResult(req))
+        let errors = validationResult(req)
 
+        if (errors.isEmpty()){
         db.User.update({
             ...req.body,
             password : bcrypt.hashSync( req.body.password, 10),
@@ -112,6 +115,9 @@ let userFunction = {
             console.log(err)
             res.send('error al editar usuario')
         }) 
+    }else{
+        res.render('users/edit-form', {errors : errors.errors, user : req.session.user})
+    }
     }, 
     
     delete : (req, res, next)=>{

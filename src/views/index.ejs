@@ -22,7 +22,7 @@
     <% }  %>
     
     
-    <% if(typeof registered != 'undefined'){ %>
+    <% if(typeof registered != 'undefined' && typeof succesMsg == 'undefined'){ %>
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong> <%= registered %> <a href="/users/login">acá !</a></strong> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

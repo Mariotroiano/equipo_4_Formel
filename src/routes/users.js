@@ -10,7 +10,7 @@ var upload = uploadMiddleware('public/images/users');
 
 /* GET users listing. */
 router.get('/register',registerPermissionMiddleware, userController.getRegister)
-router.post('/register',upload.any(), userController.register)
+router.post('/register',[upload.any(), registerMiddleware], userController.register)
 
 router.get('/login', userController.getLogin)
 router.post('/login', userController.login)
@@ -21,8 +21,8 @@ router.get('/profile',userPermissionMiddleware, userController.profile)
 
 router.get('/:userId', userController.edit)
 
-router.put('/:userId',registerMiddleware,userController.update)
-router.delete('/:userId',registerMiddleware,userController.delete)
+router.put('/:userId', registerMiddleware, userController.update)
+router.delete('/:userId',userController.delete)
 
 
 module.exports = router;

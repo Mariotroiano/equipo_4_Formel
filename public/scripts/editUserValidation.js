@@ -1,20 +1,19 @@
-
 window.onload = function(){
     let data = {
         first_name : "",
         last_name : "",
         email : "",
         password : "",
-        confirmPassword : "",
-        image : ""
+        confirmPassword : "",        
     }
-    let form = document.getElementById('form_register')
+
+    let form = document.getElementById('user_edit')
     let firstName = document.getElementById('first_name')
     let lastName = document.getElementById('last_name')
     let email = document.getElementById('email')
     let password = document.getElementById('password')
     let confirmPassword = document.getElementById('confirmPassword')
-    let image = document.getElementById('image')
+   
     
     function selectClass(classRemove, classAdd, smallIdName){
         let span = document.querySelector(`span#${smallIdName}`)
@@ -66,14 +65,7 @@ window.onload = function(){
             data.confirmPassword = confirmPassword.value
         } 
         
-        if(!image.value){
-           
-            selectClass('hideSpan', 'showSpan', 'image')
-            errors++  
-        }else{
-            selectClass('showSpan', 'hideSpan', 'image')  
-            data.image = image.value
-        } 
+       
           if(errors > 0){
               e.preventDefault()
           }
