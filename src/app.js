@@ -8,7 +8,7 @@ var methodOverride = require('method-override')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cartRouter = require('./routes/cart');
-
+var apiProductsRouter = require('./routes/api/apiProductsRouter')
 
 let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 const categorysMiddleware = require('./middlewares/categorysMiddleware')
@@ -41,7 +41,7 @@ app.use(categorysMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
-
+app.use('/api/products', apiProductsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
