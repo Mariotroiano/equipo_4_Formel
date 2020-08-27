@@ -19,10 +19,10 @@
                 <th scope="col">Color</th>                
                 <th scope="col">Talle</th>     
                 <th scope="col">Descripcion</th>      
+                <th scope="col">Cargar producto</th>
                 <th scope="col">Eliminar producto</th>
                 <th scope="col">Editar producto</th>
-                
-                
+                                
             </tr>
         </thead>
         
@@ -34,9 +34,10 @@
                     <td><%= prod.price %></td>
                     <td><%= prod.color %></td>
                     <td><%= prod.size %></td>  
-                    <td><%= prod.description %></td>            
-                 
-                        <td><a href="/products/<%= prod.id %>?_method=DELETE"><i class="far fa-trash-alt"></i></a></td>
+                    <td><%= prod.description %></td>      
+                    
+                    <td><a href="/products/create"><i class="far fa-plus-square"></i></i></a></td> 
+                    <td><a href="/products/<%= prod.id %>?_method=DELETE"><i class="far fa-trash-alt"></i></a></td>
                     
                     <td><a href="/products/<%= prod.id %>/edit"><i class="far fa-edit"></i></a></td>           
                 </tr>                  
@@ -51,8 +52,9 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">nombre</th>
-                    <th scope="col">Borrar Categoria</th>
-                    <th scope="col">Editar Categoria</th>
+                    <th scope="col">Crear categoria</th>
+                    <th scope="col">Borrar categoria</th>
+                    <th scope="col">Editar categoria</th>
                     
                     
                     
@@ -64,8 +66,11 @@
                     <tr>
                         <th scope="row"><%= i+1 %></th>
                         <td><%= cat.name %></td>              
-                        <td><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                        <td><a href="#"><i class="far fa-edit"></i></a></td>           
+                        <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
+                        <form action="/admin/<%= cat.id %>?_method=delete" method="POST">                       
+                            <td> <button type="submit" class="btn btn-secondary">Eliminar categoria</button></td>
+                        </form>
+                        <td><a href="/admin/edit/<%= cat.id %>"><i class="far fa-edit"></i></a></td>           
                     </tr>          
                     
                 </tbody>
