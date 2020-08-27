@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cartRouter = require('./routes/cart');
 var apiProductsRouter = require('./routes/api/apiProductsRouter')
-
+var adminRouter = require('./routes/admin')
 let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 const categorysMiddleware = require('./middlewares/categorysMiddleware')
 
@@ -32,6 +32,8 @@ app.use(session({
 
 app.use(function(req, res, next) {
   res.locals.cart = req.session.cart;
+  if(req.session.user)
+  res.locals.user = req.session.user
   next();
 });
 
@@ -41,8 +43,8 @@ app.use(categorysMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
+app.use('/admin', adminRouter)
 app.use('/api/products', apiProductsRouter)
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

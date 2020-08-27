@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<div class="container-fluid sticky-top borer-bottom">
+<div class="container-fluid sticky-top borer-bottom shadow">
   <div class="row d-flex justify-content-between bg-nav-sticky">
     <div class="col-md-2 justify-content-start d-none d-md-block">
       <a href="/" class="logo pt-2"> FormelARG</a>
@@ -48,11 +48,17 @@
               <li class="nav-item f-size">
                 <a class="nav-link" href="/products">Productos</a>
               </li>
-              
-              <li class="nav-item f-size">
-                <a class="nav-link" href="/products/create">Carga productos</a>
-              </li>        
-              
+              <% if(locals.user && locals.user.permissions == 2){ %>
+                <li class="nav-item f-size">
+                  <a class="nav-link" href="/products/create">Carga productos</a>
+                </li>  
+                
+                <li class="nav-item f-size">
+                  <a class="nav-link" href="/admin">información de la pagina</a>
+                </li>  
+                <% } %>
+                
+             
               
               
             </ul>
@@ -77,4 +83,3 @@
       </div>
     </div>
   </div>
- 

@@ -9,7 +9,7 @@ module.exports = (sequelize, dataTypes)=> {
         },
 
         total : {
-            type : dataTypes.SMALLINT.UNSIGNED,
+            type : dataTypes.FLOAT.UNSIGNED,
             allowNull : false
         },
 

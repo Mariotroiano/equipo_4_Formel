@@ -13,7 +13,7 @@ module.exports = (sequelize, dataTypes)=> {
             allowNull : false
         },
         price : {
-            type : dataTypes.SMALLINT.UNSIGNED,
+            type : dataTypes.FLOAT.UNSIGNED,
             allowNull : false
         }
     

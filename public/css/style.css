@@ -32,6 +32,10 @@ i:hover{
 }
 
 /* ////////////////////// nav ////////////////////////// */
+
+.shadow {
+  box-shadow: 2px 2px 5px #999;
+}
 .bg-color-item{
   color: rgba(0,0,0,.5);
 }
@@ -383,4 +387,8 @@ font-weight: bold;
   }
   .showSpan {
     display: inline-block;
+  }
+
+  .mt-dashboard {
+    margin-top: 90px;
   }

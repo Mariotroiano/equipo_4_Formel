@@ -10,6 +10,7 @@ let cartFunctions = {
             cart.add(product, product.id);         
             req.session.cart = cart;      
             res.redirect('/products');
+            // res.json(cart)
         })   
         .catch(err =>{
             console.log(err)
@@ -43,3 +44,6 @@ let cartFunctions = {
 }
 
 module.exports = cartFunctions
+
+
+

@@ -13,24 +13,25 @@ module.exports = (sequelize, dataTypes)=>{
         },
         
         first_name : {
-            type : dataTypes.STRING(45),
+            type : dataTypes.STRING(100),
             allowNull : false,
         },
         
         last_name : {
-            type : dataTypes.STRING(45),
+            type : dataTypes.STRING(100),
             allowNull : false,
         },
 
         email : {
-            type : dataTypes.STRING(45),
+            type : dataTypes.STRING(100),
             allowNull : false,
         },
 
         password : {
-            type : dataTypes.STRING,
+            type : dataTypes.STRING(200),
             allowNull : false,
         },
+        
         image : {
             type : dataTypes.STRING(100)        
         },
