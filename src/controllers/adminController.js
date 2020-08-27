@@ -7,31 +7,22 @@ const Op = db.Sequelize.Op
 let adminFunctions = {
     
     info : (req, res, next)=>{
-        let totalUsers = []
-        let totalProducts = []
-        let totalCategorys = []
-        
-        db.User.findAll()
-        .then(users =>{
-            totalUsers = users 
-        })
-        .catch(err=>{
-            console.log(err)
-            res.send('no se encontraron usuarios')
-        })       
-       
+        let totalProducts = db.Product.findAll()
+        let totalUsers = db.User.findAll()
+        let totalCategorys = db.Product_category.findAll()
 
-        db.Product.findAll()
-        .then(products =>{
-            totalProducts = products
+        Promise.all([totalProducts, totalUsers, totalCategorys])
+        .then(([products, users, categorys])=>{
+           res.render('admin/dashboard', {products : products, users : users, categorys : categorys})
         })
-        .catch(err =>{
-            console.log(err);
-            res.send('ocurrio un error')
-        })    
-        console.log(' productssssssssssss ' + totalProducts)
-        res.render('admin/dashboard', {users : totalUsers, products : totalProducts, categorys : totalCategorys })
     }
 }
 
 module.exports = adminFunctions
+
+// let productId = db.Product.findByPk(req.params.productId)
+// let categorys = db.Product_category.findAll()
+// Promise.all([productId, categorys])
+// .then(function([product, cat]){
+//     res.render('products-edit', {productToEdit : product, categorys : cat})
+// })

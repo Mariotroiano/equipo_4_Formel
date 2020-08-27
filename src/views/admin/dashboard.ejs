@@ -26,82 +26,86 @@
             </tr>
         </thead>
         
-        <% products.forEach(prod => { %>
-        <tbody>
-            
-            <tr>
-                <th scope="row">1</th>
-                <td><%= prod.name %></td>
-                <td><%= prod.price %></td>
-                <td><%= prod.color %></td>
-                <td><%= prod.size %></td>  
-                <td><%= prod.description %></td>            
-                             
-                <td><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                <td><a href="#"><i class="far fa-edit"></i></a></td>           
-            </tr>   
-
-        </tbody>
-        <% }) %>
-    </table>
-    
-    
-    <h2 class="mt-dashboard">Tabla de Categorias</h2>
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">nombre</th>
-                <th scope="col">Borrar Categoria</th>
-                <th scope="col">Editar Categoria</th>
-                
-                
-                
-            </tr>
-        </thead>
+        <% products.forEach((prod, i) => { %>
+            <tbody>                
+                <tr>
+                    <th scope="row"><%= i+1 %> </th>
+                    <td><%= prod.name %></td>
+                    <td><%= prod.price %></td>
+                    <td><%= prod.color %></td>
+                    <td><%= prod.size %></td>  
+                    <td><%= prod.description %></td>            
+                 
+                        <td><a href="/products/<%= prod.id %>?_method=DELETE"><i class="far fa-trash-alt"></i></a></td>
+                    
+                    <td><a href="/products/<%= prod.id %>/edit"><i class="far fa-edit"></i></a></td>           
+                </tr>                  
+            </tbody>
+            <% }) %>
+        </table>
         
-        <tbody>
-            
-            <tr>
-                <th scope="row">1</th>
-                <td>sdad</td>              
-                <td><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                <td><a href="#"><i class="far fa-edit"></i></a></td>           
-            </tr>          
-            
-        </tbody>
         
-    </table>
-    
-    
-    
-    <h2 class="mt-dashboard">Tabla de Usuarios</h2>
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">nombre</th>
-                <th scope="col">email</th>         
-            </tr>
-        </thead>
-        
-        <tbody>
-            
-            <tr>
-                <th scope="row">1</th>
-                <td>maritus</td>              
-                <td>maritus@maritus.gmail.com</td>         
+        <h2 class="mt-dashboard">Tabla de Categorias</h2>
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">Borrar Categoria</th>
+                    <th scope="col">Editar Categoria</th>
+                    
+                    
+                    
+                </tr>
+            </thead>
+            <% categorys.forEach((cat, i) => { %>
+                <tbody>
+                    
+                    <tr>
+                        <th scope="row"><%= i+1 %></th>
+                        <td><%= cat.name %></td>              
+                        <td><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                        <td><a href="#"><i class="far fa-edit"></i></a></td>           
+                    </tr>          
+                    
+                </tbody>
+                <% }) %>
                 
-            </tr>          
+            </table>
             
-        </tbody>
-        
-    </table>
-    <script src="/scripts/jquery-3.5.1.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script> 
-</body>
-
-</html>
-
-
-
+            
+            
+            <h2 class="mt-dashboard">Tabla de Usuarios</h2>
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Email</th>         
+                    </tr>
+                </thead>
+                <% users.forEach((user, i) => { %>
+                    
+                    <tbody>
+                        
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= user.first_name %></td> 
+                            <td><%= user.last_name %></td>         
+                            <td><%= user.email %></td>       
+                        </tr>          
+                        
+                    </tbody>
+                    <% }) %>
+                    
+                </table>
+                <script src="/scripts/jquery-3.5.1.min.js"></script>
+                <script src="/scripts/bootstrap.min.js"></script> 
+            </body>
+            
+            </html>
+            
+            
+            
+            
