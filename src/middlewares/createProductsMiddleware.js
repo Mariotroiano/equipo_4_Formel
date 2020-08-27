@@ -5,5 +5,5 @@ module.exports = [
     check('price').isLength({min : 1}).withMessage('El producto debe tener un precio'), 
     check('color').isLength({min : 1}).withMessage('El producto debe tener un color'), 
     check('size').isLength({min : 1}).withMessage('El producto debe tener un talle'), 
- 
+    check('description').isLength({min : 1}).withMessage('El producto debe tener una descripción'), 
 ]
