@@ -16,10 +16,15 @@
             <% }) %>
             <% } %>
         <form action="/products" method="POST" enctype="multipart/form-data" id="form_products">
-          
+          <style>
+            .error{
+              color: red;
+            }
+          </style>
           <div class="form-group">
             <label for="name">Nombre producto</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="nombre del producto">
+            <span id="product_name" class="hideSpan error">El nombre del producto es requerido</span>
           </div>
           
           <label for="category">Categoría</label>
@@ -32,27 +37,32 @@
           <div class="form-group">
             <label for="price">Precio</label>
             <input type="number" class="form-control" id="price" name="price" placeholder="ej: 1200">
+            <span id="price" class="hideSpan error">El precio del producto es requerido</span>
           </div>
           
           
           <div class="form-group">
             <label for="color">Color</label>
             <input type="text" class="form-control" id="color" name="color" placeholder="azul, gris, negro, etc">
+            <span id="color" class="hideSpan error">Debe ingresar un color del producto</span>
           </div>
           
           <div class="form-group">
             <label for="size">Talle</label>
             <input type="text" class="form-control" id="size" name="size" placeholder="S, M, L, XL">
+            <span id="size" class="hideSpan error">Debe ingresar un talle del producto. Las opciones son S, M, L o XL</span>
           </div>
           
           <div class="form-group">
             <label for="description">Descripcion</label>
             <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+            <span id="description" class="hideSpan error">La descripción es requerida. Debe tener un máximo de 255 caracteres</span>
           </div>
           
           <div class="form-group">
             <label for="image">Imagen producto</label>
             <input type="file" class="form-control-file" id="image" name="image" accept="image/*"> 
+            <span id="image" class="hideSpan error">Debe ingresar una imagen de perfil</span>
           </div>
           
           <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3" id="submit">Cargar producto</button>
@@ -60,7 +70,8 @@
       </div>
     </div>
   </div>
-  <script src="/scripts/productValidation.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.1/validator.min.js" integrity="sha512-rVYlbsnsxljzvf4sgKzI6ncbNKKxupFhoQ/9ptW7R5fhKE9wQevsfUAZEbJ6xl+VyaiGm3lAKChPLoV/VuaZJA==" crossorigin="anonymous"></script>
+  <script src="/scripts/loadProductValidation.js"></script>
   <script src="/scripts/jquery-3.5.1.min.js"></script>
   <script src="/scripts/bootstrap.min.js"></script>
 </body>
