@@ -10,13 +10,21 @@ let productsFunctions = {
             products.forEach(prod => prices.push(prod.price))            
             let totalPrices = prices.reduce((a, b)=> a = a + b)            
             
-            let data = {
-                status : 200,
-                totalProducts : products.length,
-                totalPrice : totalPrices,
-                products : products
+            let response = {
+                meta : {
+                    method : 'GET',
+                    status : 200,
+                    endpoint : "http://localhost:3030/api/products"
+                    
+                },
+                data : {
+                    totalProducts : products.length,
+                    totalPrice : totalPrices,
+                    products : products
+                }
+                
             }     
-            res.send(data)
+            res.send(response)
         })
         .catch(err =>{
             console.log(err)
@@ -26,21 +34,30 @@ let productsFunctions = {
     
     categorys : (req, res, next)=>{
         db.Product_category.findAll()
-    .then(categorys =>{ 
-       let categorysName = []
-        categorys.forEach(cat => categorysName.push(cat.name))
-        let data = {
-            status : 200,
-            categorysName : categorysName
+        .then(categorys =>{ 
+            let categorysName = []
+            categorys.forEach(cat => categorysName.push(cat.name))
             
-        }
-        res.send(data)      
-       
-    })
-    .catch(err =>{
-        console.log(err);
-        res.send('ocurrio un error')
-    })   
+            let response = {
+                meta : {
+                    method : 'GET',
+                    status : 200,
+                    endpoint : "http://localhost:3030/api/products/categorys"
+                    
+                },
+                 data : {               
+                    categorysName : categorysName
+                }
+                
+            }     
+           
+            res.send(response)      
+            
+        })
+        .catch(err =>{
+            console.log(err);
+            res.send('ocurrio un error')
+        })   
         
     }
     

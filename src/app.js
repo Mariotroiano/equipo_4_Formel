@@ -12,13 +12,14 @@ var apiProductsRouter = require('./routes/api/apiProductsRouter')
 var adminRouter = require('./routes/admin')
 let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 const categorysMiddleware = require('./middlewares/categorysMiddleware')
-
+var cors = require('cors')
+let apiUsersRouter = require('./routes/api/apiUsersRouter')
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/admin', adminRouter)
 app.use('/api/products', apiProductsRouter)
+app.use('/api/users', apiUsersRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
