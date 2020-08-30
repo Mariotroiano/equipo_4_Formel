@@ -370,6 +370,9 @@ font-weight: bold;
 .container-product{
   background-color: #ffffff;
 }
+.profile-img{
+  border-radius: 10%;
+}
 
 /* 
   /////////// profile /////////////////////////// */
@@ -392,3 +395,4 @@ font-weight: bold;
   .mt-dashboard {
     margin-top: 90px;
   }
+  
