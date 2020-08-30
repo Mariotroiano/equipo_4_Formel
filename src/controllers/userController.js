@@ -51,11 +51,7 @@ let userFunction = {
             }
         }) 
         .then(user => {
-            console.log('contraseña encriptada ' + user.password)
-            console.log('contraseña desde el formulario ' + req.body.password)
-             var result = bcrypt.compareSync(req.body.password, user.password);
-             console.log('resultado de compareSync de ambas contraseñas  ' + result)
-
+            
             if(user && bcrypt.compareSync(req.body.password, user.password)){                     
                 req.session.user = user;
                 req.session.succesMsg = `Bienvenid@ ${user.first_name} ${user.last_name}`

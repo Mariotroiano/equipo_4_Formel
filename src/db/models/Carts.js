@@ -15,7 +15,7 @@ module.exports = (sequelize, dataTypes)=> {
 
         shipping_address_id : {
             type : dataTypes.INTEGER.UNSIGNED,
-            allowNull : false,
+           
         },
 
         user_id : {

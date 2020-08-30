@@ -13,12 +13,12 @@ module.exports = (sequelize, dataTypes)=> {
             allowNull : false,
         },
         city : {
-            type : dataTypes.STRING(45),
+            type : dataTypes.STRING(100),
             allowNull : false,
         },
 
         province : {
-            type : dataTypes.STRING(45),
+            type : dataTypes.STRING(100),
             allowNull : false,
         },
 
