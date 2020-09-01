@@ -15,13 +15,25 @@ module.exports = (sequelize, dataTypes)=> {
         price : {
             type : dataTypes.FLOAT.UNSIGNED,
             allowNull : false
-        }
+        },
+        product_id : {
+            type : dataTypes.INTEGER.UNSIGNED,
+            primaryKey : true,
+            allowNull : false,
+          
+        },
+        cart_id : {
+            type : dataTypes.INTEGER.UNSIGNED,
+            primaryKey : true,
+            allowNull : false,
+           
+        },
     
     };
     
     config = {
         tableName : 'cart_product',
-        timeStamps : true,
+        timestamps : true,
         underscored : true,
         createdAt : "created_at",
         updated_at : "updated_at"    

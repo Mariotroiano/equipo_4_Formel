@@ -45,8 +45,7 @@ let cartFunctions = {
 
     userAdresses : (req, res, next)=>{
         let user = req.session.user
-        console.log(req.body, user.id)
-
+    
         db.Address.create({
             ...req.body,
             user_id : user.id
@@ -74,7 +73,8 @@ let cartFunctions = {
                 shipping_address_id : user.Address[0].id,
                 user_id : user.id
             })
-            .then(cart =>{
+            .then(cart =>{      
+                   
                 res.redirect('/')
             })
             .catch(err=>{
@@ -96,13 +96,14 @@ let cartFunctions = {
         //     res.json(carts)
         // })
 
-        db.Product.findAll({
-            include : [{association : 'cartProduct'} ]
+          db.Cart.findAll({
+            include : [{association : 'cartProduct'},{association : 'User'}, {association : 'Adress'} ]
         })
         .then(carts=>{
             res.json(carts)
         })
-    }
+    },
+    
     
 }
 

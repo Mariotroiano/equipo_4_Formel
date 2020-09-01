@@ -6,7 +6,7 @@ let uploadMiddleware = require('../middlewares/uploadMiddleware');
 let registerPermissionMiddleware = require('../middlewares/registerPermission');
 let userPermissionMiddleware = require('../middlewares/userPermissionMiddleware');
 var upload = uploadMiddleware('public/images/users');
-
+let editUserMiddleware = require('../middlewares/editUserMiddleware')
 
 /* GET users listing. */
 router.get('/register',registerPermissionMiddleware, userController.getRegister)
@@ -21,7 +21,7 @@ router.get('/profile',userPermissionMiddleware, userController.profile)
 
 router.get('/:userId', userController.edit)
 
-router.put('/:userId', registerMiddleware, userController.update)
+router.put('/:userId', editUserMiddleware, userController.update)
 router.delete('/:userId',userController.delete)
 
 
