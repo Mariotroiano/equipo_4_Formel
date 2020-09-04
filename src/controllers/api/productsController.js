@@ -1,6 +1,5 @@
 let db = require('../../db/models')
 const Op = db.Sequelize.Op
-const sequelize = require('sequelize')
 
 
 let productsFunctions = {
@@ -58,35 +57,6 @@ let productsFunctions = {
         .catch(err =>{
             console.log(err);
             res.send('ocurrio un error')
-        })   
-        
-    },
-    lastProduct : (req, res, next)=>{
-        db.Product.findOne({
-            order: [
-                ['created_at', 'DESC']
-            ] 
-        })
-        .then(products =>{             
-            let response = {
-                meta : {
-                    method : 'GET',
-                    status : 200,
-                    endpoint : "http://localhost:3030/api/products/lastProduct"
-                    
-                },
-                 data : {               
-                    products : products
-                }
-                
-            }     
-           
-            res.send(response)      
-            
-        })
-        .catch(err =>{
-            console.log(err);
-            res.send('Ha ocurrido un error. Por favor, vuelva a intentar')
         })   
         
     }
