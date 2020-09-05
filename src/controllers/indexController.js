@@ -115,19 +115,19 @@ let indexFunctions = {
     stores : (req, res, next) => {
         res.render('locals');
     },
-
+    
     info : (req, res, next)=>{
         res.render('storeInformation')
     },
-
+    
     conditions : (req, res, next)=>{
         res.render('conditions')
     },
-
+    
     questions : (req, res, next)=>{
         res.render('questions')
     },
-
+    
     search : (req, res, next)=>{
         res.render('search', {products : [], msj : false})
     },
@@ -142,10 +142,10 @@ let indexFunctions = {
         })
         .then(products =>{
             if(products.length != 0){
-                 res.render('search', {products : products, msj : false})
+                res.render('search', {products : products, msj : false})
                 console.log(products.length)
             }else{
-                 res.render('search', {products : [], msj : true})
+                res.render('search', {products : [], msj : true})
                 console.log(products.length)
                 
             }
@@ -158,7 +158,7 @@ let indexFunctions = {
             res.send('fallo la consulta')
         })
     },
-
+    
     form : (req, res, next) => {
         res.render('emailForm')
     },
@@ -172,11 +172,44 @@ let indexFunctions = {
         `
         nodemailerFunction(emailContent, req.body.reference)
         res.redirect('/')        
-    },       
+    },      
     
-   
+    changePhoto : (req, res, next)=>{
+        
+        db.Product.findByPk(req.params.productId)
+        .then(product =>{
+            console.log(product)
+            res.render('photoProductChange', {product : product})
+        })
+    },
+    
+    updatePhoto : (req, res ,next)=> {
+        
+        console.log( 'aaaaaaaaaaaaaaaaaaaaaaaaaaa ' + req.files[0].filename)
+        
+        db.Product.update({
+            image : req.files[0].filename
+            
+        }, {
+            where : {
+                id :  req.params.productId
+            }
+        })
+        .then(product => {
+            db.Product.findByPk(req.params.productId)
+            .then(prod => {
+                res.render('products-detail', {productId : prod})
+            })
 
+        })
+        
+        .catch(err => {
+            console.log(err)
+            res.send('error al cambiar foto de producto')
+        })
     }
+    
+}
 
 
 module.exports = indexFunctions;

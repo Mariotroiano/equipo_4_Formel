@@ -17,6 +17,9 @@ router.post('/email/send', indexController.send )
 router.get('/products', indexController.products)
 
 
+router.get('/products/:productId/change',adminMiddleware, indexController.changePhoto)
+router.put('/products/:productId/photo',[upload.any(),adminMiddleware], indexController.updatePhoto)
+
 router.get('/products/category/:categoryId', indexController.category)
 
 router.get('/products/create',adminMiddleware, indexController.createGet)

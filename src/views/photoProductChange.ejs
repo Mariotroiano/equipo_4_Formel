@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ////////////////////////////  head /////////////////////////// -->
+<%- include('partials/head') %>
+<!-- ////////////////////////////  head /////////////////////////// -->
+
+<body>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    <%- include('partials/headerNavbar') %>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    
+    <div class="col-md-3 mt-4">
+        <form action="/products/<%= product.id %>/photo?_method=PUT" method="POST" enctype="multipart/form-data" id="form_photo">      
+          
+            <div class="form-group">
+                <label for="image" class="mt-4">Cambiá la foto de tu producto</label>
+                <input type="file" accept="image/*" class="form-control-file" id="image" name="image" > 
+                <span id="image" class="hideSpan photoError">Debe subir cualquier foto </span>
+              </div>
+              
+          
+          <button type="submit" class="btn btn-secondary">Cambiar foto</button>
+        </form>
+      </div>
+    </div>
+        
+        
+        
+        <!-- ///////////////// envios ////////////////////// solo falta cargar fotos --> 
+        <%- include('partials/pay-send-return') %>
+        <!-- ///////////////// envios ////////////////////// solo falta cargar fotos --> 
+        
+        
+        <!-- //////// footer ////////////////// -->
+        <%- include('partials/footer') %>
+        <!-- //////// footer ////////////////// -->
+        
+        
+        <!-- scripts -->    
+        <script src="/scripts/photoValidation.js" ></script>
+        <script src="/scripts/jquery-3.5.1.min.js"></script>
+        <script src="/scripts/bootstrap.min.js"></script>
+    </body>
+    
+    </html>

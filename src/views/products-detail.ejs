@@ -56,9 +56,14 @@
                     
                     <p>
                         <a href="/products/<%= productId.id%>/edit" class="btn btn-secondary">Editar producto</a>
+
                         <form action="/products/<%= productId.id %>?_method=DELETE" method="POST">
                             <button type="submit" class="btn btn-secondary">Eliminar producto</button>
                         </form>
+                    </p>
+                    <p>
+                        <a href="/products/<%= productId.id%>/change" class="btn btn-secondary">Cambiar foto</a>
+
                     </p>
                 </div>
                 <% } %>

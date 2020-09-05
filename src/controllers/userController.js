@@ -121,7 +121,8 @@ let userFunction = {
             res.render('users/edit-form', {errors : errors.errors, user : req.session.user})
         }
     }, 
-    
+
+   
     delete : (req, res, next)=>{
         db.User.destroy({
             where : {
