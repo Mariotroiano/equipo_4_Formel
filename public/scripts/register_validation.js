@@ -58,7 +58,7 @@ window.onload = function(){
             data.password = password.value
         }
         
-        if(confirmPassword.value != password.value){
+        if(validator.isEmpty( lastName.value) || confirmPassword.value != password.value){
             selectClass('hideSpan', 'showSpan', 'confirmPassword') 
             errors++ 
         }else{

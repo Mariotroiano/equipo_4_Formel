@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') %>
+<body>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    <%- include('partials/headerNavbar') %>
+    <!-- ////////////////////////// header Nav /////////////////////// -->
+    <h3 class="mt-4">Escribinos un email ... </h3>
+    <div class="container mt-4">
+        <div class="row">
+            
+            <div class="col-md-6">
+                
+                <form action="/email/send" method="POST" >
+                    
+                    <div class="form-group">
+                        <label for="name">Tu Nombre :</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="ej: Mario">
+                        <span id="product_name" class="hideSpan error">El nombre del producto es requerido</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email : </label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="ej: mariotroiano2@gmail.com">
+                        <span id="email" class="hideSpan error">El email no es valido</span>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <label for="size">Asunto : </label>
+                        <input type="text" class="form-control" id="size" name="reference" placeholder="ej: consulta">
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Mensaje : </label>
+                        <textarea class="form-control" id="description" rows="3" name="message"></textarea>
+                        <span id="description" class="hideSpan error">La descripción es requerida. Debe tener un máximo de 255 caracteres</span>
+                    </div>
+                    
+                    
+                    
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3" id="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/scripts/jquery-3.5.1.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
+</body>
+
+</html>

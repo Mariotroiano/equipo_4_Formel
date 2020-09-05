@@ -10,6 +10,6 @@ router.get('/form', cartController.form )
 router.post('/form', cartController.userAdresses)
 router.get('/prueba', cartController.prueba)
 router.get('/prueba2', cartController.prueba2)
-
+// router.get('/purchase', cartController.purchase)
 
 module.exports = router

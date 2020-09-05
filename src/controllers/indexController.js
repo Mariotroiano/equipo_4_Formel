@@ -1,7 +1,9 @@
 let {check, body, validationResult}  = require('express-validator');
 let db = require('../db/models');
-const Op = db.Sequelize.Op
-let Cart = require('../custom-functions/cart')
+const Op = db.Sequelize.Op;
+let Cart = require('../custom-functions/cart');
+let nodemailerFunction = require('../custom-functions/nodemaile')
+
 
 let indexFunctions = {    
     store : (req, res, next) => {     
@@ -82,11 +84,11 @@ let indexFunctions = {
     
     edit : (req, res, next)=> {
         
-       db.Product.findByPk(req.params.productId)       
+        db.Product.findByPk(req.params.productId)       
         .then(product =>{
             res.render('products-edit', {productToEdit : product})
         })      
-           
+        
     },
     
     update : (req, res, next)=> {    
@@ -114,6 +116,55 @@ let indexFunctions = {
         res.render('locals');
     },
     
-}
+    search : (req, res, next)=>{
+        res.render('search', {products : [], msj : false})
+    },
+    
+    show : (req, res, next)=>{
+        db.Product.findAll({
+            where : {
+                name : {
+                    [Op.like]: `${req.body.name}%`
+                }
+            }
+        })
+        .then(products =>{
+            if(products.length != 0){
+                 res.render('search', {products : products, msj : false})
+                console.log(products.length)
+            }else{
+                 res.render('search', {products : [], msj : true})
+                console.log(products.length)
+                
+            }
+            
+            
+        })                  
+        
+        .catch(err=>{
+            console.log(err)
+            res.send('fallo la consulta')
+        })
+    },
+
+    form : (req, res, next) => {
+        res.render('emailForm')
+    },
+    send : (req, res, next)=>{
+        let emailContent = `
+        <ul>
+        <li>Nombre : ${req.body.name}</li>
+        <li>Email del sujeto : <strong> ${req.body.email}</strong>
+        </ul>
+        <p>Mensaje : ${req.body.message}</p>
+        `
+        nodemailerFunction(emailContent, req.body.reference)
+        res.redirect('/')        
+    },       
+    
+   
+
+    }
+
 
 module.exports = indexFunctions;

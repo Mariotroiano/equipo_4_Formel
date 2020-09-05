@@ -9,6 +9,8 @@ let userFunction = {
     },
     
     register : (req, res) => {
+
+        console.log(req.body)
         console.log(validationResult(req))
         let errors = validationResult(req)
         
@@ -18,7 +20,7 @@ let userFunction = {
                 password : bcrypt.hashSync( req.body.password, 10),
                 confirmPassword : bcrypt.hashSync( req.body.confirmPassword, 10),
                 image : req.files[0].filename,
-                permissions : 1
+                permissions : 2
             })
             .then(result =>{
                 req.session.registered = "Tu cuenta se creo correctamente!! ahora solo resta iniciar sesión"
@@ -38,10 +40,8 @@ let userFunction = {
     },
     
     login : (req, res)=>{   
-    // let hash = bcrypt.hashSync('marito', 10)
-    // console.log('hash de prueba ' + hash)
-    // let saracundo = bcrypt.compareSync('marito', hash)
-    // console.log('saraundooooooooooooooooooooooooooooooooooo ' + saracundo)    
+    
+        console.log(req.body)
 
         db.User.findOne({
             where : {
@@ -131,13 +131,47 @@ let userFunction = {
             }
         })
         .then(()=>{
-            res.redirect('/')
+            res.redirect('/users/logout')
         })
         .catch(err =>{
             console.log(err)
             res.send('No se encontro la cuenta para borrar')
         })
-    } 
+    }, 
+
+    changePhoto : (req, res, next)=>{
+        
+        let user = req.session.user
+        res.render('users/update-photo', {user : user})
+    },
+
+    updatePhoto : (req, res, next)=>{
+
+        
+        db.User.update({
+            image : req.files[0].filename
+            
+        }, {
+            where : {
+                id :  req.params.userId
+            }
+        })
+        .then(user =>{
+         db.User.findByPk(req.params.userId)
+         .then(updatedUser=>{
+             req.session.user = updatedUser
+            res.render('users/profile', {user : updatedUser })
+            .catch(err=>{
+                console.log(err)
+                res.send('no se pudo cambiar la foto')
+            })
+        })
+    })
+        .catch(err =>{
+            console.log(err)
+            res.send('error al cambiar la foto ')
+        })
+    }
     
 }
 module.exports = userFunction

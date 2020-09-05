@@ -51,7 +51,8 @@ let cartFunctions = {
             user_id : user.id
         })
         .then(address =>{
-            res.redirect('/')
+            req.session.cart = ""
+            res.render('purchase')
         })
         .catch(err =>{
             console.log(err)
@@ -75,7 +76,7 @@ let cartFunctions = {
             })
             .then(cart =>{      
                    
-                res.redirect('/')
+                res.render('/')
             })
             .catch(err=>{
                 console.log(err)
@@ -103,7 +104,7 @@ let cartFunctions = {
             res.json(carts)
         })
     },
-    
+
     
 }
 

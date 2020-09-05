@@ -395,4 +395,11 @@ font-weight: bold;
   .mt-dashboard {
     margin-top: 90px;
   }
-  
+  .photoError{
+    color : red;
+  }
+  .btn-outline-success {
+    
+    color:gray ;
+    border-color: #00000010;
+}

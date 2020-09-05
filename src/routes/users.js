@@ -19,6 +19,8 @@ router.get('/logout', userController.logout)
 
 router.get('/profile',userPermissionMiddleware, userController.profile)
 
+router.get('/photo', userController.changePhoto )
+router.put('/photo/:userId', [upload.any()], userController.updatePhoto)
 router.get('/:userId', userController.edit)
 
 router.put('/:userId', editUserMiddleware, userController.update)

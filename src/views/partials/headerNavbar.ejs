@@ -26,7 +26,7 @@
         <ul class="navbar-nav mr-auto ">
           <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle f-size " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Top
+              Categorías
             </a>
             <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
               <% categorys.forEach(cat => { %>
@@ -34,27 +34,26 @@
               <% })%>
             </li> 
             
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle f-size" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bottom
-              </a>
-              <div class="dropdown-menu " aria-labelledby="navbarDropdown">               
-                <a href="#" class="dropdown-item" >abrigos</a>
-              <a href="#" class="dropdown-item" >shorts</a>
-              <a href="#" class="dropdown-item" >remeras</a>             
-               
-              </li> 
+            <li class="nav-item f-size">
+                <a class="nav-link" href="/products/search">Buscar</a>               
+            </li> 
+
+            <li class="nav-item f-size">
+              <a class="nav-link" href="/email/form">Comunicate</a>
+            </li>
+            
               
               <li class="nav-item f-size">
                 <a class="nav-link" href="/products">Productos</a>
               </li>
+              
               <% if(locals.user && locals.user.permissions == 2){ %>
                 <li class="nav-item f-size">
                   <a class="nav-link" href="/products/create">Carga productos</a>
                 </li>  
                 
                 <li class="nav-item f-size">
-                  <a class="nav-link" href="/admin">información de la pagina</a>
+                  <a class="nav-link" href="/admin">info de la pagina</a>
                 </li>  
                 <% } %>
                 
