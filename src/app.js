@@ -14,6 +14,7 @@ let cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware')
 const categorysMiddleware = require('./middlewares/categorysMiddleware')
 var cors = require('cors')
 let apiUsersRouter = require('./routes/api/apiUsersRouter')
+let adminMiddleware = require('./middlewares/adminMiddleware')
 var app = express();
 
 // view engine setup
@@ -44,7 +45,7 @@ app.use(categorysMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
-app.use('/admin', adminRouter)
+app.use('/admin',adminMiddleware, adminRouter)
 app.use('/api/products', apiProductsRouter)
 app.use('/api/users', apiUsersRouter)
 // catch 404 and forward to error handler

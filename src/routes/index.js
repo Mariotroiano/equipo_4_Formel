@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const indexController = require('../controllers/indexController');
 
-
+let adminMiddleware = require('../middlewares/adminMiddleware')
 let uploadMiddleware = require('../middlewares/uploadMiddleware')
 let validationProductMiddleware = require('../middlewares/createProductsMiddleware')
 var upload = uploadMiddleware('public/images/products')
@@ -19,7 +19,7 @@ router.get('/products', indexController.products)
 
 router.get('/products/category/:categoryId', indexController.category)
 
-router.get('/products/create', indexController.createGet)
+router.get('/products/create',adminMiddleware, indexController.createGet)
 router.post('/products',[upload.any(), validationProductMiddleware], indexController.create)
 
 router.get('/products/search', indexController.search)
@@ -28,7 +28,7 @@ router.post('/products/search/name', indexController.show)
 
 router.get('/products/:productId', indexController.productsDetail)
 
-router.get('/products/:productId/edit', indexController.edit)
+router.get('/products/:productId/edit',adminMiddleware, indexController.edit)
 router.put('/products/:productId', indexController.update)
 
 router.delete('/products/:productId', indexController.delete); 
