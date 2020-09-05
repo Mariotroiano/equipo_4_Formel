@@ -13,7 +13,6 @@ window.onload = function(){
     let color = document.getElementById('color')
     let size = document.getElementById('size')
     let description = document.getElementById('description')
-    let image = document.getElementById('image')
     
 
     function selectClass(classRemove, classAdd, smallIdName){
@@ -28,10 +27,10 @@ window.onload = function(){
         
         if(validator.isEmpty(productName.value)){
             selectClass('hideSpan', 'showSpan', 'product_name')
-            errorList++     
+            errorList++    
         }else{
             selectClass('showSpan', 'hideSpan', 'product_name')
-            data.productName = productName.value;           
+            data.productName = productName.value;      
         }
 
         if(validator.isEmpty(price.value)){
@@ -42,7 +41,7 @@ window.onload = function(){
             data.price = price.value;           
         }
 
-        if(validator.isLength(color.value, {min: 0, max:30}) == false ||validator.isEmpty(color.value)){
+        if(validator.isLength(color.value, {min: 0, max:30}) == false || validator.isEmpty(color.value)){
             selectClass('hideSpan', 'showSpan', 'color')
             errorList++     
         }else{
@@ -64,14 +63,6 @@ window.onload = function(){
         }else{
             selectClass('showSpan', 'hideSpan', 'description')
             data.description = description.value;           
-        }
-
-        if(!image.value){
-            selectClass('hideSpan', 'showSpan', 'image')
-            errorList++  
-        }else{
-            selectClass('showSpan', 'hideSpan', 'image')  
-            data.image = image.value
         }
 
         if (errorList > 0){
