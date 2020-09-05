@@ -37,5 +37,11 @@ router.delete('/products/:productId', indexController.delete);
 
  ////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
  router.get('/local', indexController.stores)
+ router.get('/info', indexController.info)
+ router.get('/conditions', indexController.conditions)
+ router.get('/questions', indexController.questions)
+
+
+
  ////////// esta ruta no sirve para nada es para probar el mapa de google maps/////////
  module.exports = router;
