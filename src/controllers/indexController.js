@@ -115,7 +115,19 @@ let indexFunctions = {
     stores : (req, res, next) => {
         res.render('locals');
     },
-    
+
+    info : (req, res, next)=>{
+        res.render('storeInformation')
+    },
+
+    conditions : (req, res, next)=>{
+        res.render('conditions')
+    },
+
+    questions : (req, res, next)=>{
+        res.render('questions')
+    },
+
     search : (req, res, next)=>{
         res.render('search', {products : [], msj : false})
     },

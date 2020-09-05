@@ -20,7 +20,7 @@ let userFunction = {
                 password : bcrypt.hashSync( req.body.password, 10),
                 confirmPassword : bcrypt.hashSync( req.body.confirmPassword, 10),
                 image : req.files[0].filename,
-                permissions : 2
+                permissions : 1
             })
             .then(result =>{
                 req.session.registered = "Tu cuenta se creo correctamente!! ahora solo resta iniciar sesión"
