@@ -63,7 +63,7 @@ CREATE TABLE `addresses` (
   PRIMARY KEY (`id`),
   KEY `address_user_idx` (`user_id`),
   CONSTRAINT `address_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-05','2020-09-05',6);
+INSERT INTO `addresses` VALUES (1,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-05','2020-09-05',6),(2,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-05','2020-09-05',6),(3,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-05','2020-09-05',6),(4,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-05','2020-09-05',6),(5,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-06','2020-09-06',6),(6,'giuffra 1153','El Palomar','Buenos Aires',1684,'2020-09-06','2020-09-06',6);
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `product_category` (
   `created_at` date NOT NULL,
   `updated_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `product_category` (
 
 LOCK TABLES `product_category` WRITE;
 /*!40000 ALTER TABLE `product_category` DISABLE KEYS */;
-INSERT INTO `product_category` VALUES (4,'Camisa','2020-06-01','2020-06-01'),(5,'pantalones','2020-07-28','2020-07-28'),(6,'abrigos','2020-07-28','2020-07-28'),(7,'remeras','2020-07-28','2020-07-28'),(8,'conjuntos','2020-07-28','2020-07-28'),(9,'otros','2020-07-28','2020-07-28');
+INSERT INTO `product_category` VALUES (4,'Camisa','2020-06-01','2020-06-01'),(5,'pantalones','2020-07-28','2020-07-28'),(6,'abrigos','2020-07-28','2020-07-28'),(7,'remeras','2020-07-28','2020-07-28'),(8,'conjuntos','2020-07-28','2020-07-28'),(10,'shorts','2020-09-05','2020-09-05');
 /*!40000 ALTER TABLE `product_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,7 +236,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   KEY `product-category_idx` (`category_id`),
   CONSTRAINT `product-category` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,7 +245,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (2,'buzo lana',1345,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','gris','image-1595967416197.jpg','2020-07-28','2020-07-28',6),(3,'buzo algodon',2800,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500.','XL','negro','image-1595967467332.jpg','2020-07-28','2020-07-28',6),(4,'buzo lana',2140,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','rojo','image-1595967503924.jpg','2020-07-28','2020-07-28',6),(5,'camisa azul',3900,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','L','azul','image-1595967613233.jpg','2020-07-28','2020-07-28',4),(6,'campera cuero',7900,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','L','negro','image-1595967643568.jpg','2020-07-28','2020-07-28',6),(7,'campera cuero marron ',5000,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','XL','marron','image-1595967677901.jpg','2020-07-28','2020-07-28',6),(8,'chaleco azul',3000,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','S','azul','image-1595967712410.jpg','2020-07-28','2020-07-28',8),(9,'conjunto celeste remera y pantalon',5000,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','celeste','image-1595967761842.jpg','2020-07-28','2020-07-28',8),(10,'pantalon gamuza',1100,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','gris','image-1595967963359.jpg','2020-07-28','2020-07-28',5),(11,'pantalon jean editadoooo',1150,'Esta es una descripcion editada para probar si funciona editar de a base de datos','M','negro','image-1595968003441.jpg','2020-07-28','2020-07-28',5),(12,'remera manga larga',900,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','marron','image-1595968043514.jpg','2020-07-28','2020-07-28',7),(13,'saco bordo',5800,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','S','bordo','image-1595968080985.jpg','2020-07-28','2020-07-28',8),(14,'saco gris',630,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','L','gris','image-1595968112431.jpg','2020-07-28','2020-08-01',8),(15,'traje',9999,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','S','gris','image-1595968139764.jpg','2020-07-28','2020-07-28',8);
+INSERT INTO `products` VALUES (2,'buzo lana',1345,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','gris','image-1595967416197.jpg','2020-07-28','2020-07-28',6),(3,'buzo algodon',2800,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500.','XL','negro','image-1595967467332.jpg','2020-07-28','2020-07-28',6),(4,'buzo lana',2140,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','rojo','image-1595967503924.jpg','2020-07-28','2020-07-28',6),(5,'camisa azul',3900,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','L','azul','image-1595967613233.jpg','2020-07-28','2020-07-28',4),(6,'campera cuero',7900,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','L','negro','image-1595967643568.jpg','2020-07-28','2020-07-28',6),(7,'campera cuero marron ',5000,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','XL','marron','image-1595967677901.jpg','2020-07-28','2020-07-28',6),(8,'chaleco azul',3000,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','S','azul','image-1595967712410.jpg','2020-07-28','2020-07-28',8),(9,'conjunto celeste remera y pantalon',5000,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','celeste','image-1595967761842.jpg','2020-07-28','2020-07-28',8),(10,'pantalon gamuza',700,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','gris','image-1595967963359.jpg','2020-07-28','2020-09-05',5),(11,'pantalon jean editadoooo',1100,'Esta es una descripcion editada para probar si funciona editar de a base de datos','M','negro','image-1595968003441.jpg','2020-07-28','2020-09-05',5),(12,'remera manga larga',1011,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','M','marron','image-1599343688980.jpg','2020-07-28','2020-09-05',7),(13,'saco bordo',5800,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','S','bordo','image-1595968080985.jpg','2020-07-28','2020-07-28',8),(14,'saco gris',630,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','L','gris','image-1595968112431.jpg','2020-07-28','2020-08-01',8),(15,'traje',9999,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.','S','gris','image-1595968139764.jpg','2020-07-28','2020-07-28',8);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +267,7 @@ CREATE TABLE `users` (
   `image` varchar(100) DEFAULT NULL,
   `permissions` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +276,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Agustin','Gauto','agustin@gauto.com','formel2020','2020-07-20','2020-07-20',NULL,1),(2,'mario','troiano','mariotroiano2@gmail.com','$2b$10$J5hp1ScUfyptD1/GJeMaFOKIJYne.prQ0fC4e1','2020-09-04','2020-09-04','image-1599263704213.jpg',1),(3,'sao','paipai','sao@gmail.com','$2b$10$cD5xrHKuzspJtEtbTb70O.BxIISQo0wZe36R2e','2020-09-04','2020-09-04','image-1599263769055.jpg',1),(4,'elpapa','elAdministrador','yayo@gmail.com','$2b$10$ruYTiT1u5iKZPbO8beWor.8axHtEc9X4t5Lgv0','2020-09-05','2020-09-05','image-1599264141373.jpg',1),(6,'admin','administrador','admin@gmail.com','$2b$10$hZveRuu68fAfsPuZ8pJBHOJABWUVkojHtN372q/CnQdep004RbEeS','2020-09-05','2020-09-05','image-1599265165310.jpg',2);
+INSERT INTO `users` VALUES (1,'Agustin','Gauto','agustin@gauto.com','formel2020','2020-07-20','2020-07-20',NULL,1),(2,'mario','troiano','mariotroiano2@gmail.com','$2b$10$J5hp1ScUfyptD1/GJeMaFOKIJYne.prQ0fC4e1','2020-09-04','2020-09-04','image-1599263704213.jpg',1),(3,'sao','paipai','sao@gmail.com','$2b$10$cD5xrHKuzspJtEtbTb70O.BxIISQo0wZe36R2e','2020-09-04','2020-09-04','image-1599263769055.jpg',1),(4,'elpapa','elAdministrador','yayo@gmail.com','$2b$10$ruYTiT1u5iKZPbO8beWor.8axHtEc9X4t5Lgv0','2020-09-05','2020-09-05','image-1599264141373.jpg',1),(6,'admin','administrador','admin@gmail.com','$2b$10$wrdmuPyJw3fndHQRrzYOqebZzVLiucYYawZ.Z8Gvv73nhXi9iuEte','2020-09-05','2020-09-05','image-1599269142166.jpg',2);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-04 21:35:02
+-- Dump completed on 2020-09-06 17:33:06
