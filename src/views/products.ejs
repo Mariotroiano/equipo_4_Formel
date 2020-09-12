@@ -25,7 +25,7 @@
                         
                         <a href="/products/<%= product.id %>">
                             <figure class="product-box_image">
-                                <img src="images/products/<%= product.image%>" alt="imagen de producto" class="img-fluid">
+                                <img src="/images/products/<%= product.image%>" alt="imagen de producto" class="img-fluid">
                             </figure>
                             <article class="product-box_data">
                                 <h2>$ <%= product.price %></h2>
@@ -40,7 +40,38 @@
                     </section>
                 </div>
         <% }) %>
+<div class="container">
+        <div class="pagination-nav d-flex justify-content-center">
+            <nav aria-label="...">
+                <ul class="pagination">
         
+                    <% if (pagination.currentPage != 0) { %>
+                        <li class="page-item mr-2">
+                            <a class="page-link reset-link pagination-menu" href="<%= pagination.firstPage %>"><i class="fas fa-angle-double-left"></i></a>
+                        </li>
+                    <% } %>
+                    
+                    <% if (pagination.currentPage != 0 ) { %>
+                        <li class="page-item mr-1">
+                            <a class="page-link reset-link pagination-menu" href="<%= pagination.prevPage %>"><i class="fas fa-angle-left"></i> <b>Anterior</b></a>
+                        </li>
+                    <% } %>
+                    
+                    <% if (pagination.currentPage != pagination.totalPages) { %>
+                        <li class="page-item ml-1">
+                            <a class="page-link reset-link pagination-menu" href="<%= pagination.nextPage %>"><b>Siguiente</b> <i class="fas fa-angle-right"></i></a>
+                        </li>
+                    <% } %>
+                    
+                    <% if (pagination.currentPage != pagination.totalPages) { %>
+                        <li class="page-item ml-2">
+                            <a class="page-link reset-link pagination-menu" href="<%= pagination.lastPage %>"><i class="fas fa-angle-double-right"></i></a>
+                        </li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+    </div>
         <!-- ////////////////  Cards ofertas //////////////////////////// -->
         
         <!-- ///////////////// envios ////////////////////// solo falta cargar fotos --> 

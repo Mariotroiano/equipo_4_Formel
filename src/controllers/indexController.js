@@ -1,8 +1,9 @@
-let {check, body, validationResult}  = require('express-validator');
+let {check, body, validationResult, query}  = require('express-validator');
 let db = require('../db/models');
 const Op = db.Sequelize.Op;
 let Cart = require('../custom-functions/cart');
 let nodemailerFunction = require('../custom-functions/nodemaile')
+let paginate =  require('../custom-functions/paginate')
 
 
 let indexFunctions = {    
@@ -37,16 +38,22 @@ let indexFunctions = {
         })
     },  
     
-    products : (req, res, next)=>{  
-        
-        db.Product.findAll()
-        .then(products => {
-            res.render('products', {products : products})
+    products : async (req, res, next)=>{            
+    let queryLimit = 3;
+    let queryOffset = Number(req.query.page) * queryLimit || 0
+
+       let productsAll = await db.Product.findAndCountAll({
+            offset: queryOffset,
+            limit: queryLimit
         })
-        .catch(err =>{
-            console.log(err)
-            res.send('ocurrio un error')
-        })
+           
+        let products = productsAll.rows          
+       
+        res.render('products', {           
+            products: products,                                     
+            pagination: paginate(req, productsAll, queryLimit, `/products/?page=`)
+        });    
+       
     },
     
     productsDetail : (req, res, next)=>{
