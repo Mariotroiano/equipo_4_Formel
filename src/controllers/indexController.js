@@ -3,100 +3,115 @@ let db = require('../db/models');
 const Op = db.Sequelize.Op;
 let Cart = require('../custom-functions/cart');
 let nodemailerFunction = require('../custom-functions/nodemaile')
-let paginate =  require('../custom-functions/paginate')
+let paginate =  require('../custom-functions/paginate');
+
 
 
 let indexFunctions = {    
-    store : (req, res, next) => {     
-        db.Product.findAll({
+    store : async (req, res, next) => {     
+        let products = await db.Product.findAll({
             where : {
                 price : {
                     [Op.lt] : 1200
                 } 
             }
         })
-        .then(products => {           
+        try{
             res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered, offerProducts : products })  
-        })
-        .catch(err =>{
+            
+        }
+        catch(err){
             console.log(err)
             res.send('ocurrio un error')
-        })
+        }      
     },
     
-    category : (req, res, next)=>{
-        db.Product.findAll({
+    category : async (req, res, next)=>{
+        let products = await db.Product.findAll({
             where : {
                 category_id : {
                     [Op.eq] : req.params.categoryId
                 }
             }
         })
-        .then(products => {
-            
+        try{
             res.render('category', {products : products})
-        })
+            
+        }
+        catch(err){
+            console.log(err)
+            res.send('error al buscar productos')
+        }       
     },  
     
     products : async (req, res, next)=>{            
-    let queryLimit = 3;
-    let queryOffset = Number(req.query.page) * queryLimit || 0
-
-       let productsAll = await db.Product.findAndCountAll({
+        let queryLimit = 3;
+        let queryOffset = Number(req.query.page) * queryLimit || 0
+        
+        let productsAll = await db.Product.findAndCountAll({
             offset: queryOffset,
             limit: queryLimit
         })
-           
+        
         let products = productsAll.rows          
-       
+        
         res.render('products', {           
             products: products,                                     
             pagination: paginate(req, productsAll, queryLimit, `/products/?page=`)
         });    
-       
+        
     },
     
-    productsDetail : (req, res, next)=>{
-        db.Product.findByPk(req.params.productId)
-        .then(productId =>{
-            res.render('products-detail', {productId : productId})
+    productsDetail : async (req, res, next)=>{
+        let product = await db.Product.findByPk(req.params.productId, {
+            include : [{association : 'color'}, {association : 'size'}]
         })
-        .catch(err =>{
+        try{
+            res.render('products-detail', {productId : product})
+        }
+        catch(err){
             console.log(err)
             res.send('ocurrio un error')
-        })      
+        }         
     },
     
-    createGet : (req, res, next)=>{      
-        res.render('products-create')          
+    createGet : async (req, res, next)=>{      
+        res.render('products-create')   
     },
     
-    create : (req, res, next)=>{   
-        
+    create : async (req, res, next)=>{   
         let errors = validationResult(req)
         if(errors.isEmpty()){
-            db.Product.create({
+            let product = await  db.Product.create({
                 ...req.body,
                 image : req.files[0].filename   
-            })        
-            .then(product => {
-                res.redirect('/products/create');
             })
-            .catch('ocurrio un error')
+            try{
+                res.redirect('/products/create');
+                
+            }   
+            catch(err){
+                console.log(err)
+                res.send('error al crear producto')
+            }    
             
         }else{            
             res.render('products-create',  {errors : errors.errors})
         }       
     },
     
-    edit : (req, res, next)=> {
+    edit : async (req, res, next)=> {
         
-        db.Product.findByPk(req.params.productId)       
-        .then(product =>{
+        const product = await db.Product.findByPk(req.params.productId)
+        try{
             res.render('products-edit', {productToEdit : product})
-        })      
-        
-    },
+            
+        }
+        catch(error){
+            console.log(error)
+            res.send('error al editar producto')
+        }  
+    },    
     
     update : (req, res, next)=> {    
         db.Product.update({
@@ -153,13 +168,9 @@ let indexFunctions = {
                 console.log(products.length)
             }else{
                 res.render('search', {products : [], msj : true})
-                console.log(products.length)
-                
-            }
-            
-            
-        })                  
-        
+                console.log(products.length)                
+            }          
+        })                
         .catch(err=>{
             console.log(err)
             res.send('fallo la consulta')
@@ -181,20 +192,21 @@ let indexFunctions = {
         res.redirect('/')        
     },      
     
-    changePhoto : (req, res, next)=>{
+    changePhoto : async (req, res, next)=>{
         
-        db.Product.findByPk(req.params.productId)
-        .then(product =>{
-            console.log(product)
-            res.render('photoProductChange', {product : product})
-        })
+       let product = await db.Product.findByPk(req.params.productId)
+       try{
+        res.render('photoProductChange', {product : product})
+       }
+       catch(err){
+        console.log(err)
+        res.send('error al buscar producto')
+       }       
     },
     
-    updatePhoto : (req, res ,next)=> {
+    updatePhoto : async (req, res ,next)=> {        
         
-        console.log( 'aaaaaaaaaaaaaaaaaaaaaaaaaaa ' + req.files[0].filename)
-        
-        db.Product.update({
+      let product = await  db.Product.update({
             image : req.files[0].filename
             
         }, {
@@ -202,20 +214,19 @@ let indexFunctions = {
                 id :  req.params.productId
             }
         })
-        .then(product => {
-            db.Product.findByPk(req.params.productId)
-            .then(prod => {
-                res.render('products-detail', {productId : prod})
-            })
 
-        })
-        
-        .catch(err => {
+        let productEdited =  db.Product.findByPk(req.params.productId)
+        try{
+            res.render('products-detail', {productId : productEdited})          
+               
+        }
+        catch(err){
             console.log(err)
             res.send('error al cambiar foto de producto')
-        })
-    }
-    
+
+        }
+        
+    }    
 }
 
 

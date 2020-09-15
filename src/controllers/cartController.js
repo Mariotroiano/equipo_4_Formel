@@ -90,12 +90,12 @@ let cartFunctions = {
     },
 
     prueba2 : (req, res, next)=>{
-        // db.Cart.findAll({
-        //     include : [{association : 'cartProduct'},{association : 'User'}, {association : 'Adress'} ]
-        // })
-        // .then(carts=>{
-        //     res.json(carts)
-        // })
+        db.Cart.findAll({
+            include : [{association : 'cartProduct'},{association : 'User'}, {association : 'Adress'} ]
+        })
+        .then(carts=>{
+            res.json(carts)
+        })
 
           db.Cart.findAll({
             include : [{association : 'cartProduct'},{association : 'User'}, {association : 'Adress'} ]

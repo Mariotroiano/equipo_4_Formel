@@ -26,20 +26,20 @@ module.exports = (sequelize, dataTypes)=>{
             allowNull : false
         },
 
-        size : {
-            type : dataTypes.STRING(100),
-            allowNull : false
-        },
-        
-        color : {
-            type : dataTypes.STRING(100),
-            allowNull : false
-        },
-
         image : {
             type : dataTypes.STRING(100)        
         },
         category_id : {
+            type : dataTypes.INTEGER.UNSIGNED,
+            allowNull : false
+        },
+
+        colors_id : {
+            type : dataTypes.INTEGER.UNSIGNED,
+            allowNull : false
+        },
+
+        sizes_id : {
             type : dataTypes.INTEGER.UNSIGNED,
             allowNull : false
         }
@@ -62,6 +62,16 @@ module.exports = (sequelize, dataTypes)=>{
         Product.belongsTo(models.Product_category, {
             as : 'category',
             foreignKey : 'category_id'
+        })
+
+        Product.belongsTo(models.Color, {
+            as : 'color',
+            foreignKey : 'colors_id'
+        })
+
+        Product.belongsTo(models.Size, {
+            as : 'size',
+            foreignKey : 'sizes_id'
         })
 
         Product.belongsToMany(models.Cart, {  

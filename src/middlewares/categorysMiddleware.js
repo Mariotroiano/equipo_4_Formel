@@ -1,16 +1,22 @@
 
 let db = require('../db/models');
 
- function getCategorys(req, res, next){
-    db.Product_category.findAll()
-    .then(categorys =>{        
-        res.locals.categorys = categorys       
+ async function getCategorys(req, res, next){
+   let categorys = await db.Product_category.findAll()
+   let colors = await db.Color.findAll()
+   let sizes = await db.Size.findAll()
+    try{
+        res.locals.categorys = categorys
+        res.locals.colors = colors       
+        res.locals.sizes = sizes    
         next()
-    })
-    .catch(err =>{
-        console.log(err);
+    }
+    catch(error){
+        console.log(error)
         res.send('ocurrio un error')
-    })    
+
+    }
+    
 
 }
 
