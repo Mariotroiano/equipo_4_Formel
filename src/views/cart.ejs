@@ -37,7 +37,7 @@
                 <td><%= prod.item.color %></td>
                 <td><%= prod.quantity %></td>
                 <td><%= prod.item.size %></td>               
-                <td><%= prod.item.price %></td>
+                <td><%= prod.item.price * prod.quantity %></td>
                 <td><a href="/cart/remove/<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
 
                
