@@ -139,7 +139,7 @@ let cartFunctions = {
             where : {
                 user_id : user.id
             },
-            include : [{association : 'cartProduct'},{association : 'User'}, {association : 'Adress'} ]
+            include : [{association : 'product'},{association : 'User'}, {association : 'Adress'} ]
         })
         .then(carts=>{
             res.json(carts)

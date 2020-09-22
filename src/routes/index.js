@@ -5,7 +5,7 @@ const indexController = require('../controllers/indexController');
 let adminMiddleware = require('../middlewares/adminMiddleware')
 let uploadMiddleware = require('../middlewares/uploadMiddleware')
 let validationProductMiddleware = require('../middlewares/createProductsMiddleware')
-var upload = uploadMiddleware('public/images/products')
+var upload = uploadMiddleware('./public/images/products')
 
 /* GET home page. */
 router.get('/', indexController.store )

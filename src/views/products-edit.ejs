@@ -67,7 +67,12 @@
                     <% }) %>
                   </select>  
     
-         
+                  <div class="form-group">
+                    <label for="price">Cantidad</label>
+                    <input type="number"  min="1" class="form-control" id="stock" name="stock" value="<%= productToEdit.stock %>">
+                    <span id="stock" class="hideSpan error">Debe ingresar la cantidad del producto</span>
+                  </div>      
+                        
               
               <div class="form-group">
                 <label for="description">Descripcion</label>

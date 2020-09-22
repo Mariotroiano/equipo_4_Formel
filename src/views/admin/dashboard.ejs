@@ -13,104 +13,218 @@
     <table class="table table-striped mt-4">
         <thead>
             <tr>
-                <th scope="col">#</th>
+              
+                <th scope="col">Imagen</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Color</th>                
                 <th scope="col">Talle</th>     
                 <th scope="col">Descripcion</th>      
                 <th scope="col">Cargar producto</th>
                 <th scope="col">Eliminar producto</th>
                 <th scope="col">Editar producto</th>
-                                
+                
             </tr>
         </thead>
         
         <% products.forEach((prod, i) => { %>
             <tbody>                
                 <tr>
-                    <th scope="row"><%= i+1 %> </th>
+                    
+                    <td><img src="/images/products/<%= prod.image %>" alt="" class="img_dashboard"></td>
                     <td><a href="/products/<%= prod.id %>"><%= prod.name %></a></td>
                     <td><%= prod.price %></td>
-                    <td><%= prod.color %></td>
-                    <td><%= prod.size %></td>  
-                    <td><%= prod.description %></td>      
-                    
-                    <td><a href="/products/create"><i class="far fa-plus-square"></i></i></a></td> 
-                    <td><a href="/products/<%= prod.id %>?_method=DELETE"><i class="far fa-trash-alt"></i></a></td>
-                    
-                    <td><a href="/products/<%= prod.id %>/edit"><i class="far fa-edit"></i></a></td>           
-                </tr>                  
-            </tbody>
-            <% }) %>
-        </table>
-        
-        
-        <h2 class="mt-dashboard">Tabla de Categorias</h2>
-        <table class="table table-striped mt-4">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">nombre</th>
-                    <th scope="col">Crear categoria</th>
-                    <th scope="col">Borrar categoria</th>
-                    <th scope="col">Editar categoria</th>
-                    
-                    
-                    
-                </tr>
-            </thead>
-            <% categorys.forEach((cat, i) => { %>
-                <tbody>
-                    
-                    <tr>
-                        <th scope="row"><%= i+1 %></th>
-                        <td><%= cat.name %></td>              
-                        <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
-                        <form action="/admin/<%= cat.id %>?_method=delete" method="POST">                       
-                            <td> <button type="submit" class="btn btn-secondary">Eliminar categoria</button></td>
-                        </form>
-                        <td><a href="/admin/edit/<%= cat.id %>"><i class="far fa-edit"></i></a></td>           
-                    </tr>          
-                    
-                </tbody>
-                <% }) %>
-                
-            </table>
-            
-            
-            
-            <h2 class="mt-dashboard">Tabla de Usuarios</h2>
-            <table class="table table-striped mt-4">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Email</th>         
-                    </tr>
-                </thead>
-                <% users.forEach((user, i) => { %>
-                    
-                    <tbody>
-                        
-                        <tr>
-                            <th scope="row"><%= i+1 %></th>
-                            <td><%= user.first_name %></td> 
-                            <td><%= user.last_name %></td>         
-                            <td><%= user.email %></td>       
-                        </tr>          
-                        
+                    <% if( prod.stock <= 3) { %>
+                        <td style="color: red;"><%= prod.stock %></td>
+                        <% }else{ %>
+                            <td><%= prod.stock %></td>
+                         <% } %>
+                            
+                         <% colors.forEach(color =>{ %>
+                            <% if(color.id == prod.colors_id) { %>
+                                <td><%= color.name %></td>   
+                            <% } %>                                 
+                        <% }) %>
+                            
+                            <% sizes.forEach(size =>{ %>
+                                <% if(size.id == prod.sizes_id) { %>
+                                    <td><%= size.name %></td>   
+                                <% } %>                                 
+                            <% }) %>     
+                            <td><%= prod.description %></td>      
+                            
+                            <td><a href="/products/create"><i class="far fa-plus-square"></i></i></a></td> 
+                            <td><a href="/products/<%= prod.id %>?_method=DELETE"><i class="far fa-trash-alt"></i></a></td>
+                            
+                            <td><a href="/products/<%= prod.id %>/edit"><i class="far fa-edit"></i></a></td>           
+                        </tr>                  
                     </tbody>
                     <% }) %>
-                    
                 </table>
-                <script src="/scripts/jquery-3.5.1.min.js"></script>
-                <script src="/scripts/bootstrap.min.js"></script> 
-            </body>
-            
-        </html>
-            
-            
-            
-            
+                
+                <div class="container">
+                    <div class="pagination-nav d-flex justify-content-center">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                    
+                                <% if (pagination.currentPage != 0) { %>
+                                    <li class="page-item mr-2">
+                                        <a class="page-link reset-link pagination-menu" href="<%= pagination.firstPage %>"><i class="fas fa-angle-double-left"></i></a>
+                                    </li>
+                                <% } %>
+                                
+                                <% if (pagination.currentPage != 0 ) { %>
+                                    <li class="page-item mr-1">
+                                        <a class="page-link reset-link pagination-menu" href="<%= pagination.prevPage %>"><i class="fas fa-angle-left"></i> <b>Anterior</b></a>
+                                    </li>
+                                <% } %>
+                                
+                                <% if (pagination.currentPage != pagination.totalPages) { %>
+                                    <li class="page-item ml-1">
+                                        <a class="page-link reset-link pagination-menu" href="<%= pagination.nextPage %>"><b>Siguiente</b> <i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                <% } %>
+                                
+                                <% if (pagination.currentPage != pagination.totalPages) { %>
+                                    <li class="page-item ml-2">
+                                        <a class="page-link reset-link pagination-menu" href="<%= pagination.lastPage %>"><i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                
+                <h2 class="mt-dashboard">Tabla de Categorias</h2>
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">nombre</th>
+                            <th scope="col">Crear categoria</th>
+                            <th scope="col">Borrar categoria</th>
+                            <th scope="col">Editar categoria</th>
+                            
+                            
+                            
+                        </tr>
+                    </thead>
+                    <% categorys.forEach((cat, i) => { %>
+                        <tbody>
+                            
+                            <tr>
+                                <th scope="row"><%= i+1 %></th>
+                                <td><%= cat.name %></td>              
+                                <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
+                                <form action="/admin/<%= cat.id %>?_method=delete" method="POST">                       
+                                    <td> <button type="submit" class="btn btn-secondary">Eliminar categoria</button></td>
+                                </form>
+                                <td><a href="/admin/edit/<%= cat.id %>"><i class="far fa-edit"></i></a></td>           
+                            </tr>          
+                            
+                        </tbody>
+                        <% }) %>
+                        
+                    </table>
+                    
+
+
+                    <h2 class="mt-dashboard">Tabla de Colores</h2>
+                    <table class="table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">nombre</th>
+                                <th scope="col">Crear color</th>
+                                <th scope="col">Borrar color</th>
+                                <th scope="col">Editar color</th>
+                                
+                                
+                                
+                            </tr>
+                        </thead>
+                        <% colors.forEach((color, i) => { %>
+                            <tbody>
+                                
+                                <tr>
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%= color.name %></td>              
+                                    <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
+                                    <form action="#" method="POST">                       
+                                        <td> <button type="submit" class="btn btn-secondary">Eliminar color</button></td>
+                                    </form>
+                                    <td><a href="#"><i class="far fa-edit"></i></a></td>           
+                                </tr>          
+                                
+                            </tbody>
+                            <% }) %>
+                            
+                        </table>
+
+
+                        <h2 class="mt-dashboard">Tabla de talles</h2>
+                        <table class="table table-striped mt-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">nombre</th>
+                                    <th scope="col">Crear talle</th>
+                                    <th scope="col">Borrar talle</th>
+                                    <th scope="col">Editar talle</th>                               
+                                                                       
+                                </tr>
+                            </thead>
+                            <% sizes.forEach((size, i) => { %>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <th scope="row"><%= i+1 %></th>
+                                        <td><%= size.name %></td>              
+                                        <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
+                                        <form action="#" method="POST">                       
+                                            <td> <button type="submit" class="btn btn-secondary">Eliminar talle</button></td>
+                                        </form>
+                                        <td><a href="#"><i class="far fa-edit"></i></a></td>           
+                                    </tr>          
+                                    
+                                </tbody>
+                                <% }) %>
+                                
+                            </table>
+                    
+                    
+                    <h2 class="mt-dashboard">Tabla de Usuarios</h2>
+                    <table class="table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Email</th>         
+                            </tr>
+                        </thead>
+                        <% users.forEach((user, i) => { %>
+                            
+                            <tbody>
+                                
+                                <tr>
+                                    <th scope="row"><%= i+1 %></th>
+                                    <td><%= user.first_name %></td> 
+                                    <td><%= user.last_name %></td>         
+                                    <td><%= user.email %></td>       
+                                </tr>          
+                                
+                            </tbody>
+                            <% }) %>
+                            
+                        </table>
+                        <script src="/scripts/jquery-3.5.1.min.js"></script>
+                        <script src="/scripts/bootstrap.min.js"></script> 
+                    </body>
+                    
+                    </html>
+                    
+                    
+                    
+                    

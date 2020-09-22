@@ -403,3 +403,8 @@ font-weight: bold;
     color:gray ;
     border-color: #00000010;
 }
+
+.img_dashboard{
+  width: 60px;
+  height: 60px;
+}

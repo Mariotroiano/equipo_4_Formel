@@ -27,4 +27,6 @@ router.put('/:userId', editUserMiddleware, userController.update)
 router.delete('/:userId',userController.delete)
 
 
+
+
 module.exports = router;

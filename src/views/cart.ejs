@@ -4,72 +4,80 @@
 <body>
     <%- include('partials/headerNavbar') %>
     <% if(products && products != 0){ %>
-    <div class="row justify-content-start ">
-        <div class="mt-4 pl-4">
-            <h2>Mi compra</h2>
-        </div>
-    </div>    
-    
-    
-    <table class="table table-striped mt-1">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Color</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Talle</th>             
-                <th scope="col">Subtotal</th>
-                <th scope="col">Eliminar producto</th>
-                
-            </tr>
-        </thead>
+        <div class="row justify-content-start ">
+            <div class="mt-4 pl-4">
+                <h2>Mi compra</h2>
+            </div>
+        </div>    
         
-       
-          <% products.forEach(prod => { %>
-        <tbody>
-               
-            <tr>
-                <th scope="row">1</th>
-                <td><%= prod.item.name %></td>
-                <td><%= prod.item.price %></td>
-                <td><%= prod.item.color %></td>
-                <td><%= prod.quantity %></td>
-                <td><%= prod.item.size %></td>               
-                <td><%= prod.item.price * prod.quantity %></td>
-                <td><a href="/cart/remove/<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
-
-               
+        
+        <table class="table table-striped mt-1">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Talle</th>             
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Eliminar producto</th>
+                    
+                </tr>
+            </thead>
+            
+            
+            <% products.forEach(prod => { %>
+                <tbody>
+                    
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><%= prod.item.name %></td>
+                        <td><%= prod.item.price %></td>
+                        <% colors.forEach(color =>{ %>
+                            <% if(color.id == prod.item.colors_id) { %>
+                                <td><%= color.name %></td>   
+                            <% } %>                                 
+                        <% }) %>
+                        <td><%= prod.quantity %></td>
+                        <% sizes.forEach(size =>{ %>
+                            <% if(size.id == prod.item.sizes_id) { %>
+                                <td><%= size.name %></td>   
+                            <% } %>                                 
+                        <% }) %>              
+                        <td><%= prod.item.price * prod.quantity %></td>
+                        <td><a href="/cart/remove/<%= prod.item.id %>"><i class="far fa-trash-alt"></i></a></td>
+                        
+                        
+                        
+                        
+                    </tr>          
+                    
+                </tbody>
+                <% }) %>
+            </table>
+            
+            <div class="row justify-content-end ">
+                <div class="col-md-3 f-size ">
+                    
+                    <p class="border"><strong>Total :</strong> $<%=  Math.round(totalPrice) %></p>
+                    
+                    
+                </div>
+            </div>      
+            <div class="row justify-content-end ">
+                <div class="col-md-3">
+                    <a href="/cart/form" class="btn btn-secondary">Iniciar compra</a>
+                </div>
+            </div>  
+            
+            <%- include('partials/footer') %>
+            <% }else{ %>
+                <h3 class="mt-4">Su carrito esta vacio ...</h3>
+                <% } %>
                 
-
-            </tr>          
-           
-        </tbody>
-        <% }) %>
-    </table>
-    
-    <div class="row justify-content-end ">
-        <div class="col-md-3 f-size ">
-           
-                <p class="border"><strong>Total :</strong> $<%=  Math.round(totalPrice) %></p>
-               
-
-        </div>
-    </div>      
-    <div class="row justify-content-end ">
-        <div class="col-md-3">
-        <a href="/cart/form" class="btn btn-secondary">Iniciar compra</a>
-        </div>
-    </div>  
-
-    <%- include('partials/footer') %>
-    <% }else{ %>
-        <h3 class="mt-4">Su carrito esta vacio ...</h3>
-    <% } %>
-
-    <!-- scripts -->    
-    <script src="scripts/jquery-3.5.1.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
-</body>
-</html>
+                <!-- scripts -->    
+                <script src="scripts/jquery-3.5.1.min.js"></script>
+                <script src="scripts/bootstrap.min.js"></script>
+            </body>
+            </html>

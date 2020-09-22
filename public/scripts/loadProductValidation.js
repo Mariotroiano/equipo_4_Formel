@@ -10,6 +10,8 @@ window.onload = function(){
     let form = document.getElementById('form_register')
     let productName = document.getElementById('name')
     let price = document.getElementById('price')   
+    let stock = document.getElementById('stock')   
+
     let description = document.getElementById('description')
     let image = document.getElementById('image')
     
@@ -40,6 +42,14 @@ window.onload = function(){
             data.price = price.value;           
         }
 
+
+        if(validator.isEmpty(stock.value)){
+            selectClass('hideSpan', 'showSpan', 'stock')
+            errorList++     
+        }else{
+            selectClass('showSpan', 'hideSpan', 'stock')
+            data.price = stock.value;           
+        }
              
 
         if(validator.isLength(description.value, {min: 0, max:255}) == false || validator.isEmpty(description.value)){

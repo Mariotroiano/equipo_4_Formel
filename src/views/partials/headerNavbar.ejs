@@ -11,9 +11,9 @@
 
 <div class="container-fluid sticky-top borer-bottom shadow">
   <div class="row d-flex justify-content-between bg-nav-sticky">
-    <div class="col-md-2 justify-content-start d-none d-md-block">
-      <a href="/" class="logo pt-2"> FormelARG</a>
-    </div>
+    <div class="col-md-1 justify-content-start d-none d-md-block">
+      <a href="/" class="logo pt-2"> <img src="/images/new_logo.png" alt="logo" class="img-fluid"></a>
+      </div>
     
     
     <nav class="navbar navbar-expand-lg navbar-light " id="nav">
@@ -34,25 +34,25 @@
               <% })%>
             </li> 
             
-            <li class="nav-item f-size">
+            <li class="nav-item f-size ">
                 <a class="nav-link" href="/products/search">Buscar</a>               
             </li> 
 
-            <li class="nav-item f-size">
+            <li class="nav-item f-size ">
               <a class="nav-link" href="/email/form">Comunicate</a>
             </li>
             
               
-              <li class="nav-item f-size">
+              <li class="nav-item f-size ">
                 <a class="nav-link" href="/products">Productos</a>
               </li>
               
               <% if(locals.user && locals.user.permissions == 2){ %>
-                <li class="nav-item f-size">
+                <li class="nav-item f-size ">
                   <a class="nav-link" href="/products/create">Carga productos</a>
                 </li>  
                 
-                <li class="nav-item f-size">
+                <li class="nav-item f-size ">
                   <a class="nav-link" href="/admin">info de la pagina</a>
                 </li>  
                 <% } %>
@@ -66,14 +66,14 @@
           <div class="col-md-2 nav-icons mt-2 mr-2">
             <ul class="right-navbar d-flex pt-3 justify-content-around">
 
-              <li><a href="/users/profile" > <i class="fas fa-user mr-4 bg-color-item"   title="Mi perfil"></i></a></li>              
-              <li><a href="/users/register" > <i class="far fa-address-card mr-4 bg-color-item"   title="registrate"></i></a></li>
-              <li><a href="/users/login"><i class="fas fa-sign-in-alt mr-4 bg-color-item" title="iniciar sesión" ></i></a></li>
-              <li><a href="/users/logout"><i class="fas fa-sign-out-alt mr-4 bg-color-item" title="cerrar sesion"></i></a></li>
+              <li><a href="/users/profile" > <i class="fas fa-user mr-4 bg-color-item "   title="Mi perfil"></i></a></li>              
+              <li><a href="/users/register" > <i class="far fa-address-card mr-4 bg-color-item "   title="registrate"></i></a></li>
+              <li><a href="/users/login"><i class="fas fa-sign-in-alt mr-4 bg-color-item " title="iniciar sesión" ></i></a></li>
+              <li><a href="/users/logout"><i class="fas fa-sign-out-alt mr-4 bg-color-item " title="cerrar sesion"></i></a></li>
               <% if(cart){ %>
                 <strong>[<%=cart.totalItems%>]</strong>
                 <% } %>
-                <li><a href="/cart"><i class="fas fa-cart-plus bg-color-item mr-4 pr-3" title="carrito"></i></a></li>
+                <li><a href="/cart"><i class="fas fa-cart-plus bg-color-item mr-4 pr-3 " title="carrito"></i></a></li>
 
             </ul>
             <!-- </div> -->

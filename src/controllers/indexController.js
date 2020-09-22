@@ -14,7 +14,8 @@ let indexFunctions = {
                 price : {
                     [Op.lt] : 1200
                 } 
-            }
+            },
+            include : [{association : 'color' }, {association : 'size'}]
         })
         try{
             res.render('index', {user : req.session.user, notPermission : req.session.notPermission, succesMsg : req.session.succesMsg, registered : req.session.registered, offerProducts : products })  
@@ -45,7 +46,7 @@ let indexFunctions = {
     },  
     
     products : async (req, res, next)=>{            
-        let queryLimit = 3;
+        let queryLimit = 4;
         let queryOffset = Number(req.query.page) * queryLimit || 0
         
         let productsAll = await db.Product.findAndCountAll({
@@ -119,13 +120,15 @@ let indexFunctions = {
         }, {
             where : {
                 id : req.params.productId
-            }
+            },
+          
         });
         res.redirect('/products/' + req.params.productId)
         
     },
     
     delete : (req, res, next) => {
+        console.log(req.params.id)
         db.Product.destroy({
             where : {
                 id : req.params.productId

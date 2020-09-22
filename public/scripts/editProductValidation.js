@@ -11,7 +11,7 @@ window.onload = function(){
     let productName = document.getElementById('name')
     let price = document.getElementById('price')  
     let description = document.getElementById('description')
-    
+    let stock = document.getElementById('stock') 
 
     function selectClass(classRemove, classAdd, smallIdName){
         let span = document.querySelector(`span#${smallIdName}`)
@@ -39,6 +39,14 @@ window.onload = function(){
             data.price = price.value;           
         }  
 
+        if(validator.isEmpty(stock.value)){
+            selectClass('hideSpan', 'showSpan', 'stock')
+            errorList++     
+        }else{
+            selectClass('showSpan', 'hideSpan', 'stock')
+            data.price = stock.value;           
+        }
+        
         if(validator.isLength(description.value, {min: 0, max:255}) == false || validator.isEmpty(description.value)){
             selectClass('hideSpan', 'showSpan', 'description')
             errorList++     

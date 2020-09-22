@@ -1,4 +1,4 @@
-const { unsubscribe } = require("../../app");
+
 
 module.exports = (sequelize, dataTypes)=>{
     

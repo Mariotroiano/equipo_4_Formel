@@ -42,8 +42,8 @@ module.exports = (sequelize, dataTypes)=> {
         })
 
         Cart.belongsToMany(models.Product, {  
-            through : models.Cart_product,
-            as : 'cartProduct',
+            as : 'product',
+            through: "cart_product",
             foreignKey : 'cart_id',
             otherKey : "product_id",
             timeStamps : false

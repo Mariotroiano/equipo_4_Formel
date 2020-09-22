@@ -29,6 +29,11 @@ module.exports = (sequelize, dataTypes)=>{
         image : {
             type : dataTypes.STRING(100)        
         },
+
+        stock : {
+            type : dataTypes.INTEGER.UNSIGNED,
+            allowNull : false
+        },
         category_id : {
             type : dataTypes.INTEGER.UNSIGNED,
             allowNull : false
@@ -49,9 +54,10 @@ module.exports = (sequelize, dataTypes)=>{
         tableName : 'products',
         timeStamps : true,
         underscored : true,
+        paranoid: true,
         createdAt : "created_at",
         updatedAt : "updated_at",
-      
+        deletedAt : "deleted_at"
 
     };    
     
@@ -75,8 +81,9 @@ module.exports = (sequelize, dataTypes)=>{
         })
 
         Product.belongsToMany(models.Cart, {  
-            through : models.Cart_product,
-            as : 'cartProduct',
+            as : 'cart',
+            ondelete : 'cascade',
+            through: "cart_product",
             foreignKey : 'product_id',
             otherKey : "cart_id",
             timestamps : false
