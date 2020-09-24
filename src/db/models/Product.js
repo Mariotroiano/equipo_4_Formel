@@ -41,12 +41,14 @@ module.exports = (sequelize, dataTypes)=>{
 
         colors_id : {
             type : dataTypes.INTEGER.UNSIGNED,
-            allowNull : false
+            allowNull : false,
+            
         },
 
         sizes_id : {
             type : dataTypes.INTEGER.UNSIGNED,
-            allowNull : false
+            allowNull : false,
+            
         }
     };
     

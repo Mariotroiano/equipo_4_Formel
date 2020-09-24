@@ -23,6 +23,8 @@ module.exports = (sequelize, dataTypes) =>{
         underscored : true,
         createdAt : "created_at",
         updated_at : "updated_at",
+        paranoid : true,
+        deletedAt : "deleted_at"
     }
 
     const Color = sequelize.define(alias, cols, config)

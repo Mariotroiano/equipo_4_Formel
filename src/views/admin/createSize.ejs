@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ////////////////////////////  head /////////////////////////// -->
+<%- include('../partials/head') %>
+<!-- ////////////////////////////  head /////////////////////////// -->
+
+<body>
+  <!-- ////////////////////////// header Nav /////////////////////// -->
+  <%- include('../partials/headerNavbar') %>
+  <!-- ////////////////////////// header Nav /////////////////////// -->
+  <div class="col-md-3">
+    <form action="/admin/add/size" method="POST" >     
+      
+      <div class="form-group">
+        <label for="first_name">Nombre del talle</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="namelHelp">
+        <span id="name" class="hideSpan error">El nombre del talle no puede estar vacio</span>
+      </div>
+      
+      <button type="submit" class="btn btn-secondary">Crear talle</button>
+    </form>
+  </div>
+</div>
+
+<script src="/scripts/jquery-3.5.1.min.js"></script>
+<script src="/scripts/bootstrap.min.js"></script> 
+</body>
+
+</html>

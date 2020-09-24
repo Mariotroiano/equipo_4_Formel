@@ -39,8 +39,11 @@ module.exports = (sequelize, dataTypes)=> {
         timeStamps : true,
         underscored : true,
         createdAt : "created_at",
-        updated_at : "updated_at",
-        postalCode : 'postal_code'
+        updatedAt : "updated_at",
+        postalCode : 'postal_code',
+        paranoid : true,
+        deletedAt : "deleted_at"
+       
         
     }
     const Addresses = sequelize.define(alias, cols, config)

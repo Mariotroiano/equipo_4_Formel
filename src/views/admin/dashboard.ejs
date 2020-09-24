@@ -150,11 +150,11 @@
                                 <tr>
                                     <th scope="row"><%= i+1 %></th>
                                     <td><%= color.name %></td>              
-                                    <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
-                                    <form action="#" method="POST">                       
+                                    <td><a href="/admin/create/color"><i class="far fa-plus-square"></i></i></a></td> 
+                                    <form action="/admin/color/<%= color.id %>?_method=DELETE" method="POST">                       
                                         <td> <button type="submit" class="btn btn-secondary">Eliminar color</button></td>
                                     </form>
-                                    <td><a href="#"><i class="far fa-edit"></i></a></td>           
+                                    <td><a href="/admin/edit/color/<%= color.id %>"><i class="far fa-edit"></i></a></td>           
                                 </tr>          
                                 
                             </tbody>
@@ -181,11 +181,11 @@
                                     <tr>
                                         <th scope="row"><%= i+1 %></th>
                                         <td><%= size.name %></td>              
-                                        <td><a href="/admin/create"><i class="far fa-plus-square"></i></i></a></td> 
-                                        <form action="#" method="POST">                       
+                                        <td><a href="/admin/create/size"><i class="far fa-plus-square"></i></i></a></td> 
+                                        <form action="/admin/size/<%= size.id %>?_method=DELETE" method="POST">                       
                                             <td> <button type="submit" class="btn btn-secondary">Eliminar talle</button></td>
                                         </form>
-                                        <td><a href="#"><i class="far fa-edit"></i></a></td>           
+                                        <td><a href="/admin/edit/size/<%= size.id %>"><i class="far fa-edit"></i></a></td>           
                                     </tr>          
                                     
                                 </tbody>

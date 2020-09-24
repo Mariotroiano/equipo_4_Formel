@@ -3,91 +3,91 @@
 
 <%- include('partials/head') %>
 <body>
-  
-    <body>
-    <!-- ////////////////////////// header Nav /////////////////////// -->
-    <%- include('partials/headerNavbar') %>
-    <!-- ////////////////////////// header Nav /////////////////////// -->
     
-    <div class="container margin-top-element main-container">
-        <div class="row ">
-            <div class="col-md-6 border-left padding-box">
-                <img src="/images/products/<%= productId.image %>" alt="imagen de producto" class="img-fluid">
+    <body>
+        <!-- ////////////////////////// header Nav /////////////////////// -->
+        <%- include('partials/headerNavbar') %>
+        <!-- ////////////////////////// header Nav /////////////////////// -->
+        
+        <div class="container margin-top-element main-container">
+            <div class="row ">
+                <div class="col-md-6 border-left padding-box">
+                    <img src="/images/products/<%= productId.image %>" alt="imagen de producto" class="img-fluid">
+                </div>
+                
+                <div class="col-md-6 flex-column padding-box">
+                    <div>
+                        <p><strong>Nombre del producto :</strong>  <%=productId.name%></p>
+                    </div>
+                    
+                    <div>
+                        <p><strong>Precio :</strong>  $<%=productId.price%></p>
+                        
+                    </div>                  
+                    
+                    <div>
+                        <p ><strong>Color :</strong>  <%= productId.color.name %></p>
+                        
+                    </div>                    
+                    
+                    <div>
+                        <p ><strong>Talle :</strong>  <%= productId.size.name %></p>
+                        
+                    </div>                    
+                    
+                    <div>
+                        <p><strong> Descripción :</strong> <%=productId.description%></p>
+                        
+                    </div>
+                    
+                    <div class="mt-4">
+                        <p class="f-size mr-1"> <i class="fas fa-credit-card bg-color-item"></i> Pagá con tu tarjeta de credito </p>
+                        
+                    </div>
+                    
+                    
+                    
+                    <div class="mt-4">                    
+                        <a href="/cart/add/<%= productId.id %>" class="btn btn-secondary">Comprar ahora</a>
+                    </div>
+                    
+                    <% if(locals.user && locals.user.permissions == 2){ %>
+                        <div class="mt-4">
+                            
+                            <p>
+                                <a href="/products/<%= productId.id%>/edit" class="btn btn-secondary">Editar producto</a>
+                                
+                                <form action="/products/<%= productId.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-secondary">Eliminar producto</button>
+                                </form>
+                            </p>
+                            <p>
+                                <a href="/products/<%= productId.id%>/change" class="btn btn-secondary">Cambiar foto</a>
+                                
+                            </p>
+                        </div>
+                        <% } %>
+                        <div class="mt-4">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
             
-            <div class="col-md-6 flex-column padding-box">
-                <div>
-                    <p><strong>Nombre del producto :</strong>  <%=productId.name%></p>
-                </div>
-                
-                <div>
-                    <p><strong>Precio :</strong>  $<%=productId.price%></p>
-                    
-                </div>
-                
-                <div>
-                    <p ><strong>Talle :</strong>   <%= productId.size.name %></p>
-                    
-                </div>
-                
-                <div>
-                    <p ><strong>Color :</strong>  <%= productId.color.name %></p>
-                    
-                </div>
-
-                <div>
-                    <p><strong> Descripción :</strong> <%=productId.description%></p>
-                    
-                </div>
-                
-                <div class="mt-4">
-                    <p class="f-size mr-1"> <i class="fas fa-credit-card bg-color-item"></i> Pagá con tu tarjeta de credito </p>
-                    
-                </div>
-                
-                
-                
-                <div class="mt-4">                    
-                    <a href="/cart/add/<%= productId.id %>" class="btn btn-secondary">Comprar ahora</a>
-                </div>
-                
-                <% if(locals.user && locals.user.permissions == 2){ %>
-                <div class="mt-4">
-                    
-                    <p>
-                        <a href="/products/<%= productId.id%>/edit" class="btn btn-secondary">Editar producto</a>
-
-                        <form action="/products/<%= productId.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-secondary">Eliminar producto</button>
-                        </form>
-                    </p>
-                    <p>
-                        <a href="/products/<%= productId.id%>/change" class="btn btn-secondary">Cambiar foto</a>
-
-                    </p>
-                </div>
-                <% } %>
-                <div class="mt-4">
-                    
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    
-  
-     
+            
+            
+            
+            
+            
+            <!-- //////// footer ////////////////// -->
+            <%- include('partials/footer') %>
+            <!-- //////// footer ////////////////// -->
+            
+            <!-- scripts --> 
+            <script src="/scripts/jquery-3.5.1.min.js"></script>
+            <script src="/scripts/bootstrap.min.js"></script>
+        </body>
         
-    
-    
-    <!-- //////// footer ////////////////// -->
-    <%- include('partials/footer') %>
-    <!-- //////// footer ////////////////// -->
-    
-   <!-- scripts --> 
-    <script src="/scripts/jquery-3.5.1.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-  </body>
-  
-  </html>
-  
+        </html>
+        

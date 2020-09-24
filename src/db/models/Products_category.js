@@ -19,7 +19,9 @@ module.exports = (sequelize, dataTypes)=> {
         timeStamps : true,
         underscored : true,
         createdAt : "created_at",
-        updated_at : "updated_at"   
+        updated_at : "updated_at",   
+        paranoid : true,
+        deletedAt : "deleted_at"
         
     }
     const Product_category = sequelize.define(alias, cols, config)

@@ -30,7 +30,9 @@ module.exports = (sequelize, dataTypes)=> {
         timeStamps : true,
         underscored : true,
         createdAt : "created_at",
-        updated_at : "updated_at"   
+        updated_at : "updated_at",
+        paranoid : true,
+        deletedAt : "deleted_at"   
         
     }
     const Cart = sequelize.define(alias, cols, config)
