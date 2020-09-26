@@ -2,17 +2,17 @@
 <html lang="en">
 
 <%- include('partials/head') %>
-<body>
+<body class="bg_email">
     <!-- ////////////////////////// header Nav /////////////////////// -->
     <%- include('partials/headerNavbar') %>
     <!-- ////////////////////////// header Nav /////////////////////// -->
-    <h3 class="mt-4">Escribinos un email ... </h3>
-    <div class="container mt-4">
-        <div class="row">
+    
+    <div class="container mt-2">
+        <div class="row d-flex justify-content-center mb-3">
             
-            <div class="col-md-6">
+            <div class="col-md-6 email_form">
                 
-                <form action="/email/send" method="POST" >
+                <form action="/email/send" method="POST" class="pt-3">
                     
                     <div class="form-group">
                         <label for="name">Tu Nombre :</label>
@@ -41,7 +41,7 @@
                     
                     
                     
-                    <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3" id="submit">Enviar</button>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3 button" id="submit">Enviar</button>
                 </form>
             </div>
         </div>

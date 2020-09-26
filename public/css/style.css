@@ -161,11 +161,7 @@ font-weight: bold;
     margin-bottom: 30px;
   }
   
-  .products-title {
-    font-size: 2.4em;
-    font-weight: 400;
-    color: var(--gray);
-  }
+ 
   
   .product-box {
     background-color: #ffffff;
@@ -371,13 +367,29 @@ font-weight: bold;
   background-color: #ffffff;
 }
 .profile-img{
-  border-radius: 10%;
+  width:300px;
+  height:300px;
+  border-radius:150px;
+  border:10px solid #666;
+}
+
+.position-img{
+  position: relative;
+  bottom: 160px;
+  left: 480px;
 }
 
 /* 
   /////////// profile /////////////////////////// */
 
-  /* ////////// forms ///////////////////// */
+
+
+  /* ///////////////////// New profile /////////////////////////////// */
+
+
+  /* ///////////////////// New profile /////////////////////////////// */
+
+   /* ////////// forms ///////////////////// */
 
   small.error{
     color : red;
@@ -408,3 +420,49 @@ font-weight: bold;
   width: 60px;
   height: 60px;
 }
+/* ////////////////  EMAIL //////////////////////// */
+.bg_email{
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/images/bg-email.jpg');
+
+}
+.email_form{
+  background-color: white;
+  opacity: 90%;
+  border-radius: 3%;
+  box-shadow: 0 0 50px black;
+  /* box-shadow: 5px 5px 5px black; */
+}
+
+
+
+
+
+.button {
+  color: #fff !important;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  border: 2px solid;
+  position: relative;
+}
+.button:before {
+  content:"";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 1s ease;
+}
+.button:hover:before {
+  width: 100%;
+}
+.tittle_product{
+  color : white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+

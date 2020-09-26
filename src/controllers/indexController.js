@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 let Cart = require('../custom-functions/cart');
 let nodemailerFunction = require('../custom-functions/nodemaile')
 let paginate =  require('../custom-functions/paginate');
-
+let filter = require('../custom-functions/filter')
 
 
 let indexFunctions = {    
@@ -30,13 +30,12 @@ let indexFunctions = {
     category : async (req, res, next)=>{
         let products = await db.Product.findAll({
             where : {
-                category_id : {
-                    [Op.eq] : req.params.categoryId
-                }
-            }
+                category_id : req.params.categoryId                 
+            }                
         })
+        let category = await db.Product_category.findByPk(req.params.categoryId)
         try{
-            res.render('category', {products : products})
+            res.render('category', {products : products, categoryName : category.name})
             
         }
         catch(err){
@@ -121,7 +120,7 @@ let indexFunctions = {
             where : {
                 id : req.params.productId
             },
-          
+            
         });
         res.redirect('/products/' + req.params.productId)
         
@@ -157,27 +156,14 @@ let indexFunctions = {
         res.render('search', {products : [], msj : false})
     },
     
-    show : (req, res, next)=>{
-        db.Product.findAll({
-            where : {
-                name : {
-                    [Op.like]: `${req.body.name}%`
-                }
-            }
-        })
-        .then(products =>{
-            if(products.length != 0){
-                res.render('search', {products : products, msj : false})
-                console.log(products.length)
-            }else{
-                res.render('search', {products : [], msj : true})
-                console.log(products.length)                
-            }          
-        })                
-        .catch(err=>{
-            console.log(err)
-            res.send('fallo la consulta')
-        })
+    show : (req, res, next)=>{       
+
+        let color = req.body.colors_id;
+        let size = req.body.sizes_id;
+        let price = Number(req.body.price)
+        let name = req.body.name        
+        filter(color, size, price, name, req, res)    
+        
     },
     
     form : (req, res, next) => {
@@ -197,19 +183,19 @@ let indexFunctions = {
     
     changePhoto : async (req, res, next)=>{
         
-       let product = await db.Product.findByPk(req.params.productId)
-       try{
-        res.render('photoProductChange', {product : product})
-       }
-       catch(err){
-        console.log(err)
-        res.send('error al buscar producto')
-       }       
+        let product = await db.Product.findByPk(req.params.productId)
+        try{
+            res.render('photoProductChange', {product : product})
+        }
+        catch(err){
+            console.log(err)
+            res.send('error al buscar producto')
+        }       
     },
     
     updatePhoto : async (req, res ,next)=> {        
         
-      let product = await  db.Product.update({
+        let product = await  db.Product.update({
             image : req.files[0].filename
             
         }, {
@@ -217,16 +203,16 @@ let indexFunctions = {
                 id :  req.params.productId
             }
         })
-
+        
         let productEdited =  db.Product.findByPk(req.params.productId)
         try{
             res.render('products-detail', {productId : productEdited})          
-               
+            
         }
         catch(err){
             console.log(err)
             res.send('error al cambiar foto de producto')
-
+            
         }
         
     }    
