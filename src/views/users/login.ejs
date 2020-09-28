@@ -4,7 +4,7 @@
 <%- include('../partials/head') %>
 <!-- ////////////////////////////  head /////////////////////////// -->
 
-<body>
+<body class="bg_login">
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('../partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
@@ -20,13 +20,13 @@
     
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <form action="/users/login" method="POST" id="form_login">
+    <div class="row justify-content-end">
+        <div class="col-md-5 mt-4">
+            <form action="/users/login" method="POST" id="form_login" class="style-forms-small p-3">
                 <div class="form-group">
                   <label for="email">Email </label>
                   <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  
                 </div>
                 
                 <div class="form-group">
@@ -39,7 +39,8 @@
                   <label class="form-check-label" for="rememberPassword">Recordar contraseña</label>
                 </div>
                 
-                <button type="submit" class="btn btn-secondary">Iniciar sesión</button>
+                
+                <button type="submit" class="btn btn-secondary button">Iniciar sesión</button>
               </form>
         </div>
     </div>

@@ -4,16 +4,16 @@
 <%- include('../partials/head') %>
 <!-- ////////////////////////////  head /////////////////////////// -->
 
-<body>
+<body class="bg_users_forms">
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('../partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
   
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
       
-      <div class="col-md-6">
-        <form action="/users/register" method="POST" enctype="multipart/form-data" id="form_register">
+      <div class="col-md-6 mt-4">
+        <form action="/users/register" method="POST" enctype="multipart/form-data" id="form_register" class="form_style p-3">
           <style>
             .error{
               color: red;
@@ -63,7 +63,7 @@
                 <span id="image" class="hideSpan error">Debe subir cualquier foto de perfil</span>
               </div>
               
-              <button type="submit" class="btn btn-secondary">Crear cuenta</button>
+              <button type="submit" class="btn btn-secondary button">Crear cuenta</button>
             </form>
           </div>
         </div>

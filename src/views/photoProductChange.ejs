@@ -4,13 +4,13 @@
 <%- include('partials/head') %>
 <!-- ////////////////////////////  head /////////////////////////// -->
 
-<body>
+<body class="bg_small_forms">
     <!-- ////////////////////////// header Nav /////////////////////// -->
     <%- include('partials/headerNavbar') %>
     <!-- ////////////////////////// header Nav /////////////////////// -->
     
-    <div class="col-md-3 mt-4">
-        <form action="/products/<%= product.id %>/photo?_method=PUT" method="POST" enctype="multipart/form-data" id="form_photo">      
+    <div class="col-md-4 mt-4">
+        <form action="/products/<%= product.id %>/photo?_method=PUT" method="POST" enctype="multipart/form-data" id="form_photo" class="style-forms-small p-3 op-form">      
           
             <div class="form-group">
                 <label for="image" class="mt-4">Cambiá la foto de tu producto</label>
@@ -26,15 +26,10 @@
         
         
         
-        <!-- ///////////////// envios ////////////////////// solo falta cargar fotos --> 
-        <%- include('partials/pay-send-return') %>
-        <!-- ///////////////// envios ////////////////////// solo falta cargar fotos --> 
+
         
         
-        <!-- //////// footer ////////////////// -->
-        <%- include('partials/footer') %>
-        <!-- //////// footer ////////////////// -->
-        
+    
         
         <!-- scripts -->    
         <script src="/scripts/photoValidation.js" ></script>

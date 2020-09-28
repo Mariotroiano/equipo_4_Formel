@@ -75,7 +75,12 @@ font-weight: bold;
 .separator{
   height: 20px;
 }
-
+.tittle_carousel{
+  color : white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-weight: 700;
+  -webkit-text-stroke: 1px black;
+}
 /* /////////////////////////////// photo categoty ////////////////////////// */
 
 .height-photo{
@@ -428,10 +433,10 @@ font-weight: bold;
   background-image: url('/images/bg-email.jpg');
 
 }
-.email_form{
+.form_style{
   background-color: white;
   opacity: 90%;
-  border-radius: 3%;
+  border-radius: 2%;
   box-shadow: 0 0 50px black;
   /* box-shadow: 5px 5px 5px black; */
 }
@@ -442,7 +447,7 @@ font-weight: bold;
 
 .button {
   color: #fff !important;
-  font-size: 20px;
+  
   font-weight: 500;
   padding: 0.5em 1.2em;
   border: 2px solid;
@@ -465,4 +470,206 @@ font-weight: bold;
   color : white;
   text-shadow: black 0.1em 0.1em 0.2em;
 }
+/* /////////////////// create product ////////////// */
+.bg_create_prod{
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/images/bg-create-product.jpg');
+}
 
+.bg_small_forms{
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/images/bg-small-forms.jpg');
+}
+
+.bg_users_forms{
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/images/bg-users-forms.jpg');
+}
+
+.bg_login{
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/images/bg-login.jpg');
+}
+
+.op-form{
+  opacity: 70%;
+}
+.style-forms-small{
+ border: 2px solid white;
+ color :white;
+  opacity: 90%;
+  border-radius: 2%;
+  box-shadow: 0 0 20px white;
+}
+
+.div_home{
+  margin-top: 60px;
+  height: 700px;
+  background-position: center center;
+  background-size: cover;
+  background-image: url('/images/div-home-2.jpg');
+}
+
+.home-shadow{
+  box-shadow: 0 0 20px black;
+}
+.animated-shadow {
+  
+    color: #ffffff;
+  
+    font: normal 110px Varela Round, sans-serif;
+  
+    height: 140px;
+  
+    left: 0;
+  
+    letter-spacing: 5px;
+  
+    text-align: center;
+  
+    text-transform: uppercase;
+  
+    width: 100%;
+  
+    animation: move linear 2000ms infinite;
+  
+    z-index: 2
+  
+  }
+  
+  /*Animación para rotar las sombras*/
+  
+  @keyframes move {
+  
+    0% {
+  
+      text-shadow:
+  
+        4px -4px 0 #da0641,
+  
+        3px -3px 0 #da0641,
+  
+        2px -2px 0 #da0641,
+  
+        1px -1px 0 #da0641,
+  
+        -4px 4px 0 #13f1fc,
+  
+        -3px 3px 0 #13f1fc,
+  
+        -2px 2px 0 #13f1fc,
+  
+        -1px 1px 0 #13f1fc
+  
+      ;
+  
+    }
+  
+    25% {
+  
+      text-shadow:
+  
+        -4px -4px 0 #13f1fc,
+  
+        -3px -3px 0 #13f1fc,
+  
+        -2px -2px 0 #13f1fc,
+  
+        -1px -1px 0 #13f1fc,
+  
+        4px 4px 0 #da0641,
+  
+        3px 3px 0 #da0641,
+  
+        2px 2px 0 #da0641,
+  
+        1px 1px 0 #da0641
+  
+      ;
+  
+    }
+  
+    50% {
+  
+      text-shadow:
+  
+        -4px 4px 0 #da0641,
+  
+        -3px 3px 0 #da0641,
+  
+        -2px 2px 0 #da0641,
+  
+        -1px 1px 0 #da0641,
+  
+        4px -4px 0 #13f1fc,
+  
+        3px -3px 0 #13f1fc,
+  
+        2px -2px 0 #13f1fc,
+  
+        1px -1px 0 #13f1fc
+  
+      ;
+  
+    }
+  
+    75% {
+  
+      text-shadow:
+  
+        4px 4px 0 #13f1fc,
+  
+        3px 3px 0 #13f1fc,
+  
+        2px 2px 0 #13f1fc,
+  
+        1px 1px 0 #13f1fc,
+  
+        -4px -4px 0 #da0641,
+  
+        -3px -3px 0 #da0641,
+  
+        -2px -2px 0 #da0641,
+  
+        -1px -1px 0 #da0641
+  
+      ;
+  
+    }
+  
+    100% {
+  
+      text-shadow:
+  
+        4px -4px 0 #da0641,
+  
+        3px -3px 0 #da0641,
+  
+        2px -2px 0 #da0641,
+  
+        1px -1px 0 #da0641,
+  
+        -4px 4px 0 #13f1fc,
+  
+        -3px 3px 0 #13f1fc,
+  
+        -2px 2px 0 #13f1fc,
+  
+        -1px 1px 0 #13f1fc
+  
+      ;
+  
+    }
+ 
+  }
+
+
+ 

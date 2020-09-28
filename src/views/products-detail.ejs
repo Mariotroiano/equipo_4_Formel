@@ -48,21 +48,21 @@
                     
                     
                     <div class="mt-4">                    
-                        <a href="/cart/add/<%= productId.id %>" class="btn btn-secondary">Comprar ahora</a>
+                        <a href="/cart/add/<%= productId.id %>" class="btn btn-secondary button">Comprar ahora</a>
                     </div>
                     
                     <% if(locals.user && locals.user.permissions == 2){ %>
                         <div class="mt-4">
                             
                             <p>
-                                <a href="/products/<%= productId.id%>/edit" class="btn btn-secondary">Editar producto</a>
+                                <a href="/products/<%= productId.id%>/edit" class="btn btn-secondary button">Editar producto</a>
                                 
                                 <form action="/products/<%= productId.id %>?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-secondary">Eliminar producto</button>
+                                    <button type="submit" class="btn btn-secondary button">Eliminar producto</button>
                                 </form>
                             </p>
                             <p>
-                                <a href="/products/<%= productId.id%>/change" class="btn btn-secondary">Cambiar foto</a>
+                                <a href="/products/<%= productId.id%>/change" class="btn btn-secondary button">Cambiar foto</a>
                                 
                             </p>
                         </div>

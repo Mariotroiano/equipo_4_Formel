@@ -4,12 +4,12 @@
 <%- include('../partials/head') %>
 <!-- ////////////////////////////  head /////////////////////////// -->
 
-<body>
+<body class="bg_small_forms">
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('../partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
-  <div class="col-md-3">
-    <form action="/admin/add" method="POST" >     
+  <div class="col-md-4 mt-4">
+    <form action="/admin/add" method="POST" class="style-forms-small p-3 op-form">     
       
       <div class="form-group">
         <label for="first_name">Nombre de categoría</label>
@@ -17,7 +17,7 @@
         <span id="name" class="hideSpan error">El nombre no puede estar vacio</span>
       </div>
       
-      <button type="submit" class="btn btn-secondary">Crear categoría</button>
+      <button type="submit" class="btn btn-secondary button">Crear categoría</button>
     </form>
   </div>
 </div>

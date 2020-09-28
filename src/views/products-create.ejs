@@ -2,20 +2,20 @@
 <html lang="en">
 
 <%- include('partials/head') %>
-<body>
+<body class="bg_create_prod">
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
   
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
+  <div class="container ">
+    <div class="row justify-content-center">
+      <div class="col-md-6 mt-4">
         <% if(typeof errors != 'undefined'){ %>
           <% errors.forEach(error =>{ %>
             <p style="color: red;"><%= error.msg %></p>
             <% }) %>
             <% } %>
-        <form action="/products" method="POST" enctype="multipart/form-data" id="form_products">
+        <form action="/products" method="POST" enctype="multipart/form-data" id="form_products" class="form_style p-3">
           <style>
             .error{
               color: red;
@@ -74,7 +74,7 @@
             <span id="image" class="hideSpan error">Debe subir una imagen </span>
           </div>
           
-          <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3" id="submit">Cargar producto</button>
+          <button type="submit" class="btn btn-secondary btn-lg btn-block mb-3 button" id="submit">Cargar producto</button>
         </form>
       </div>
     </div>

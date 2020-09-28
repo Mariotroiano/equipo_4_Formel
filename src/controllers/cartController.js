@@ -1,7 +1,8 @@
 let db = require('../db/models');
 const Op = db.Sequelize.Op
 let Cart = require('../custom-functions/cart')
-let mp = require('mercadopago')
+let mp = require('mercadopago');
+const { sequelize } = require('../db/models');
 
 mp.configure({
     sandbox: true,
@@ -10,7 +11,8 @@ mp.configure({
 
 let cartFunctions = {
     addProduct : (req, res, next)=>{       
-        var cart = new Cart(req.session.cart ? req.session.cart : {});    
+        var cart = new Cart(req.session.cart ? req.session.cart : {}); 
+
         db.Product.findByPk(req.params.productId) 
         .then(product =>{
             cart.add(product, product.id);         
@@ -37,7 +39,8 @@ let cartFunctions = {
             totalPrice: cart.totalPrice
         });
         
-    },
+    }, // en el detalle recorro todos los productos del getItems, por cada uno hago un
+    // let product = await db.product.findByPk(prod.item.id) if(product.stock > prod.)
     
     remove : (req, res, next)=>{        
         var cart = new Cart(req.session.cart ? req.session.cart : {});        
@@ -55,7 +58,7 @@ let cartFunctions = {
         let products = cart.getItems()
         let preference = {
             back_urls : {
-                success : 'http://localhost:3030/products'
+                success : 'http://localhost:3030/cart/mp'
             },
             items: [
                 {
@@ -71,7 +74,7 @@ let cartFunctions = {
             user_id : user.id
         })
         .then(userAdress=>{           
-                       
+            
             mp.preferences.create(preference)
             .then(function(response){
                 // Crea un objeto de preferencia
@@ -87,8 +90,10 @@ let cartFunctions = {
         })                      
         
     },
-    
-    prueba: async (req, res, next)=>{
+    mpSucces : async (req, res, next)=>{
+        
+        
+        
         let user = req.session.user
         let cart = new Cart( req.session.cart)
         let products = cart.getItems()
@@ -103,7 +108,7 @@ let cartFunctions = {
             user_id : user.id
         })
         
-        let ultimo = await  db.Cart.findOne({
+        let lastCart = await  db.Cart.findOne({
             where : {
                 user_id : {
                     [Op.eq] : user.id
@@ -116,20 +121,38 @@ let cartFunctions = {
         
         products.forEach(prod =>{
             db.Cart_product.create( {                
-                cart_id : ultimo.id,
+                cart_id : lastCart.id,
                 product_id : prod.item.id,
                 quantity : prod.quantity,
                 price : prod.price                
             })
+
+
+           
+            let subsStock = Number(prod.quantity) 
+            
+            db.Product.decrement({
+                stock : +subsStock 
+            },
+            {
+                where : {
+                    id : prod.item.id                    
+                }
+            })
         })
         
         try{                      
-            res.json(products)
+            res.redirect('/')
         }
         catch(err){
             res.send('no se pudo guardar el carrito')
             
         }
+        
+        res.render('cart_mp')
+    },
+    prueba: async (req, res, next)=>{
+        
         
     },
     

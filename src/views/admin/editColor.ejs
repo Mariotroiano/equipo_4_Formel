@@ -4,12 +4,13 @@
 <%- include('../partials/head') %>
 <!-- ////////////////////////////  head /////////////////////////// -->
 
-<body>
+<body class="bg_small_forms">
   <!-- ////////////////////////// header Nav /////////////////////// -->
   <%- include('../partials/headerNavbar') %>
   <!-- ////////////////////////// header Nav /////////////////////// -->
-  <div class="col-md-3">
-    <form action="/admin/color/<%=color.id%>?_method=PUT" method="POST" >
+  <div class="col-md-4 mt-4">
+
+    <form action="/admin/color/<%=color.id%>?_method=PUT" method="POST" class="style-forms-small p-3 op-form">
       
       
       <div class="form-group">
@@ -18,7 +19,7 @@
         <span id="name" class="hideSpan error">El nombre del color no puede estar vacio</span>
       </div>
       
-      <button type="submit" class="btn btn-secondary">Editar color</button>
+      <button type="submit" class="btn btn-secondary button">Editar color</button>
     </form>
   </div>
 </div>

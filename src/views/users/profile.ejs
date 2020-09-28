@@ -20,7 +20,7 @@
           <div class="col-md-3 flex-column">
             
                 <img src="/images/users/<%= user.image %>" alt="foto de perfil" class="img-fluid shadow">
-                <a href="/users/photo" class="btn btn-secondary mt-4">Cambiar foto de perfil</a>
+                <a href="/users/photo" class="btn btn-secondary mt-4 button">Cambiar foto de perfil</a>
             </div>
 
             <div class="col-md-6 flex-column">
@@ -46,12 +46,12 @@
                 </table>
                 <div class="row">
                   <div class="col-md-4">
-                    <a class="btn btn-secondary" href="/users/<%= user.id %>">Edita tu perfil</a>
+                    <a class="btn btn-secondary button" href="/users/<%= user.id %>">Edita tu perfil</a>
 
                   </div>
                   <div class="col-md-4">
                     <form action="/users/<%= user.id %>?_method=DELETE" method="POST" >
-                      <button class="btn btn-secondary">Borrar mi cuenta</button>                   
+                      <button class="btn btn-secondary button">Borrar cuenta</button>                   
                      </form>
                   </div>
 
