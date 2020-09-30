@@ -90,8 +90,7 @@ let cartFunctions = {
         })                      
         
     },
-    mpSucces : async (req, res, next)=>{
-        
+    mpSucces : async (req, res, next)=>{        
         
         
         let user = req.session.user
@@ -141,15 +140,16 @@ let cartFunctions = {
             })
         })
         
-        try{                      
-            res.redirect('/')
+        try{        
+            req.session.cart = "";              
+            res.render('cart_mp')
         }
         catch(err){
             res.send('no se pudo guardar el carrito')
             
         }
         
-        res.render('cart_mp')
+      
     },
     prueba: async (req, res, next)=>{
         

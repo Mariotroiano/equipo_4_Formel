@@ -204,7 +204,9 @@ let indexFunctions = {
             }
         })
         
-        let productEdited =  db.Product.findByPk(req.params.productId)
+        let productEdited = await db.Product.findByPk(req.params.productId, {
+            include : [{association : 'color'}, {association : 'size'}]
+        })
         try{
             res.render('products-detail', {productId : productEdited})          
             

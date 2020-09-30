@@ -35,7 +35,7 @@ module.exports = (sequelize, dataTypes)=> {
     };
     
     config = {
-        tableName : 'Addresses',
+        tableName : 'addresses',
         timeStamps : true,
         underscored : true,
         createdAt : "created_at",
