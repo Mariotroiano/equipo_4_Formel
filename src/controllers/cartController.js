@@ -6,7 +6,7 @@ const { sequelize } = require('../db/models');
 
 mp.configure({
     sandbox: true,
-    access_token: process.env.MP_ACCESS_TOKEN
+    access_token: 'TEST-7907199022641-091617-4f241821e951e39ec289d76552e07f00-643438084'
 });
 
 let cartFunctions = {
