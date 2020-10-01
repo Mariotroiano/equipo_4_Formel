@@ -127,25 +127,13 @@ font-weight: bold;
 .footer-icon i{
   font-size: 20px;
 }
-
+.footer-icon a:hover{
+  font-size: 10px;
+}
 .info-div{
   border-right: 1px solid rgba(4,4,4,.3);
 }
-.azul{
-  background-color: blue;
-}
-.verde{
-  background-color: green;
-}
-.amarillo{
-  background-color: yellow;
-}
-.rojo{
-  background-color: red;
-}
-.naranja{
-  background-color: orange;
-}
+
 
 /* ///////////////////////////////////// modal-carrito-home /////////////////////////////////////////// */
 
@@ -372,17 +360,60 @@ font-weight: bold;
   background-color: #ffffff;
 }
 .profile-img{
-  width:300px;
-  height:300px;
-  border-radius:150px;
-  border:10px solid #666;
-}
+  width:350px;
+    height:200px;
+    border-radius:50%;
+    border:5px solid #666;
+  }
+  .bg-profile{
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-image: url('/images/background-profile.jpg');
+  }
+  
+  .drop { filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.7)); }
+  .box {   box-shadow: 0 0 12px rgba(0, 0, 0, 0.7); } 
 
 .position-img{
   position: relative;
   bottom: 160px;
   left: 480px;
 }
+.txt-name{
+  font-size: 70px;
+  text-shadow: black 0.1em 0.1em 0.4em;
+  font-weight: 700;
+  -webkit-text-stroke: 1px black;
+}
+
+.profile-link{
+  font-size: 30px;
+  transition: all 0.5s;
+}
+.profile-link:hover{
+  font-size: 40px;
+}
+
+@media(max-width: 426px){
+  .txt-name{
+    font-size: 40px;
+    text-shadow: black 0.1em 0.1em 0.4em;
+    font-weight: 700;
+    -webkit-text-stroke: 1px black;
+  }
+  .profile-img {
+    width: 129px;
+    margin: 0em 27% auto;
+    height: 108px;
+    border-radius: 50%;
+    border: 5px solid #666;
+}
+
+}
+
+
+
 
 /* 
   /////////// profile /////////////////////////// */

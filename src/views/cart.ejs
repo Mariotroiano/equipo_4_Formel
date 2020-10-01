@@ -64,12 +64,24 @@
                     
                     
                 </div>
-            </div>      
-            <div class="row justify-content-end ">
-                <div class="col-md-3">
-                    <a href="/cart/form" class="btn btn-secondary button">Iniciar compra</a>
-                </div>
-            </div>  
+            </div>    
+            
+            <% if(user != null){ %>
+
+                <div class="row justify-content-end ">
+                    <div class="col-md-3">
+                        <a href="/cart/form" class="btn btn-secondary button">Iniciar compra</a>
+                    </div>
+                </div>  
+           <% }else { %>
+                <div class="row justify-content-end ">
+                    <div class="col-md-3">
+                        <p><strong>Inicie sesion para poder realizar la compra</strong></p>
+                    </div>
+                </div>  
+
+           <% } %>
+           
             
             <%- include('partials/footer') %>
             <% }else{ %>

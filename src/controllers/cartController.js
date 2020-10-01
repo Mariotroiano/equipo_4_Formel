@@ -30,13 +30,15 @@ let cartFunctions = {
     detailCart : (req, res, next) => {        
         if (!req.session.cart) {
             res.render('cart', {
-                products: null
+                products: null,
+                user : null
             });
         }
         var cart = new Cart(req.session.cart);
         res.render('cart', {              
             products: cart.getItems(),
-            totalPrice: cart.totalPrice
+            totalPrice: cart.totalPrice,
+            user : req.session.user
         });
         
     }, // en el detalle recorro todos los productos del getItems, por cada uno hago un
